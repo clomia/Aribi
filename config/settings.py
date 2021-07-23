@@ -42,6 +42,9 @@ DJGNAO_APPS = [
 PROJECT_APPS = [
     "users.apps.UsersConfig",
     "core.apps.CoreConfig",
+    "archives.apps.ArchivesConfig",
+    "lists.apps.ListsConfig",
+    "postings.apps.PostingsConfig",
 ]
 
 INSTALLED_APPS = DJGNAO_APPS + PROJECT_APPS

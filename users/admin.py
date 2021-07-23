@@ -6,7 +6,7 @@ from . import models
 @admin.register(models.User)
 class UserAdmin(UserAdmin):
 
-    fieldsets = UserAdmin.fieldsets + (
+    fieldsets = (
         (
             "Profile Field",
             {
@@ -17,7 +17,7 @@ class UserAdmin(UserAdmin):
                 ),
             },
         ),
-    )
+    ) + UserAdmin.fieldsets
 
     list_display = (
         "username",

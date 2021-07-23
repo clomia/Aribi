@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class TimeStampedModel(models.Model):
+class CoreModel(models.Model):
 
     """Room Model Definistion"""
 
