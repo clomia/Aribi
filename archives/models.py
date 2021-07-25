@@ -17,7 +17,7 @@ class Constituent(CoreModel):
 
     name = models.CharField(max_length=255)
     kind = models.CharField(max_length=50, choices=TYPE_CHOICES, null=False)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to="archive_images", null=True, blank=True)
     description = models.TextField(blank=True)
     alcohol = models.IntegerField(null=True, blank=True)
 

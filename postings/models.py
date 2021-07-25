@@ -9,7 +9,7 @@ class Posting(CoreModel):
 
     created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
     cocktail_name = models.CharField(max_length=255)
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to="postings")
     content = models.TextField(null=True, blank=True)
     constituent = models.ManyToManyField("archives.Constituent", related_name=related_name)
     flavor_tag = models.ManyToManyField("archives.FlavorTag", related_name=related_name)
@@ -26,7 +26,7 @@ class Comment(CoreModel):
     posting = models.ForeignKey("postings.Posting", on_delete=models.CASCADE, related_name=related_name)
     created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
     parents = models.ForeignKey("self", on_delete=models.CASCADE, related_name="reply", null=True, blank=True)
-    photo = models.ImageField(null=True, blank=True)
+    photo = models.ImageField(upload_to="comments", null=True, blank=True)
     score = models.SmallIntegerField(null=True, blank=True)
     content = models.TextField()
 
