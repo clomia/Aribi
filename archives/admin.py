@@ -1,8 +1,6 @@
 from django.contrib import admin
 from . import models
 
-# Register your models here.
-
 
 @admin.register(models.Constituent)
 class ConstituentAdmin(admin.ModelAdmin):
@@ -16,3 +14,12 @@ class ConstituentAdmin(admin.ModelAdmin):
     ordering = [
         "alcohol",
     ]
+
+
+@admin.register(models.FlavorTag)
+class FlavorTagAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "expression",
+        "category",
+    )

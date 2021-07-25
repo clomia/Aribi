@@ -3,6 +3,7 @@ from core.models import CoreModel
 
 
 class Constituent(CoreModel):
+    """ 칵테일의 재료와 용품 아카이브 모델입니다. """
 
     TYPE_LIQUID = "액체"
     TYPE_INGREDIENT = "재료"
@@ -14,19 +15,18 @@ class Constituent(CoreModel):
         (TYPE_EQUIPMENT, TYPE_EQUIPMENT),
     )
 
-    name = models.CharField(max_length=50)
-    kind = models.CharField(max_length=20, choices=TYPE_CHOICES, null=True)
+    name = models.CharField(max_length=255)
+    kind = models.CharField(max_length=50, choices=TYPE_CHOICES, null=False)
     image = models.ImageField(null=True, blank=True)
     description = models.TextField(blank=True)
     alcohol = models.IntegerField(null=True, blank=True)
 
-    def get_absolute_url(self):
-        """어드민에서 웹으로 이동하는 버튼 생기는 함수"""
-        # return reverse("model_detail", kwargs={"pk": self.pk})
-        pass
+    def __str__(self):
+        return self.name
 
 
 class FlavorTag(CoreModel):
+    """ 맛의 구성 아카이브 모델입니다. """
 
     CATEGORY_FRUIT = "과일맛"
     CATEGORY_PLANT = "식물맛"
@@ -46,11 +46,11 @@ class FlavorTag(CoreModel):
         (OTHER_FEATURE, OTHER_FEATURE),
     )
 
-    expression = models.CharField(max_length=15)
-    category = models.CharField(max_length=10, choices=CATEGORY_CHOICE)
-
-    def __str__(self):
-        return self.expression
+    expression = models.CharField(max_length=255)
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICE)
 
     class Meta:
         verbose_name_plural = "Flavor"
+
+    def __str__(self):
+        return self.expression

@@ -3,6 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """ 유저 모델입니다. """
 
     LOGIN_DEFAULT = "default"
     LOGING_KAKAO = "kakao"
