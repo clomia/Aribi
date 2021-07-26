@@ -10,8 +10,21 @@ class PostingAdmin(admin.ModelAdmin):
 
     def get_image(self, obj):
         """ info: obj 인자로는 Posting객체가 들어온다 """
-        print(f'<img width="50px" src="{obj.photo.url}" />')
-        return mark_safe(f'<img width="50px" src="{obj.photo.url}" />')
+
+        return mark_safe(f'<img width="50px" src="{obj.pictures.all()[0].image.url}" />')
+
+    get_image.short_description = "picture"
+
+
+@admin.register(models.Picture)
+class PictureAdmin(admin.ModelAdmin):
+
+    list_display = ("posting", "get_image")
+
+    def get_image(self, obj):
+        """ info: obj 인자로는 Picture객체가 들어온다 """
+
+        return mark_safe(f'<img width="50px" src="{obj.image.url}" />')
 
     get_image.short_description = "Image"
 

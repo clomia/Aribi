@@ -17,12 +17,23 @@ class Constituent(CoreModel):
 
     name = models.CharField(max_length=255)
     kind = models.CharField(max_length=50, choices=TYPE_CHOICES, null=False)
-    image = models.ImageField(upload_to="archive_images", null=True, blank=True)
     description = models.TextField(blank=True)
     alcohol = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+
+class ConstituentImage(CoreModel):
+    """ 칵테일 재료,용품 이미지 모델입니다 """
+
+    related_name = "constituent_images"
+
+    image = models.ImageField(upload_to="archive_images", null=True, blank=True)
+    constituent = models.ForeignKey("archives.Constituent", on_delete=models.CASCADE, related_name=related_name)
+
+    def __str__(self):
+        return f"[아카이브 사진] {self.constituent}"
 
 
 class FlavorTag(CoreModel):
@@ -48,9 +59,6 @@ class FlavorTag(CoreModel):
 
     expression = models.CharField(max_length=255)
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICE)
-
-    class Meta:
-        verbose_name_plural = "Flavor"
 
     def __str__(self):
         return self.expression

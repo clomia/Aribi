@@ -9,13 +9,24 @@ class Posting(CoreModel):
 
     created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
     cocktail_name = models.CharField(max_length=255)
-    photo = models.ImageField(upload_to="postings")
     content = models.TextField(null=True, blank=True)
     constituent = models.ManyToManyField("archives.Constituent", related_name=related_name)
     flavor_tag = models.ManyToManyField("archives.FlavorTag", related_name=related_name)
 
     def __str__(self):
-        return f"{self.created_by}: {self.cocktail_name}"
+        return f"{self.created_by} - {self.cocktail_name}"
+
+
+class Picture(CoreModel):
+    """ 포스팅에 담기는 사진을 다루는 모델입니다. """
+
+    related_name = "pictures"
+
+    image = models.ImageField(upload_to="postings", null=True, blank=True)
+    posting = models.ForeignKey("postings.Posting", on_delete=models.CASCADE, related_name=related_name)
+
+    def __str__(self):
+        return f"[포스팅 사진] {self.posting}"
 
 
 class Comment(CoreModel):
