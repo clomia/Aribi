@@ -5,15 +5,8 @@ from core.models import CoreModel
 class Constituent(CoreModel):
     """ 칵테일의 재료와 용품 아카이브 모델입니다. """
 
-    TYPE_LIQUID = "액체"
-    TYPE_INGREDIENT = "재료"
-    TYPE_EQUIPMENT = "용품"
-
-    TYPE_CHOICES = (
-        (TYPE_LIQUID, TYPE_LIQUID),
-        (TYPE_INGREDIENT, TYPE_INGREDIENT),
-        (TYPE_EQUIPMENT, TYPE_EQUIPMENT),
-    )
+    TYPES = [TYPE_LIQUID := "액체", TYPE_INGREDIENT := "재료", TYPE_EQUIPMENT := "용품"]
+    TYPE_CHOICES = [(i, i) for i in TYPES]
 
     name = models.CharField(max_length=255)
     kind = models.CharField(max_length=50, choices=TYPE_CHOICES, null=False)

@@ -22,6 +22,7 @@ class UserAdmin(UserAdmin):
     list_display = (
         "username",
         "login_method",
+        "created",
     )
 
     list_filter = ("login_method",)

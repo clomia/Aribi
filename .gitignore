@@ -1,6 +1,6 @@
 # ------------------- My gitignore ------------------
 
-
+data/
 env/
 uploads/
 
