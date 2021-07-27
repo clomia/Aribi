@@ -84,7 +84,7 @@ class Command(BaseCommand):
 
                 self.stdout.write(
                     self.style.SUCCESS(
-                        f"{posting} | picture:{img_count} like:{len(like_users)} comment:{comment_count}+reply  | ({self.counter}/{len(pk_list)})"
+                        f"({self.counter}/{len(pk_list)}) | {posting} | picture:{img_count} like:{len(like_users)} comment:{comment_count} and replies"
                     )
                 )
 

@@ -7,14 +7,15 @@ class Constituent(CoreModel):
 
     related_name = "constituents"
 
-    TYPES = [TYPE_LIQUID := "액체", TYPE_INGREDIENT := "재료", TYPE_EQUIPMENT := "용품"]
-    TYPE_CHOICES = [(i, i) for i in TYPES]
+    TYPES = (TYPE_LIQUID := "액체", TYPE_INGREDIENT := "재료", TYPE_EQUIPMENT := "용품")
+    TYPE_CHOICES = tuple((i, i) for i in TYPES)
 
     name = models.CharField(max_length=255)
     created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
     kind = models.CharField(max_length=50, choices=TYPE_CHOICES, null=False)
     description = models.TextField(blank=True)
     alcohol = models.IntegerField(null=True, blank=True)
+    reference = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -35,7 +36,7 @@ class ConstituentImage(CoreModel):
 class FlavorTag(CoreModel):
     """ 맛의 구성 아카이브 모델입니다. """
 
-    CATEGORIES = [
+    CATEGORIES = (
         CATEGORY_FRUIT := "과일맛",
         CATEGORY_PLANT := "식물맛",
         CATEGORY_TASTE := "기본맛",
@@ -44,9 +45,9 @@ class FlavorTag(CoreModel):
         CATEGORY_SCENT := "냄새",
         CATEGORY_COLOR := "색감",
         OTHER_FEATURE := "기타 특징",
-    ]
+    )
 
-    CATEGORY_CHOICE = [(i, i) for i in CATEGORIES]
+    CATEGORY_CHOICE = tuple((i, i) for i in CATEGORIES)
 
     related_name = "flavor_tags"
 
