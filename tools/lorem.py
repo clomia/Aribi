@@ -5,7 +5,7 @@ from typing import List
 from config.settings import BASE_DIR
 
 
-def pylist_reader(*args: str) -> List[List]:
+def pylist_loader(*args: str) -> List[List]:
     """
     ! 반환값은 리스트 내포 리스트입니다. 하나의 값을 전했어도 인덱싱으로 꺼내야 합니다
     확장자를 제외한 파일명을 입력해주세요.

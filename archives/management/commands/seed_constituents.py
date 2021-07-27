@@ -1,9 +1,11 @@
-import random
+import random, os
 from typing import Callable, Tuple
 from django.core.management.base import BaseCommand
 from django_seed import Seed
-from archives.models import Constituent, FlavorTag
-from tools.lorem import pylist_reader
+from config.settings import MEDIA_ROOT
+from archives.models import Constituent, ConstituentImage
+from users.models import User
+from tools.lorem import pylist_loader
 
 
 class Command(BaseCommand):
@@ -13,7 +15,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             "--total",
-            help=help,
+            help="생성할 데이터의 갯수를 입력받습니다.",
             default=20,
         )
 
@@ -32,6 +34,7 @@ class Command(BaseCommand):
         def alcohol(x):
             return elements(self.now_type)[2]()
 
+        all_users = User.objects.all()
         total = int(options.get("total"))
         seeder = Seed.seeder(locale="ko_KR")
         seeder.add_entity(
@@ -39,12 +42,28 @@ class Command(BaseCommand):
             total,
             {
                 "name": name,
+                "created_by": lambda x: random.choice(all_users),
                 "description": description,
                 "kind": kind,
                 "alcohol": alcohol,
             },
         )
-        seeder.execute()
+        pk_list = seeder.execute()[Constituent]
+        for pk in pk_list:
+            constituent = Constituent.objects.get(pk=pk)
+            count = random.randint(1, 4)
+            for _ in range(count):
+                ConstituentImage.objects.create(
+                    image=os.path.join(MEDIA_ROOT, f"archive_images/{random.randint(1,49)}.jpg"),
+                    constituent=constituent,
+                )
+            if not constituent.name:
+                # 약 2%확률로 이름없는 객체가 생성된다 원인을 못찾아서 일단 여기서 처리한다.
+                constituent.delete()
+                self.stdout.write(self.style.WARNING("잘못 생성된 객체를 제거하였습니다."))
+            else:
+                self.stdout.write(self.style.SUCCESS(constituent.name))
+
         self.stdout.write(self.style.SUCCESS(f"{total} constituents created!"))
 
     def seed_supporter(self) -> Tuple[Callable, Tuple]:
@@ -52,11 +71,11 @@ class Command(BaseCommand):
 
         constituent_list = ("alcoholic_drinks", "drinks", "ingredients", "equipments")
 
-        lorem, *constituents = pylist_reader("lorems", *constituent_list)
+        lorem, *constituents = pylist_loader("lorems", *constituent_list)
         constituents = {key: value for key, value in zip(constituent_list, constituents)}
 
         def description(x):
-            return "\n".join(random.choice(lorem) for _ in range(2))
+            return "\n".join(random.sample(lorem, k=2))
 
         def elements(container) -> Tuple[Callable]:
             """
@@ -73,7 +92,7 @@ class Command(BaseCommand):
                 return random.choice(constituents[container])
 
             if container == "alcoholic_drinks":
-                alcohol = lambda: random.choice((random.randint(1, 50),) * 9 + (random.randint(1, 97),))
+                alcohol = lambda: random.choice((random.randint(1, 49),) * 9 + (random.randint(1, 96),))
             else:
                 alcohol = lambda: None
 
@@ -85,7 +104,7 @@ class Command(BaseCommand):
             }
 
             def kind():
-                """ alcoholic_drinks, drinks 두번쓰기 싫어서 그냥 뒤에 5글자 잘라서 구분하기로 함 """
+                """ container라는 ref가 있기 때문에 lambda로 만들면 안된다. """
                 return type_dict[container]
 
             return name, kind, alcohol

@@ -20,6 +20,8 @@ class ConstituentAdmin(admin.ModelAdmin):
         "created",
     )
 
+    raw_id_fields = ("created_by",)
+
     ordering = [
         "alcohol",
     ]
@@ -33,3 +35,5 @@ class FlavorTagAdmin(admin.ModelAdmin):
         "category",
         "created",
     )
+
+    raw_id_fields = ("created_by",)

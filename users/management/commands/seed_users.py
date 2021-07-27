@@ -17,14 +17,18 @@ class Command(BaseCommand):
     help = "유저 데이터 생성"
 
     def add_arguments(self, parser):
-        parser.add_argument("--total", help="How many books do you want to create?", default=10)
+        parser.add_argument(
+            "--total",
+            help="생성할 유저의 갯수를 입력받습니다.",
+            default=10,
+        )
 
     def handle(self, *args, **options):
 
         total = int(options.get("total"))
         seeder = Seed.seeder()
 
-        def username(x=None):
+        def username(x):
             """
             이름 + 숫자 (10%)
             이름 (30%)
@@ -36,23 +40,23 @@ class Command(BaseCommand):
 
             셈플링된 값이 이미 있다면 다시 한번 더 셈플링 합니다.
             """
-            if not self.name:
+            if (not self.name) or (not x):
                 self.name = namer.generate(next(self.get_gender))
             en_name = seeder.faker.first_name()
             en_word = seeder.faker.word()
             sample = (
-                ((lambda: f"{self.name[1:]}{random.randint(0,10000)}")(),) * 1
+                (f"{self.name[1:]}{random.randint(0,10000)}",)
                 + (f"{self.name[1:]}",) * 3
-                + ((lambda: f"{en_word}_{random.randint(0,10000)}")(),) * 1
+                + (f"{en_word}_{random.randint(0,10000)}",)
                 + (en_name,) * 3
-                + ((lambda: f"{en_name}{random.randint(0,10000)}")(),) * 2
+                + (f"{en_name}{random.randint(0,10000)}",) * 2
             )
             result = random.choice(sample)
-            if (users := User.objects.all()) and not result in [user.username for user in users]:
+            if (all_users := User.objects.all()) and not result in [user.username for user in all_users]:
                 # 유저가 없는데 username확인하면 에러나기 때문에 유저가 있는지부터 확인하는 조건문
+                self.stdout.write(self.style.SUCCESS(str(result)))
                 return result
-            else:
-                username()
+            return username(None)
 
         def first_name(x):
             return self.name[0]

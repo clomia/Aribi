@@ -9,6 +9,21 @@ class PictureInline(admin.StackedInline):
     model = models.Picture
 
 
+class CommentInline(admin.StackedInline):
+
+    model = models.Comment
+
+
+class LikeInline(admin.StackedInline):
+
+    model = models.Like
+
+
+class ReplyInline(admin.StackedInline):
+
+    model = models.Reply
+
+
 @admin.register(models.Posting)
 class PostingAdmin(admin.ModelAdmin):
     """ 포스팅 Admin 정의 """
@@ -20,7 +35,9 @@ class PostingAdmin(admin.ModelAdmin):
         "created",
     )
 
-    inlines = (PictureInline,)
+    raw_id_fields = ("created_by",)
+
+    inlines = (PictureInline, LikeInline, CommentInline)
 
     def get_image(self, obj):
         """ info: obj 인자로는 Posting객체가 들어온다 """
@@ -30,30 +47,24 @@ class PostingAdmin(admin.ModelAdmin):
     get_image.short_description = "Picture"
 
 
-@admin.register(models.Picture)
-class PictureAdmin(admin.ModelAdmin):
-
-    list_display = (
-        "posting",
-        "get_image",
-        "created",
-    )
-
-    def get_image(self, obj):
-        """ info: obj 인자로는 Picture객체가 들어온다 """
-
-        return mark_safe(f'<img width="50px" src="{obj.image.url}" />')
-
-    get_image.short_description = "Image"
-
-
 @admin.register(models.Comment)
 class CommentAdmin(admin.ModelAdmin):
 
     list_display = (
-        "posting",
         "created_by",
-        "parents",
         "content",
-        "created",
+        "posting",
+        "get_image",
+        "score",
     )
+
+    raw_id_fields = ("created_by",)
+
+    inlines = (ReplyInline,)
+
+    def get_image(self, obj):
+        """ info: obj 인자로는 Comment객체가 들어온다 """
+        if obj.photo:
+            return mark_safe(f'<img width="50px" src="{obj.photo.url}" />')
+
+    get_image.short_description = "Comment Image"

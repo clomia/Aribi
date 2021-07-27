@@ -10,3 +10,5 @@ class CustomListAdmin(admin.ModelAdmin):
         "created_by",
         "created",
     )
+
+    raw_id_fields = ("created_by",)
