@@ -1,3 +1,4 @@
+from numpy import average
 from django.db import models
 from core.models import CoreModel
 
@@ -12,6 +13,10 @@ class Posting(CoreModel):
     content = models.TextField(null=True, blank=True)
     constituents = models.ManyToManyField("archives.Constituent", related_name=related_name)
     flavor_tags = models.ManyToManyField("archives.FlavorTag", related_name=related_name)
+
+    def alchol(self):
+        alcoholics = self.constituents.exclude(alcohol=None)
+        return round(average(tuple(obj.alcohol for obj in alcoholics)), 2)
 
     def __str__(self):
         return f"{self.created_by} - {self.cocktail_name}"

@@ -19,12 +19,16 @@ class ConstituentAdmin(admin.ModelAdmin):
         "alcohol",
         "created",
     )
+    search_fields = (
+        "name",
+        "created_by__username",
+        "kind",
+    )
+    list_filter = ("kind",)
 
     raw_id_fields = ("created_by",)
 
-    ordering = [
-        "alcohol",
-    ]
+    ordering = ("-created",)
 
 
 @admin.register(models.FlavorTag)
@@ -35,5 +39,12 @@ class FlavorTagAdmin(admin.ModelAdmin):
         "category",
         "created",
     )
-
+    search_fields = (
+        "expression",
+        "created_by__username",
+        "category",
+    )
+    list_filter = ("category",)
     raw_id_fields = ("created_by",)
+
+    ordering = ("-created",)

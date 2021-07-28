@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Aribi
+{% endblock title %}
+
+{% block body %}
+
+<form action="{% url 'core:search_progress' %}" method="post">
+    {% csrf_token %}
+    <label for="search_for">검색</label>
+    <input name="search_for" id="search_for" type="text">
+
+    <label for="classifier">검색 카테고리</label>
+    <select name="classifier" id="classifier">
+        <option value="search">검색</option>
+        <option value="tag_search">태그검색</option>
+    </select>
+
+    <button>검색!</button>
+</form>
+
+{% endblock body %}

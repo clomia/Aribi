@@ -10,5 +10,11 @@ class CustomListAdmin(admin.ModelAdmin):
         "created_by",
         "created",
     )
+    search_fields = (
+        "name",
+        "created_by__username",
+        "postings__cocktail_name",
+    )
 
     raw_id_fields = ("created_by",)
+    ordering = ("-created",)
