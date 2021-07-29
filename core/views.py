@@ -8,19 +8,18 @@ class Intro:
     """ 인트로 페이지"""
 
     def search(word):
-        results = [
-            cocktail_name := Posting.objects.filter(cocktail_name__iregex=rf"{word}"),
-            created_by := Posting.objects.filter(created_by__username__iregex=rf"{word}"),
-            content := Posting.objects.filter(content__iregex=rf"{word}"),
-            constituents := Posting.objects.filter(constituents__name__iregex=rf"{word}"),
-            flavor_tags := Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"),
-            flavor_tags_category := Posting.objects.filter(flavor_tags__category__iregex=rf"{word}"),
-        ]
+        results = {
+            "cocktail_name": Posting.objects.filter(cocktail_name__iregex=rf"{word}"),
+            "created_by": Posting.objects.filter(created_by__username__iregex=rf"{word}"),
+            "content": Posting.objects.filter(content__iregex=rf"{word}"),
+            "constituents": Posting.objects.filter(constituents__name__iregex=rf"{word}"),
+            "flavor_tags": Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"),
+            "flavor_tags_category": Posting.objects.filter(flavor_tags__category__iregex=rf"{word}"),
+        }
 
-        print(fr"{word}")
-        print(result)
+        return {key: value for key, value in results.items() if value}
 
-    def tag_search(tag):
+    def tag_search(*tags):
         pass
 
     func_mapping = {
@@ -36,6 +35,6 @@ class Intro:
     def search_progress(cls, request):
         content = request.POST
         print(content)
-        cls.func_mapping[content["classifier"]](content["search_for"])
+        result = cls.func_mapping[content["classifier"]](content["search_for"])
 
-        return render(request, "intro/main.html", {})
+        return render(request, "posting/main.html", {"result": result})
