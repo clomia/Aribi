@@ -14,7 +14,6 @@ class Intro:
             "content": Posting.objects.filter(content__iregex=rf"{word}"),
             "constituents": Posting.objects.filter(constituents__name__iregex=rf"{word}"),
             "flavor_tags": Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"),
-            "flavor_tags_category": Posting.objects.filter(flavor_tags__category__iregex=rf"{word}"),
         }
 
         return {key: value for key, value in results.items() if value}
@@ -29,7 +28,30 @@ class Intro:
 
     @classmethod
     def main(cls, request):
-        return render(request, "intro/main.html", {})
+        """ htnml에 DOM을 뿌린 후 JavaScript에서 가져가도록 합니다, 최신게 Array의 가장 앞에 있도록 함. """
+        organize = lambda model: model.objects.all().order_by("-created")
+        tags = []
+        for constituent, flavor_tag in zip(organize(Constituent), organize(FlavorTag)):
+            tags.append(
+                {
+                    "content": constituent.name,
+                    "class": "Constituent",
+                    "type": constituent.kind,
+                    "alcohol": True if (v := constituent.alcohol) and v > 0 else False,
+                    "pk": constituent.pk,
+                }
+            )
+            tags.append(
+                {
+                    "content": flavor_tag.expression,
+                    "class": "FlavorTag",
+                    "type": flavor_tag.category,
+                    "alcohol": False,
+                    "pk": flavor_tag.pk,
+                }
+            )
+
+        return render(request, "intro/main.html", {"tags": tags})
 
     @classmethod
     def search_progress(cls, request):
@@ -37,4 +59,4 @@ class Intro:
         print(content)
         result = cls.func_mapping[content["classifier"]](content["search_for"])
 
-        return render(request, "posting/main.html", {"result": result})
+        return render(request, "intro/search_result.html", {"result": result})

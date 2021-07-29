@@ -1,0 +1,13 @@
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #fafafa;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.none{
+    display: none;
+}

@@ -1,0 +1,16 @@
+.tag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: khaki;
+    border-radius: 100px;
+}
+
+.tags{
+    background-color: white;
+    margin-top: 40px;
+    width: 80vmin;
+    height: 30vmin;
+    border-radius: 25px;
+}

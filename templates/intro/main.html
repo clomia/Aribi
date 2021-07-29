@@ -6,6 +6,46 @@ Aribi
 
 {% block body %}
 
+
+<div class="search-box">
+    <form class="search-box__form" action="{% url 'core:search_progress' %}" method="post">
+        {% csrf_token %}
+        <input class="search-box__input" type="text" name="search_for">
+    </form>
+</div>
+
+<div class="tags">
+    <div class="none">
+
+        {% for tag in tags %}
+        <div class="content">{{tag.content}}</div>
+        <div class="class">{{tag.class}}</div>
+        <div class="type">{{tag.type}}</div>
+        <div class="alcohol">{{tag.alcohol}}</div>
+        <div class="pk">{{tag.pk}}</div>
+        {% endfor %}
+
+    </div>
+    <form class="tags">
+        <div class="tags__constituent"></div>
+        <div class="tags__flavor"></div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <form action="{% url 'core:search_progress' %}" method="post">
     {% csrf_token %}
     <label for="search_for">검색</label>
@@ -19,5 +59,6 @@ Aribi
 
     <button>검색!</button>
 </form>
+-->
 
 {% endblock body %}
