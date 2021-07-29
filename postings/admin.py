@@ -14,9 +14,19 @@ class CommentInline(admin.StackedInline):
     model = models.Comment
 
 
-class LikeInline(admin.StackedInline):
+class PostingLikeInline(admin.StackedInline):
 
-    model = models.Like
+    model = models.PostingLike
+
+
+class CommentLikeInline(admin.StackedInline):
+
+    model = models.CommentLike
+
+
+class ReplyLikeInline(admin.StackedInline):
+
+    model = models.ReplyLike
 
 
 class ReplyInline(admin.StackedInline):
@@ -52,7 +62,7 @@ class PostingAdmin(admin.ModelAdmin):
         "flavor_tags",
     )
 
-    inlines = (PictureInline, LikeInline, CommentInline)
+    inlines = (PictureInline, PostingLikeInline, CommentInline)
 
     def get_image(self, obj):
         """ info: obj 인자로는 Posting객체가 들어온다 """
@@ -87,7 +97,10 @@ class CommentAdmin(admin.ModelAdmin):
     ordering = ("-created",)
     raw_id_fields = ("created_by",)
 
-    inlines = (ReplyInline,)
+    inlines = (
+        CommentLikeInline,
+        ReplyInline,
+    )
 
     def get_image(self, obj):
         """ info: obj 인자로는 Comment객체가 들어온다 """
