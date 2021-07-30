@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.db.models import Count
 from postings.models import Posting
 from archives.models import Constituent, FlavorTag
 
@@ -28,10 +29,17 @@ class Intro:
 
     @classmethod
     def main(cls, request):
-        """ htnml에 DOM을 뿌린 후 JavaScript에서 가져가도록 합니다, 최신게 Array의 가장 앞에 있도록 함. """
-        organize = lambda model: model.objects.all().order_by("-created")
+        """
+        htnml에 DOM을 뿌린 후 JavaScript에서 가져가도록 합니다.
+
+        JavaScript가 두 클래스를 동시에 뿌릴 수 있도록 zip을 써서 데이터를 가공함
+        즉, 앞단에서는 포스팅 갯수 많은 순서대로 constituent,flavorTag가 순서대로 뿌려짐
+        """
+
+        # 포스팅에 많이 사용된 태그가 앞에 오도록 정렬
+        organize = lambda model: model.objects.all().annotate(reference_count=Count("postings")).order_by("-reference_count")
         tags = []
-        # JavaScript가 두 클래스를 동시에 뿌릴 수 있도록 zip을 써서 데이터를 가공함
+
         for constituent, flavor_tag in zip(organize(Constituent), organize(FlavorTag)):
             tags.append(
                 {

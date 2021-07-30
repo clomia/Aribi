@@ -1,4 +1,5 @@
 // 서버에서 받은 정보로 Tag를 렌더링합니다
+
 const contentList = document.querySelectorAll(".content"),
     classList = document.querySelectorAll(".class"),
     typeList = document.querySelectorAll(".type"),

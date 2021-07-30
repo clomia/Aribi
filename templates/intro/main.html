@@ -10,7 +10,7 @@ Aribi
 <div class="search-box">
     <form class="search-box__form" action="{% url 'core:search_progress' %}" method="post">
         {% csrf_token %}
-        <input class="search-box__input" type="text" name="search_for">
+        <input autocomplete="off" class="search-box__input" type="text" name="search_for">
     </form>
 </div>
 

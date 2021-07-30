@@ -17,6 +17,7 @@ class ConstituentAdmin(admin.ModelAdmin):
         "name",
         "kind",
         "alcohol",
+        "reference_count",
         "created",
     )
     search_fields = (
@@ -30,6 +31,10 @@ class ConstituentAdmin(admin.ModelAdmin):
 
     ordering = ("-created",)
 
+    def reference_count(self, obj):
+        """ 포스팅에 사용된 횟수입니다 """
+        return obj.postings.all().count()
+
 
 @admin.register(models.FlavorTag)
 class FlavorTagAdmin(admin.ModelAdmin):
@@ -37,6 +42,7 @@ class FlavorTagAdmin(admin.ModelAdmin):
     list_display = (
         "expression",
         "category",
+        "reference_count",
         "created",
     )
     search_fields = (
@@ -48,3 +54,7 @@ class FlavorTagAdmin(admin.ModelAdmin):
     raw_id_fields = ("created_by",)
 
     ordering = ("-created",)
+
+    def reference_count(self, obj):
+        """ 포스팅에 사용된 횟수입니다 """
+        return obj.postings.all().count()
