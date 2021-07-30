@@ -1,0 +1,113 @@
+
+@keyframes left-to-right {
+    0%{
+        transform: translate(0vmin);
+        background-color: var(--liquid);
+    }
+    20%{
+        background-color: var(--ingredient);
+    }
+    40%{
+        background-color: var(--equipment);
+    }
+    50%{
+        width: 10vmin;
+    }
+    60%{
+        background-color: var(--fruit);
+    }
+    80%{
+        background-color: var(--plant);
+    }
+    100%{
+        transform: translate(76vmin);
+        width: 16px;
+        background-color: var(--teste);
+    }
+}
+
+@keyframes right-to-left {
+    0%{
+        transform: translate(0vmin);
+        background-color: var(--spice);
+    }
+    20%{
+        background-color: var(--texture);
+    }
+    40%{
+        background-color: var(--scent);
+    }
+    50%{
+        width: 10vmin;
+    }
+    60%{
+        background-color: var(--color);
+    }
+    80%{
+        background-color: var(--other);
+    }
+    100%{
+        transform: translate(-76vmin);
+        width: 16px;
+        background-color: var(--liquid);
+    }
+}
+
+
+.under-bar{
+    width: var(--intro-width);
+    height: 6px;
+    position: relative;
+}
+
+.under-bar__b {
+    width: 16px;
+    height: 6px;
+    border-radius: 3px;
+    position: absolute;
+    opacity: 0.2;
+}
+
+.under-bar__left {
+    left: 0px;
+    animation: left-to-right 5s ease-in-out infinite alternate;
+}
+
+.under-bar__right {
+    right: 0px;
+    animation: right-to-left 5s ease-in-out infinite alternate;
+
+}
+
+.under-bar__b2 {
+    animation-delay: 400ms ;
+}
+.under-bar__b3 {
+    animation-delay: 800ms ;
+}
+.under-bar__b4{
+    animation-delay: 1200ms ;
+}
+.under-bar__b5 {
+    animation-delay: 1600ms ;
+}
+.under-bar__b6 {
+    animation-delay: 2000ms ;
+}
+
+
+.under-bar__b8 {
+    animation-delay: 400ms ;
+}
+.under-bar__b9{
+    animation-delay: 800ms ;
+}
+.under-bar__b10 {
+    animation-delay: 1200ms ;
+}
+.under-bar__b11 {
+    animation-delay: 1600ms ;
+}
+.under-bar__b12 {
+    animation-delay: 2000ms ;
+}

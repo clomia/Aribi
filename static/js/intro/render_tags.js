@@ -45,8 +45,10 @@ function createTag(data) {
         tag.innerHTML = data.content;
         tag.classList.add("tag");
         tag.classList.add(cssClass);
+        tag.title = data.type
         if (data.alcohol) {
             tag.classList.add("alcohol");
+            tag.title = "술"
         }
         //* 데이터 전송을 위한 input 생성 
         const ele = document.createElement("input");

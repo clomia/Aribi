@@ -2,7 +2,8 @@
 @import "base.css";
 @import "variables.css";
 @import "intro/search.css";
-@import "intro/tags.css";
+@import "intro/tag_space.css";
+@import "intro/table_animation.css";
 
 * {
     box-sizing: border-box;
