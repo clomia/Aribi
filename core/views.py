@@ -31,10 +31,11 @@ class Intro:
         """ htnml에 DOM을 뿌린 후 JavaScript에서 가져가도록 합니다, 최신게 Array의 가장 앞에 있도록 함. """
         organize = lambda model: model.objects.all().order_by("-created")
         tags = []
+        # JavaScript가 두 클래스를 동시에 뿌릴 수 있도록 zip을 써서 데이터를 가공함
         for constituent, flavor_tag in zip(organize(Constituent), organize(FlavorTag)):
             tags.append(
                 {
-                    "content": constituent.name,
+                    "content": constituent.name.replace("\n", ""),
                     "class": "Constituent",
                     "type": constituent.kind,
                     "alcohol": True if (v := constituent.alcohol) and v > 0 else False,
@@ -43,7 +44,7 @@ class Intro:
             )
             tags.append(
                 {
-                    "content": flavor_tag.expression,
+                    "content": flavor_tag.expression.replace("\n", ""),
                     "class": "FlavorTag",
                     "type": flavor_tag.category,
                     "alcohol": False,

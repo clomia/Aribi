@@ -6,7 +6,7 @@
 .search-box__input {
     border: none;
     background-color: white;
-    width: 80vmin;
+    width: var(--intro-width);
     height: 50px;
     border-radius: 37px;
     padding: 20px 30px;

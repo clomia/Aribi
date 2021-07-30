@@ -1,16 +1,76 @@
-.tag{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: khaki;
-    border-radius: 100px;
+.tagbox{
+    width: var(--intro-width);
+    margin-top: 30px;
+    border-radius: 28px;
+    padding: 0px 20px;
+    box-shadow: inset 0px 0px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
-.tags{
-    background-color: white;
-    margin-top: 40px;
-    width: 80vmin;
-    height: 30vmin;
-    border-radius: 25px;
+
+.tagbox__field {
+    overflow: auto;
+    height: 40vmin;
+    padding: 5px 0px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.tagbox__field::-webkit-scrollbar{
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.tag{
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 4px;
+    border-radius: 100px;
+    color: white;
+    opacity: 0.6;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.tag:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.alcohol{
+    opacity: 0.8;
+}
+.liquid{
+    background-color: var(--liquid);
+}
+.ingredient{
+    background-color: var(--ingredient);
+}
+.equipment{
+    background-color: var(--equipment);
+}
+.fruit{
+    background-color: var(--fruit);
+}
+.plant{
+    background-color: var(--plant);
+}
+.teste{
+    background-color: var(--teste);
+}
+.spice{
+    background-color: var(--spice);
+}
+.texture{
+    background-color: var(--texture);
+}
+.scent{
+    background-color: var(--scent);
+}
+.color{
+    background-color: var(--color);
+}
+.other{
+    background-color: var(--other);
 }

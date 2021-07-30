@@ -1,11 +1,12 @@
+// 서버에서 받은 정보로 Tag를 렌더링합니다
 const contentList = document.querySelectorAll(".content"),
     classList = document.querySelectorAll(".class"),
     typeList = document.querySelectorAll(".type"),
     alcoholList = document.querySelectorAll(".alcohol"),
-    pkList = document.querySelectorAll(".pk");
-
-const constituent = document.querySelector(".tags__constituent"),
-    flavor = document.querySelector(".tags__flavor");
+    pkList = document.querySelectorAll(".pk"),
+    constituent = document.querySelector(".tagbox__constituent"),
+    flavor = document.querySelector(".tagbox__flavor"),
+    field = document.querySelector(".tagbox__field");
 
 function zip(arrays) {
     return Array.apply(null, Array(arrays[0].length)).map(function (_, i) {
@@ -31,26 +32,39 @@ function dict(collection) {
     return obj;
 }
 
-
+let constituentCounter = 0;
+let flavorCounter = 0;
 
 function createTag(data) {
     function createAttr(cssClass, classifier) {
-        ele.classList.add(cssClass);
+        const ID = classifier + data.pk
+        //* 사용자가 접하는 div 생성
+        const tag = document.createElement("div");
+        tag.classList.add(ID);
+        tag.innerHTML = data.content;
+        tag.classList.add("tag");
+        tag.classList.add(cssClass);
+        if (data.alcohol) {
+            tag.classList.add("alcohol");
+        }
+        //* 데이터 전송을 위한 input 생성 
+        const ele = document.createElement("input");
+        ele.classList.add(ID);
+        ele.type = "checkbox";
         if (classifier === "Constituent") {
             constituent.appendChild(ele);
         } else if (classifier === "FlavorTag") {
             flavor.appendChild(ele);
         }
-        ele.name = "tag"
+        field.appendChild(tag)
+        ele.name = "tag";
         ele.value = JSON.stringify({
             class: classifier,
             pk: data.pk,
         })
+        // input 객체는 안보이도록 함
+        ele.classList.add("none")
     }
-
-    const ele = document.createElement("input");
-    ele.type = "button"
-    ele.innerText = data.content
 
     switch (data.type) {
         case "액체":
@@ -89,14 +103,8 @@ function createTag(data) {
         default:
             break;
     }
-    if (data.alcohol) {
-        ele.classList.add("alcohol");
-    }
 }
 
 
 
 collection.map(toContent).map(dict).forEach(createTag);
-
-console.log(collection);
-

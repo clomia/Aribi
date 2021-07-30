@@ -14,51 +14,22 @@ Aribi
     </form>
 </div>
 
-<div class="tags">
+<div class="tagbox">
     <div class="none">
-
         {% for tag in tags %}
-        <div class="content">{{tag.content}}</div>
+        <div class="content">{{ tag.content }}</div>
         <div class="class">{{tag.class}}</div>
         <div class="type">{{tag.type}}</div>
         <div class="alcohol">{{tag.alcohol}}</div>
         <div class="pk">{{tag.pk}}</div>
         {% endfor %}
-
     </div>
-    <form class="tags">
-        <div class="tags__constituent"></div>
-        <div class="tags__flavor"></div>
+    <form class="tags none">
+        <div class="tagbox__constituent"></div>
+        <div class="tagbox__flavor"></div>
     </form>
+    <div class="tagbox__field"></div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<form action="{% url 'core:search_progress' %}" method="post">
-    {% csrf_token %}
-    <label for="search_for">검색</label>
-    <input name="search_for" id="search_for" type="text">
-
-    <label for="classifier">검색 카테고리</label>
-    <select name="classifier" id="classifier">
-        <option value="search">검색</option>
-        <option value="tag_search">태그검색</option>
-    </select>
-
-    <button>검색!</button>
-</form>
--->
 
 {% endblock body %}
