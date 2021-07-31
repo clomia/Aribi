@@ -45,7 +45,8 @@
         <div class="pk">{{tag.pk}}</div>
         {% endfor %}
     </div>
-    <form class="tags none">
+    <form class="tags none" action="{% url 'core:search_progress' %}" method="post">
+        {% csrf_token %}
         <div class="tagbox__constituent"></div>
         <div class="tagbox__flavor"></div>
     </form>

@@ -8,27 +8,27 @@ Aribi
 
 <div>
     <div>---칵테일 이름으로 검색---</div>
-    {% for result in result.cocktail_name %}
+    {% for result in content.cocktail_name %}
     <div> {{result}} </div>
     {% endfor %}
     <div>---유저로 검색---</div>
-    {% for result in result.created_by %}
+    {% for result in content.created_by %}
     <div> {{result}} </div>
     {% endfor %}
     <div>---포스팅 본문으로 검색---</div>
-    {% for result in result.content %}
+    {% for result in content.content %}
     <div> {{result}} </div>
     {% endfor %}
     <div>---재료로 검색---</div>
-    {% for result in result.constituents %}
+    {% for result in content.constituents %}
     <div> {{result}} </div>
     {% endfor %}
     <div>---맛으로 검색---</div>
-    {% for result in result.flavor_tags %}
+    {% for result in content.flavor_tags %}
     <div> {{result}} </div>
     {% endfor %}
     <div>---맛의 카테고리로 검색---</div>
-    {% for result in result.flavor_tags_category %}
+    {% for result in content.flavor_tags_category %}
     <div> {{result}} </div>
     {% endfor %}
     <div>-------------------------</div>

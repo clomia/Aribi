@@ -18,19 +18,19 @@
 @keyframes left-to-right {
     0%{
         transform: translate(0vmin);
-        background-color: var(--liquid);
+        background-color: var(--plant);
     }
     20%{
-        background-color: var(--ingredient);
+        background-color: var(--teste);
     }
     40%{
-        background-color: var(--equipment);
+        background-color: var(--liquid);
     }
     50%{
         width: 10vmin;
     }
     60%{
-        background-color: var(--fruit);
+        background-color: var(--ingredient);
     }
     80%{
         background-color: var(--plant);
@@ -38,7 +38,7 @@
     100%{
         transform: translate(75vmin);
         width: 16px;
-        background-color: var(--teste);
+        background-color: var(--fruit);
     }
 }
 
@@ -107,7 +107,7 @@
     height: 6px;
     border-radius: 3px;
     position: absolute;
-    opacity: 0.2;
+    opacity: 0.19;
 }
 
 .under-bar__left {

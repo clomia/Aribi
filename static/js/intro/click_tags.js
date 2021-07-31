@@ -62,7 +62,6 @@ function raise(event) {
     event.target.addEventListener("mousedown", drop);
 
     setColorClass(searchBtn, event.target.classList[2]);
-    console.log(table.children)
     setColorClass(deleteBtn, table.children[table.children.length - 3].classList[2]);
 }
 
@@ -70,3 +69,30 @@ tagList.forEach(element => {
     element.addEventListener("mousedown", raise);
 });
 
+function eraser(event) {
+    let targets = table.querySelectorAll(".tag");
+    targets.forEach(ele => checkControll(ele, false));
+    targets.forEach(ele => ele.classList.remove("raise"));
+    targets.forEach(ele => tagBoxField.insertBefore(ele, tagBoxField.firstChild));
+    targets.forEach(ele => ele.removeEventListener("mousedown", drop));
+    targets.forEach(ele => ele.addEventListener("mousedown", raise));
+
+    setColorClass(searchBtn, undefined);
+    setColorClass(deleteBtn, undefined);
+
+    // 버튼을 없앤다
+    searchBtn.classList.add("none");
+    deleteBtn.classList.add("none");
+    underBar.classList.add("table-empty");
+}
+
+function submit(event) {
+    form.submit();
+    // 채크해둔게 브라우저 캐시로 남아 있다 버그마냥..
+    // 근데 또 신기하게 아래 코드가 먹힌다ㅋㅋ 이렇게 submit이후에 처리해주었다.
+    checkboxList.forEach(checkbox => { checkbox.checked = false })
+}
+
+deleteBtn.addEventListener("mousedown", eraser);
+
+searchBtn.addEventListener("mousedown", submit);

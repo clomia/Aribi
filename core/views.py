@@ -1,14 +1,21 @@
+import ast
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Count
 from postings.models import Posting
 from archives.models import Constituent, FlavorTag
 
+class_mapping = {
+    "Constituent": Constituent,
+    "FlavorTag": FlavorTag,
+}
+
 
 class Intro:
     """ 인트로 페이지"""
 
     def search(word):
+        (word,) = word
         results = {
             "cocktail_name": Posting.objects.filter(cocktail_name__iregex=rf"{word}"),
             "created_by": Posting.objects.filter(created_by__username__iregex=rf"{word}"),
@@ -17,10 +24,19 @@ class Intro:
             "flavor_tags": Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"),
         }
 
-        return {key: value for key, value in results.items() if value}
+        return "search_result", {key: set(value) for key, value in results.items() if value}
 
-    def tag_search(*tags):
-        pass
+    def tag_search(data_list):
+        data_ground = []
+        for data in data_list:
+            data = ast.literal_eval(data)
+            current_obj = class_mapping[data["class"]].objects.get(pk=data["pk"])
+            data_ground.extend(current_obj.postings.all())
+
+        organized = [{"data": data, "count": data_ground.count(data)} for data in set(data_ground)]
+        organized.sort(key=lambda x: x["count"], reverse=True)
+
+        return "tag_search_result", organized
 
     func_mapping = {
         "search": search,
@@ -64,8 +80,13 @@ class Intro:
 
     @classmethod
     def search_progress(cls, request):
-        content = request.POST
-        print(content)
-        result = cls.func_mapping[content["classifier"]](content["search_for"])
 
-        return render(request, "intro/search_result.html", {"result": result})
+        content = dict(request.POST)
+        if tag_list := content.get("tag", False):
+            content["classifier"] = ["tag_search"]
+            content["search_for"] = tag_list
+
+        # func_mapping에 명시된 함수에 content["search_for"] 리스트를 준다.
+        html, result = cls.func_mapping[content["classifier"][0]](content["search_for"])
+
+        return render(request, f"intro/{html}.html", {"content": result})
