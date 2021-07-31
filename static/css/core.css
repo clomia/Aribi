@@ -4,9 +4,18 @@
 @import "intro/search.css";
 @import "intro/tag_space.css";
 @import "intro/table_animation.css";
+@import "intro/spec_btn.css";
 
 * {
     box-sizing: border-box;
+
+    /* django가 원인인지 자꾸 멋대로 속성이 생긴다. 일단 이 속성은 여기 *에서 정의해야만 적용되더라..*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .none{

@@ -1,0 +1,91 @@
+.selected__search-btn,
+.selected__delete-btn{
+    position: relative;
+    display: inline-block;
+    margin: 4px;
+    border-radius: 100px;
+    opacity: 0.6;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 100px;
+    height: var(--tag-height);
+    border: 2px solid #badeec;
+}
+
+.selected__search-btn:hover,
+.selected__delete-btn:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.selected__delete-btn__icon,
+.selected__search-btn__icon {
+    fill: #badeec;
+    position: absolute;
+    left: 35px;
+    top: 5px;
+    fill:inherit;
+}
+
+
+
+.alcohol{
+    opacity: 0.8;
+}
+.spec-undefined{
+    fill: #badeec;
+    border: 2px solid #badeec;
+}
+.spec-liquid{
+    fill: var(--liquid);
+    border: 2px solid var(--liquid);
+}
+.spec-ingredient{
+    fill: var(--ingredient);
+    border: 2px solid var(--ingredient);
+}
+.spec-equipment{
+    fill: var(--equipment);
+    border: 2px solid var(--equipment);
+}
+.spec-fruit{
+    fill: var(--fruit);
+    border: 2px solid var(--fruit);
+}
+.spec-plant{
+    fill: var(--plant);
+    border: 2px solid var(--plant);
+}
+.spec-teste{
+    fill: var(--teste);
+    border: 2px solid var(--teste);
+}
+.spec-spice{
+    fill: var(--spice);
+    border: 2px solid var(--spice);
+}
+.spec-texture{
+    fill: var(--texture);
+    border: 2px solid var(--texture);
+}
+.spec-scent{
+    fill: var(--scent);
+    border: 2px solid var(--scent);
+}
+.spec-color{
+    fill: var(--color);
+    border: 2px solid var(--color);
+}
+.spec-other{
+    fill: var(--other);
+    border: 2px solid var(--other);
+}
+
+
+
+
+

@@ -1,3 +1,19 @@
+@keyframes search-spin {
+    0%{
+        transform: rotateY(0deg);
+    }
+    100%{
+        transform: rotateY(360deg);
+    }
+}
+
+
+.selected__search-icon-animation{
+    position: absolute;
+    bottom: -40px;
+    animation: search-spin 5s ease-in-out infinite;
+    fill: rgba(0, 0, 0, 0.05);
+}
 
 @keyframes left-to-right {
     0%{
@@ -20,7 +36,7 @@
         background-color: var(--plant);
     }
     100%{
-        transform: translate(76vmin);
+        transform: translate(75vmin);
         width: 16px;
         background-color: var(--teste);
     }
@@ -47,17 +63,43 @@
         background-color: var(--other);
     }
     100%{
-        transform: translate(-76vmin);
+        transform: translate(-75vmin);
         width: 16px;
         background-color: var(--liquid);
     }
 }
 
+@keyframes skew {
+    0%{
+        transform: rotateZ(0deg) translateY(-10px);
+    }
+    25%{
+        transform: rotateZ(-1deg) translateY(0px);
+    }
+    50%{
+        transform: rotateZ(0deg) rotateY(10px);
+    }
+    75%{
+        transform: rotateZ(1deg) translateY(0px);
+    }
+    100%{
+        transform: rotateZ(0deg) rotateY(-10px);
+    }
+}
 
 .under-bar{
     width: var(--intro-width);
     height: 6px;
     position: relative;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+
+.table-empty{
+    /* 태이블이 비어있을때 에니메이션 바 전채의 스타일링을 하는곳이다*/
+    /* 현재는 마땅히 괜찮은 변화가 떠오르지 않아서 방치중이다*/
+    animation: skew 10s ease-in-out infinite alternate;
+    margin-bottom: 15px;
 }
 
 .under-bar__b {
@@ -111,3 +153,4 @@
 .under-bar__b12 {
     animation-delay: 2000ms ;
 }
+

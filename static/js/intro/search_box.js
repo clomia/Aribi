@@ -1,10 +1,10 @@
-const searchBoxForm = document.querySelector(".search-box__form")
+let searchBoxForm = document.querySelector(".search-box__form")
 
-const typeSearch = "search-box__type-search",
+let typeSearch = "search-box__type-search",
     typeTagSearch = "search-box__type-tag-search";
 
 function searchType(clsName) {
-    const ele = document.createElement('input');
+    let ele = document.createElement('input');
 
     searchBoxForm.appendChild(ele)
 

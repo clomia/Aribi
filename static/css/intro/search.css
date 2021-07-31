@@ -1,6 +1,7 @@
 .search-box {
     margin-top: 30vmin;
     display: block;
+    position: relative;
 }
 
 .search-box__input {
@@ -12,6 +13,7 @@
     padding: 20px 30px;
     font-size: 20px;
     font-family: 'Nanum Gothic', sans-serif;
+    caret-color: rgba(0, 0, 0, 0.1);
 }
 
 .search-box__input:focus {
@@ -23,3 +25,5 @@
 .search-box__input:focus {
     box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
 }
+
+

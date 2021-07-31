@@ -1,0 +1,53 @@
+<div class="search-box">
+    <form class="search-box__form" action="{% url 'core:search_progress' %}" method="post">
+        {% csrf_token %}
+        <input autocomplete="off" class="search-box__input" type="text" name="search_for">
+    </form>
+</div>
+<div class="selected">
+    <div class="selected__search-btn spec-teste none">
+        <div class="selected__search-btn__icon ">
+            {% include 'svg/search_icon_small.html' %}
+        </div>
+    </div>
+    <div class="selected__delete-btn spec-teste none">
+        <div class="selected__delete-btn__icon ">
+            {% include 'svg/eraser_icon.html' %}
+        </div>
+    </div>
+
+    <div class="selected__search-icon-animation">
+        {% include 'svg/search_icon.html' %}
+    </div>
+</div>
+<div class="under-bar table-empty">
+    <div class="under-bar__b under-bar__left under-bar__b1 "></div>
+    <div class="under-bar__b under-bar__left under-bar__b2 "></div>
+    <div class="under-bar__b under-bar__left under-bar__b3 "></div>
+    <div class="under-bar__b under-bar__left under-bar__b4 "></div>
+    <div class="under-bar__b under-bar__left under-bar__b5 "></div>
+    <div class="under-bar__b under-bar__left under-bar__b6 "></div>
+    <div class="under-bar__b under-bar__right under-bar__b7 "></div>
+    <div class="under-bar__b under-bar__right under-bar__b8 "></div>
+    <div class="under-bar__b under-bar__right under-bar__b9 "></div>
+    <div class="under-bar__b under-bar__right under-bar__b10 "></div>
+    <div class="under-bar__b under-bar__right under-bar__b11 "></div>
+    <div class="under-bar__b under-bar__right under-bar__b12 "></div>
+</div>
+
+<div class="tagbox">
+    <div class="none">
+        {% for tag in tags %}
+        <div class="content">{{ tag.content }}</div>
+        <div class="class">{{tag.class}}</div>
+        <div class="type">{{tag.type}}</div>
+        <div class="alcohol">{{tag.alcohol}}</div>
+        <div class="pk">{{tag.pk}}</div>
+        {% endfor %}
+    </div>
+    <form class="tags none">
+        <div class="tagbox__constituent"></div>
+        <div class="tagbox__flavor"></div>
+    </form>
+    <div class="tagbox__field"></div>
+</div>

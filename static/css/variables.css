@@ -1,6 +1,7 @@
 :root {
     --intro-width: 80vmin;
     --scrollbar-color:#91dedb;
+    --tag-height: 40px;
 
     --liquid:#919de5;
     --ingredient:#b391e5;

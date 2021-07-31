@@ -1,6 +1,6 @@
 // 서버에서 받은 정보로 Tag를 렌더링합니다
 
-const contentList = document.querySelectorAll(".content"),
+let contentList = document.querySelectorAll(".content"),
     classList = document.querySelectorAll(".class"),
     typeList = document.querySelectorAll(".type"),
     alcoholList = document.querySelectorAll(".alcohol"),
@@ -22,7 +22,7 @@ function toContent(array) {
 }
 function dict(collection) {
     // python에서 보낸 데이터가 기존 dict와 유사한 obj로 최종 변환됩니다
-    const obj = new Object();
+    let obj = new Object();
     [obj.content, obj.class, obj.type, _, _] = collection;
     if (collection[3] === "True") {
         obj.alcohol = true;
@@ -38,9 +38,9 @@ let flavorCounter = 0;
 
 function createTag(data) {
     function createAttr(cssClass, classifier) {
-        const ID = classifier + data.pk
+        let ID = classifier + data.pk
         //* 사용자가 접하는 div 생성
-        const tag = document.createElement("div");
+        let tag = document.createElement("div");
         tag.classList.add(ID);
         tag.innerHTML = data.content;
         tag.classList.add("tag");
@@ -51,7 +51,7 @@ function createTag(data) {
             tag.title = "술"
         }
         //* 데이터 전송을 위한 input 생성 
-        const ele = document.createElement("input");
+        let ele = document.createElement("input");
         ele.classList.add(ID);
         ele.type = "checkbox";
         if (classifier === "Constituent") {
