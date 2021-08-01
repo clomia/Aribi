@@ -76,7 +76,7 @@ class Intro:
                 }
             )
 
-        return render(request, "intro/main.html", {"tags": tags})
+        return render(request, "page/intro/main.html", {"tags": tags})
 
     @classmethod
     def search_progress(cls, request):
@@ -89,4 +89,4 @@ class Intro:
         # func_mapping에 명시된 함수에 content["search_for"] 리스트를 준다.
         html, result = cls.func_mapping[content["classifier"][0]](content["search_for"])
 
-        return render(request, f"intro/{html}.html", {"content": result})
+        return render(request, html, {"content": result})

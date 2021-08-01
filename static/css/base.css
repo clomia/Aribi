@@ -1,12 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 body {
     font-family: 'Nanum Gothic', sans-serif;
     background-color: #fafafa;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 2000px;
 }
 
 body::-webkit-scrollbar {

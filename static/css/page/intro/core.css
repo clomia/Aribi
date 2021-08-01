@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 @import "base.css";
 @import "variables.css";
-@import "intro/search.css";
-@import "intro/tag_space.css";
-@import "intro/table_animation.css";
-@import "intro/spec_btn.css";
+@import "search.css";
+@import "tag_space.css";
+@import "table_animation.css";
+@import "spec_btn.css";
 
 * {
     box-sizing: border-box;

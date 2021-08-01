@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load importer %}
+
 
 {% block title %}
 Aribi
@@ -6,6 +8,7 @@ Aribi
 
 {% block body %}
 
-{% include 'intro/search-eles.html' %}
+{% include 'page/intro/search-eles.html' %}
+{{ "intro"|js_module_import }}
 
 {% endblock body %}
