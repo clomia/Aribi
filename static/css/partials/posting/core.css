@@ -1,0 +1,70 @@
+* {
+    border: 1px solid black;
+}
+.posting {
+    width: 400px;
+    height: 610px;
+}
+
+.posting__x1{
+    display: flex;
+    height: 8.2%;
+}
+
+.posting__x1__profile{
+    width: 22.5%;
+}
+
+.posting__x1__center{
+    width: 60%;
+}
+
+.posting__x1__center__cocktail-name {
+    height: 65%;
+}
+
+.posting__x1__center__username{
+    height: 35%;
+}
+
+.posting__x1__menu{
+    width: 17.5%;
+}
+
+.posting__x2{
+    height: 65.6%;
+}
+
+.posting__x3{
+    height: 6.6%;
+}
+
+.posting__x4{
+    height: 6.6%;
+}
+
+.posting__x5{
+    display: flex;
+    height: 6.6%;
+}
+
+.posting__x5__btn{
+    width: 80%;
+}
+
+.posting__x5__like{
+    width: 20%;
+}
+
+.posting__x6{
+    display: flex;
+    height: 6.6%;
+}
+
+.posting__x6__input{
+    width: 80%;
+}
+
+.posting__x6__submit{
+    width: 20%;
+}

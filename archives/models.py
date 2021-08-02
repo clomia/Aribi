@@ -1,9 +1,10 @@
 from django.db import models
+from django_resized import ResizedImageField
 from core.models import CoreModel
 
 
 class Constituent(CoreModel):
-    """ 칵테일의 재료와 용품 아카이브 모델입니다. """
+    """칵테일의 재료와 용품 아카이브 모델입니다."""
 
     related_name = "constituents"
 
@@ -22,11 +23,11 @@ class Constituent(CoreModel):
 
 
 class ConstituentImage(CoreModel):
-    """ 칵테일 재료,용품 이미지 모델입니다 """
+    """칵테일 재료,용품 이미지 모델입니다"""
 
     related_name = "constituent_images"
 
-    image = models.ImageField(upload_to="archive_images", null=True, blank=True)
+    image = ResizedImageField(upload_to="archive_images", null=True, blank=True)
     constituent = models.ForeignKey("archives.Constituent", on_delete=models.CASCADE, related_name=related_name)
 
     def __str__(self):
@@ -34,7 +35,7 @@ class ConstituentImage(CoreModel):
 
 
 class FlavorTag(CoreModel):
-    """ 맛의 구성 아카이브 모델입니다. """
+    """맛의 구성 아카이브 모델입니다."""
 
     CATEGORIES = (
         CATEGORY_FRUIT := "과일맛",

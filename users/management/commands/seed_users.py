@@ -1,9 +1,12 @@
-import random
+import random, os
 from itertools import cycle
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from django_seed import Seed
 from korean_name_generator import namer
 from users.models import User
+
+MEDIA_ROOT = settings.MEDIA_ROOT
 
 
 class Command(BaseCommand):
@@ -75,6 +78,7 @@ class Command(BaseCommand):
                 "username": username,
                 "last_name": last_name,
                 "login_method": lambda x: random.choice(User.LOGIN_METHODS),
+                "profile_image": lambda x: os.path.join(MEDIA_ROOT, f"profile_images/{random.randint(1,50)}.jpg"),
             },
         )
         seeder.execute()

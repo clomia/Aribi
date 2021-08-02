@@ -32,3 +32,9 @@ def js_module_import(page_name):
         html_contents.append(f"\n<script src='/static/js/{page_name}/{js_module}'></script>")
 
     return mark_safe("".join(html_contents))
+
+
+@register.filter
+def css_import(css_name):
+    """ css link html을 반환합니다 """
+    return mark_safe(f"<link rel='stylesheet' href='/static/css/{css_name}'>")

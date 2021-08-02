@@ -2,7 +2,9 @@
 
 import pickle
 from typing import List
-from config.settings import BASE_DIR
+from django.conf import settings
+
+BASE_DIR = settings.BASE_DIR
 
 
 def pylist_loader(*args: str) -> List[List]:

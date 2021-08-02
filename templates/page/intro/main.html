@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load importer %}
 
-
-{% block title %}
-Aribi
-{% endblock title %}
+{% block head %} 
+    {{ "intro-page.css"|css_import }} 
+{% endblock head %}
 
 {% block body %}
 
-{% include 'page/intro/search-eles.html' %}
-{{ "intro"|js_module_import }}
+    {% include 'page/intro/search-eles.html' %}
+    {{ "intro"|js_module_import }}
 
 {% endblock body %}

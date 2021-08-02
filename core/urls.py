@@ -5,5 +5,5 @@ app_name = "core"
 
 urlpatterns = [
     path("", Intro.main, name="home"),
-    path("searching/", Intro.search_progress, name="search_progress"),
+    path("search-result/", Intro.search_progress, name="search_progress"),
 ]

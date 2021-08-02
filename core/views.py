@@ -24,9 +24,10 @@ class Intro:
             "flavor_tags": Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"),
         }
 
-        return "search_result", {key: set(value) for key, value in results.items() if value}
+        return "page/search_result/main.html", {key: set(value) for key, value in results.items() if value}
 
     def tag_search(data_list):
+        """ data는 posting이다 """
         data_ground = []
         for data in data_list:
             data = ast.literal_eval(data)
@@ -36,7 +37,7 @@ class Intro:
         organized = [{"data": data, "count": data_ground.count(data)} for data in set(data_ground)]
         organized.sort(key=lambda x: x["count"], reverse=True)
 
-        return "tag_search_result", organized
+        return "page/tagsearch-result/main.html", organized
 
     func_mapping = {
         "search": search,
@@ -89,4 +90,4 @@ class Intro:
         # func_mapping에 명시된 함수에 content["search_for"] 리스트를 준다.
         html, result = cls.func_mapping[content["classifier"][0]](content["search_for"])
 
-        return render(request, html, {"content": result})
+        return render(request, html, {"content": result, "posting": result[0]["data"]})  #! posting은 테스트를 위한 key:value 이다

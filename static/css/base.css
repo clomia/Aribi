@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Nanum Gothic', sans-serif;
     background-color: #fafafa;
@@ -19,4 +24,8 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-button {
     width: 0;
     height: 0;
+}
+
+.none{
+    display: none;
 }

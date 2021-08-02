@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load importer %}
+
+{% block head %}
+    {{ "tagsearch-result-page.css"|css_import }}
+{% endblock head %}
+
+{% block body %}
+    {% include 'partials/posting.html' %}    
+    {{ "tagsearch-result"|js_module_import }}
+{% endblock body %}

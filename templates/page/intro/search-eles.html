@@ -1,5 +1,5 @@
 <div class="search-box">
-    <form class="search-box__form" action="{% url 'core:search_progress' %}" method="post">
+    <form class="search-box__form" action="{% url 'core:search_progress' %}" method="POST">
         {% csrf_token %}
         <input autocomplete="off" class="search-box__input" type="text" name="search_for">
     </form>
@@ -38,14 +38,14 @@
 <div class="tagbox">
     <div class="none">
         {% for tag in tags %}
-        <div class="content">{{ tag.content }}</div>
-        <div class="class">{{tag.class}}</div>
-        <div class="type">{{tag.type}}</div>
-        <div class="alcohol">{{tag.alcohol}}</div>
-        <div class="pk">{{tag.pk}}</div>
+            <div class="content">{{ tag.content }}</div>
+            <div class="class">{{tag.class}}</div>
+            <div class="type">{{tag.type}}</div>
+            <div class="alcohol">{{tag.alcohol}}</div>
+            <div class="pk">{{tag.pk}}</div>
         {% endfor %}
     </div>
-    <form class="tags none" action="{% url 'core:search_progress' %}" method="post">
+    <form class="tags none" action="{% url 'core:search_progress' %}" method="POST">
         {% csrf_token %}
         <div class="tagbox__constituent"></div>
         <div class="tagbox__flavor"></div>

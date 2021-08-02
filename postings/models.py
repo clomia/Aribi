@@ -1,10 +1,11 @@
 from numpy import average
 from django.db import models
+from django_resized import ResizedImageField
 from core.models import CoreModel
 
 
 class Posting(CoreModel):
-    """ 포스팅 모델입니다. """
+    """포스팅 모델입니다."""
 
     related_name = "postings"
 
@@ -20,11 +21,11 @@ class Posting(CoreModel):
 
 
 class Picture(CoreModel):
-    """ 포스팅에 담기는 사진을 다루는 모델입니다. """
+    """포스팅에 담기는 사진을 다루는 모델입니다."""
 
     related_name = "pictures"
 
-    image = models.ImageField(upload_to="postings", null=True, blank=True)
+    image = ResizedImageField(upload_to="postings")
     posting = models.ForeignKey("postings.Posting", on_delete=models.CASCADE, related_name=related_name)
 
     def __str__(self):
@@ -32,13 +33,13 @@ class Picture(CoreModel):
 
 
 class Comment(CoreModel):
-    """ 포스팅에 달리는 Comment 모델입니다. """
+    """포스팅에 달리는 Comment 모델입니다."""
 
     related_name = "comments"
 
     posting = models.ForeignKey("postings.Posting", on_delete=models.CASCADE, related_name=related_name)
     created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
-    photo = models.ImageField(upload_to="comment_images", null=True, blank=True)
+    image = ResizedImageField(upload_to="comment_images", size=[500, 360], null=True, blank=True)
     score = models.SmallIntegerField(null=True, blank=True)
     content = models.TextField()
 
@@ -47,13 +48,13 @@ class Comment(CoreModel):
 
 
 class Reply(CoreModel):
-    """ Comment 에달리는 Reply 모델입니다. """
+    """Comment 에달리는 Reply 모델입니다."""
 
     related_name = "replies"
 
     comment = models.ForeignKey("postings.Comment", on_delete=models.CASCADE, related_name=related_name)
     created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
-    photo = models.ImageField(upload_to="comment_images", null=True, blank=True)
+    image = ResizedImageField(upload_to="comment_images", size=[500, 360], null=True, blank=True)
     content = models.TextField()
 
     def __str__(self):
@@ -61,7 +62,7 @@ class Reply(CoreModel):
 
 
 class PostingLike(CoreModel):
-    """ 포스팅에 달리는 좋아요 모델입니다. """
+    """포스팅에 달리는 좋아요 모델입니다."""
 
     related_name = "posting_likes"
 
@@ -73,7 +74,7 @@ class PostingLike(CoreModel):
 
 
 class CommentLike(CoreModel):
-    """ 댓글에 달리는 좋아요 모델입니다. """
+    """댓글에 달리는 좋아요 모델입니다."""
 
     related_name = "comment_likes"
 
@@ -85,7 +86,7 @@ class CommentLike(CoreModel):
 
 
 class ReplyLike(CoreModel):
-    """ 답글에 달리는 좋아요 모델입니다. """
+    """답글에 달리는 좋아요 모델입니다."""
 
     related_name = "reply_likes"
 

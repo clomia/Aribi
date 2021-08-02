@@ -2,10 +2,12 @@ import random, os
 from typing import Callable, Tuple
 from django.core.management.base import BaseCommand
 from django_seed import Seed
-from config.settings import MEDIA_ROOT
+from django.conf import settings
 from archives.models import Constituent, ConstituentImage
 from users.models import User
 from tools.lorem import pylist_loader
+
+MEDIA_ROOT = settings.MEDIA_ROOT
 
 
 class Command(BaseCommand):
