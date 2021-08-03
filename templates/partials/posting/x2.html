@@ -1,0 +1,20 @@
+<div class="{{ posting.pk }} posting__x2">
+    {% for picture in posting.pictures.all %}
+        <div class="{{ posting.pk }} posting__x2__img">
+            <div class="{{ posting.pk }} posting__x2__img__left">
+                <div class="{{ posting.pk }} posting__x2__img__left__icon">
+                    {% include "svg/arrow_icon.html" %}
+                </div>
+            </div>
+            <div class="{{ posting.pk }} posting__x2__img__center_panel"></div>
+            <div class="{{ posting.pk }} img-frame">
+                <img class="{{ posting.pk }} img" src="{{ picture.image.url }}" loading="lazy" alt="포스팅 사진">
+            </div>
+            <div class="{{ posting.pk }} posting__x2__img__right">
+                <div class="{{ posting.pk }} posting__x2__img__right__icon">
+                    {% include "svg/arrow_icon.html" %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

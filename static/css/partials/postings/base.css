@@ -9,11 +9,11 @@
 }
 
 .posting {
-    width: 615px;
+    width: var(--posting-width);
 }
 
 @media (max-width: 615px) {
     .posting{
-        width: 100vw;
+        width: 100%;
     }
 }

@@ -1,0 +1,45 @@
+.posting__x1{
+    height: 60px;
+    background-color: pink;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 18px
+}
+
+.posting__x1__profile{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.posting__x1__center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.posting__x1__menu-btn{
+    display: flex;
+    width: 25px;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.posting__x1__menu-btn{
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: black;
+    opacity: 0.7;
+    position: relative;
+}
+
+.posting__x1__menu-btn__box{
+    position: absolute;
+    top: 100%;
+    width: 40px;
+    height: 50px;
+    background-color: brown;
+}

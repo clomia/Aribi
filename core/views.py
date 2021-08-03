@@ -12,7 +12,7 @@ class_mapping = {
 
 
 class Intro:
-    """ 인트로 페이지"""
+    """인트로 페이지"""
 
     def search(word):
         (word,) = word
@@ -24,10 +24,10 @@ class Intro:
             "flavor_tags": Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"),
         }
 
-        return "page/search_result/main.html", {key: set(value) for key, value in results.items() if value}
+        return "page/search-result/main.html", {key: set(value) for key, value in results.items() if value}
 
     def tag_search(data_list):
-        """ data는 posting이다 """
+        """data는 posting이다"""
         data_ground = []
         for data in data_list:
             data = ast.literal_eval(data)
@@ -36,8 +36,12 @@ class Intro:
 
         organized = [{"data": data, "count": data_ground.count(data)} for data in set(data_ground)]
         organized.sort(key=lambda x: x["count"], reverse=True)
-
-        return "page/tagsearch-result/main.html", organized
+        mex_ref = organized[0]["count"]
+        content = [(count, []) for count in range(mex_ref, 0, -1)]
+        for info in organized:
+            container = [i[1] for i in content if i[0] == info["count"]][0]
+            container.append(info["data"])
+        return "page/tagsearch-result/main.html", content
 
     func_mapping = {
         "search": search,
@@ -57,7 +61,7 @@ class Intro:
         organize = lambda model: model.objects.all().annotate(reference_count=Count("postings")).order_by("-reference_count")
         tags = []
 
-        for constituent, flavor_tag in zip(organize(Constituent), organize(FlavorTag)):
+        for constituent in organize(Constituent):
             tags.append(
                 {
                     "content": constituent.name.replace("\n", ""),
@@ -67,6 +71,7 @@ class Intro:
                     "pk": constituent.pk,
                 }
             )
+        for flavor_tag in organize(FlavorTag):
             tags.append(
                 {
                     "content": flavor_tag.expression.replace("\n", ""),
@@ -89,5 +94,6 @@ class Intro:
 
         # func_mapping에 명시된 함수에 content["search_for"] 리스트를 준다.
         html, result = cls.func_mapping[content["classifier"][0]](content["search_for"])
+        # max_ref는 tag_search에서만 사용되는 값
 
-        return render(request, html, {"content": result, "posting": result[0]["data"]})  #! posting은 테스트를 위한 key:value 이다
+        return render(request, html, {"content": result})

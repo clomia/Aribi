@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import "variables.css";
 
 *{
     box-sizing: border-box;
@@ -25,6 +26,17 @@ body::-webkit-scrollbar-button {
     width: 0;
     height: 0;
 }
+
+a {
+    color: inherit; 
+    text-decoration: none; 
+    outline: none}
+
+a:hover, a:active {
+    color: inherit; 
+    text-decoration: none; 
+}
+
 
 .none{
     display: none;

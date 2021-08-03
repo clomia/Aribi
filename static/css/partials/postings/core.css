@@ -1,9 +1,12 @@
-@import "base.css";
 @import "variables.css";
-@import "search.css";
-@import "tag_space.css";
-@import "table_animation.css";
-@import "spec_btn.css";
+@import "base.css";
+@import "x1.css";
+@import "x2.css";
+
+body{
+    height: 300vh;
+}
+
 
 * {
     /* django가 원인인지 자꾸 멋대로 속성이 생긴다. 일단 이 속성은 여기 *에서 정의해야만 적용되더라..*/
@@ -13,10 +16,5 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.none{
-    /* 위랑 비슷하다, 이것도 가장 마지막으로 cascade 해줘야 적용된다*/
-    display: none;
 }
 

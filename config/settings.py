@@ -150,4 +150,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 
 MEDIA_URL = "/media/"
 
+# 퀄리티 다운은 이미지를 망가뜨리는 버그가 있다 사용하지 말자
+DJANGORESIZED_DEFAULT_QUALITY = 100
 DJANGORESIZED_DEFAULT_SIZE = [615, 770]
