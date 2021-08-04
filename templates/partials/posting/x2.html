@@ -1,20 +1,12 @@
 <div class="{{ posting.pk }} posting__x2">
-    {% for picture in posting.pictures.all %}
-        <div class="{{ posting.pk }} posting__x2__img">
-            <div class="{{ posting.pk }} posting__x2__img__left">
-                <div class="{{ posting.pk }} posting__x2__img__left__icon">
-                    {% include "svg/arrow_icon.html" %}
+    <div class="{{ posting.pk }} posting__x2__slider">
+        {% for picture in posting.pictures.all %}
+            <div class="{{ posting.pk }} posting__x2__slider__img">
+                <div class="{{ posting.pk }} posting__x2__slider__img__file">
+                    <img class="{{ posting.pk }}" src="{{ picture.image.url }}" widthForJS="{{ picture.image.width }}" heightForJS="{{ picture.image.height }}" />
+                    {% comment %} _width,_height 속성은 JS로 정보전달을 위한 수단이다 실제로 이미지 크기에 영향을 주면 안된다 {% endcomment %}
                 </div>
             </div>
-            <div class="{{ posting.pk }} posting__x2__img__center_panel"></div>
-            <div class="{{ posting.pk }} img-frame">
-                <img class="{{ posting.pk }} img" src="{{ picture.image.url }}" loading="lazy" alt="포스팅 사진">
-            </div>
-            <div class="{{ posting.pk }} posting__x2__img__right">
-                <div class="{{ posting.pk }} posting__x2__img__right__icon">
-                    {% include "svg/arrow_icon.html" %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>

@@ -1,66 +1,44 @@
 .posting__x2{
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0);
 }
 
-.posting__x2__img img{
-    width: var(--posting-width);
-}
-
-.posting__x2__img{
-    position: relative;
-}
-
-.posting__x2__img__left,
-.posting__x2__img__right{
-    display: inline-block;
-    position:absolute;
-    width:61px;
-    height: 100%;
-    opacity: 0;
-    transition: all 80ms linear;
-}
-
-.posting__x2__img__left{
-    left: 0;
-}
-
-.posting__x2__img__right{
-    right: 0;
-    bottom: 0;
-}
-
-.posting__x2__img__left:hover,
-.posting__x2__img__right:hover {
-    cursor: pointer;
-    opacity: 1;
-}
-
-.posting__x2__img__left__icon,
-.posting__x2__img__right__icon {
+.posting__x2__slider{
     display: flex;
-    height: 100%;
-    align-items: center;
+    overflow: auto; 
+    scroll-snap-type: x mandatory;
+    /* firfox용 */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+/* 스크롤 디자인 명시 */
+.posting__x2__slider::-webkit-scrollbar {
+    height: 5px;
+}
+.posting__x2__slider::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.posting__x2__slider::-webkit-scrollbar-thumb {
+    border-radius: 1.5px;
+    background-color: var(--scrollbar-color);
+}
+.posting__x2__slider::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+/* ---------------- */
+
+.posting__x2__slider__img{
+    flex: none;
+    scroll-snap-align: start;
+    width: 100%;
+}
+
+.posting__x2__slider__img__file{
+    display: block; 
+    width: 100%; 
+    overflow: hidden;
+    display: flex;
     justify-content: center;
-}
-
-.posting__x2__img__left__icon svg{
-    fill: white;
-    opacity: 0.2;
-}
-
-
-.posting__x2__img__right__icon svg{
-    fill: white;
-    opacity: 0.2;
-    transform: rotate(180deg);
-}
-
-
-.posting__x2__img__center_panel{
-    position: absolute;
-    width: 70%;
-    height: 100%;
-    left: 15%;
-    background-color: yellow;
-    opacity: 0.2;
+    align-items: center;
 }
