@@ -4,7 +4,7 @@ from . import models
 
 
 class PictureInline(admin.StackedInline):
-    """ 다른 Admin에 사진 모델을 같이 볼 수 있도록 만들어둔 클래스 """
+    """다른 Admin에 사진 모델을 같이 볼 수 있도록 만들어둔 클래스"""
 
     model = models.Picture
 
@@ -36,7 +36,7 @@ class ReplyInline(admin.StackedInline):
 
 @admin.register(models.Posting)
 class PostingAdmin(admin.ModelAdmin):
-    """ 포스팅 Admin 정의 """
+    """포스팅 Admin 정의"""
 
     list_per_page = 10
 
@@ -65,7 +65,7 @@ class PostingAdmin(admin.ModelAdmin):
     inlines = (PictureInline, PostingLikeInline, CommentInline)
 
     def get_image(self, obj):
-        """ info: obj 인자로는 Posting객체가 들어온다 """
+        """info: obj 인자로는 Posting객체가 들어온다"""
 
         return mark_safe(f'<img width="50px" src="{obj.pictures.all()[0].image.url}" />')
 
@@ -103,9 +103,9 @@ class CommentAdmin(admin.ModelAdmin):
     )
 
     def get_image(self, obj):
-        """ info: obj 인자로는 Comment객체가 들어온다 """
-        if obj.photo:
-            return mark_safe(f'<img width="50px" src="{obj.photo.url}" />')
+        """info: obj 인자로는 Comment객체가 들어온다"""
+        if obj.image:
+            return mark_safe(f'<img width="50px" src="{obj.image.url}" />')
 
     def reply_counter(self, obj):
         return obj.replies.all().count()
@@ -113,3 +113,26 @@ class CommentAdmin(admin.ModelAdmin):
     reply_counter.short_description = "replies"
 
     get_image.short_description = "Comment Image"
+
+
+@admin.register(models.Reply)
+class ReplyAdmin(admin.ModelAdmin):
+
+    list_per_page = 50
+
+    list_display = (
+        "content",
+        "comment",
+        "created_by",
+        "created",
+    )
+    search_fields = (
+        "comment__content",
+        "created_by__username",
+        "content",
+    )
+
+    ordering = ("-created",)
+    raw_id_fields = ("created_by",)
+
+    inlines = (ReplyLikeInline,)

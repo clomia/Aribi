@@ -11,7 +11,7 @@
 .selected__search-icon-animation{
     position: absolute;
     bottom: -40px;
-    animation: search-spin 5s ease-in-out infinite;
+    animation: search-spin 5s linear infinite;
     fill: rgba(0, 0, 0, 0.05);
 }
 

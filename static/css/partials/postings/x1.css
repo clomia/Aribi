@@ -1,45 +1,112 @@
 .posting__x1{
     height: 60px;
-    background-color: pink;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 18px
+    padding: 0px 18px;
+    position: relative;
+    border-radius: 5px 5px 0 0;
+    /* 여기 아래로는 개발용 */
+    border: 1px solid black;
+    margin-top: 60px;
+}
+
+.posting__x1__profile,
+.posting__x1__menu-btn{
+    /* 왼,오 width같아야지 center가 가운데로 온다 */
+    width: 40px;
 }
 
 .posting__x1__profile{
     height: 40px;
-    width: 40px;
     border-radius: 50%;
 }
 
-.posting__x1__center{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.posting__x1__center__top{
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.posting__x1__center__top:hover{
+    cursor: pointer;
+    text-underline-position:under;
+    text-decoration:underline;
+}
+
+.posting__x1__center__bottom{
+    font-size: 13px;
+    text-align: center;
+    color: gray;
+    opacity: 0.4;
+    transition: all 100ms ease-in-out;
+}
+
+.posting__x1__center__bottom:hover{
+    opacity: 1;
 }
 
 .posting__x1__menu-btn{
     display: flex;
-    width: 25px;
-    height: 60px;
+    height: 100%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-.posting__x1__menu-btn{
+.posting__x1__menu-btn__c{
     width: 4px;
     height: 4px;
+    margin: 0px 3.5px;
     border-radius: 50%;
     background-color: black;
     opacity: 0.7;
-    position: relative;
 }
+
+@keyframes c-bounce {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-4px);
+    }
+}
+
+.posting__x1__menu-btn:hover {
+    cursor: pointer;
+}
+
+.menu-3{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.c1-bounce {
+    animation: c-bounce 300ms ease-in-out infinite alternate;
+    /* skew 10s ease-in-out infinite alternate; */
+}
+.c2-bounce {
+    animation: c-bounce 300ms 100ms ease-in-out infinite alternate;
+}
+.c3-bounce {
+    animation: c-bounce 300ms 200ms ease-in-out infinite alternate;
+}
+
 
 .posting__x1__menu-btn__box{
     position: absolute;
+    z-index: 100;
     top: 100%;
-    width: 40px;
+    right: 0px;
+    width: 100%;
+}
+.posting__x1__menu-btn__box__menu{
     height: 50px;
-    background-color: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.posting__x1__menu-btn__box__menu:hover{
+    background-color: rgba(255, 255, 255, 0.7);
 }

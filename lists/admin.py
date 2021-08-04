@@ -15,6 +15,6 @@ class CustomListAdmin(admin.ModelAdmin):
         "created_by__username",
         "postings__cocktail_name",
     )
-
+    filter_horizontal = ("postings",)
     raw_id_fields = ("created_by",)
     ordering = ("-created",)

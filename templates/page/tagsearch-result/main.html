@@ -7,7 +7,6 @@
 
 {% block body %}
     {% for count,postings in content %}
-        {{ count }}
         {% for posting in postings %}
             {% include 'partials/posting/main.html' %} 
         {% endfor %} 

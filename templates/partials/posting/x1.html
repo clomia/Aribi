@@ -9,11 +9,9 @@
         </a>
     </div>
     <div class="{{ posting.pk }} posting__x1__center">
-        <a href="#">
-            <div class="{{ posting.pk }} posting__x1__center__top">
-                {{ posting.cocktail_name }}
-            </div>
-        </a>
+        <div class="{{ posting.pk }} posting__x1__center__top">
+            {{ posting.cocktail_name }}
+        </div>
         <a href="#">
             <div class="{{ posting.pk }} posting__x1__center__bottom">
                 {{ posting.created_by.username }}
@@ -28,6 +26,7 @@
             <div class="{{ posting.pk }} posting__x1__menu-btn__box__menu menu-1">공유</div>
             <div class="{{ posting.pk }} posting__x1__menu-btn__box__menu menu-2">수정</div>
             <div class="{{ posting.pk }} posting__x1__menu-btn__box__menu menu-3">삭제</div>
+            <div class="{{ posting.pk }} posting__x1__menu-btn__box__menu menu-3">신고</div>
         </div>
     </div>
 </div>

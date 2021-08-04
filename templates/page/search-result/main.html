@@ -1,20 +1,20 @@
-
+<h3>칵테일 이름으로 검색</h3>
 {% for posting in content.cocktail_name %}
     <div>{{posting}}</div>    
 {% endfor %}
-
+<h3>포스팅 한 유저이름으로 검색</h3>
 {% for posting in content.created_by %}
     <div>{{posting}}</div>    
 {% endfor %}
-
+<h3>포스팅 본문으로 검색</h3>
 {% for posting in content.content %}
     <div>{{posting}}</div>    
 {% endfor %}
-
+<h3>칵테일에 사용된 재료로 검색</h3>
 {% for posting in content.constituents %}
     <div>{{posting}}</div>    
 {% endfor %}
-
+<h3>칵테일의 맛/감각으로 검색</h3>
 {% for posting in content.flavor_tags %}
     <div>{{posting}}</div>    
 {% endfor %}
