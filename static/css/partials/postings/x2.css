@@ -1,5 +1,8 @@
 .posting__x2{
+    position: relative;
     background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
 }
 
 .posting__x2__slider{
@@ -42,3 +45,91 @@
     justify-content: center;
     align-items: center;
 }
+
+/* 좌 우 스크롤 버튼 */
+
+.posting__x2__left,
+.posting__x2__right,
+.posting__x2__like,
+.posting__x2__center,
+.like {
+    display: none;
+    /* 모바일에서는 필요없다 드레그스크롤이나 막지 않도록 한다*/
+}
+
+@media not all and (hover: none) and (pointer: coarse) {
+    /*! 이 블럭 내의 코드는 커서를 사용하는 PC에서만 유효하다. */
+    .posting__x2__left,
+    .posting__x2__right,
+    .posting__x2__like,
+    .posting__x2__center,
+    .like {
+        display: block;
+    }
+
+    .posting__x2__left,
+    .posting__x2__right{
+        position: absolute;
+        top: 0px;
+        width: 10%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        fill: white;
+        opacity: 0.3;
+        transition: all 100ms ease-in-out;
+    }
+
+    .posting__x2__left{
+        left: 0px;
+    }
+
+    .posting__x2__right{
+        right: 0px;
+        transform: rotateY(180deg);
+    }
+
+    .posting__x2__left:hover,
+    .posting__x2__right:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    .posting__x2__center{
+        position: absolute;
+        top: 0px;
+        left: 10%;
+        width: 80%;
+        height: 100%;
+    }
+    /*! 모바일은 더블클릭 이벤트 지원 안되서 PC에서만.. */
+    /* 더블클릭 좋아요 */
+    .posting__x2__like{
+        position: absolute;
+        align-self: center;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 150ms ease-in;
+        fill: white;
+    }
+    
+    @keyframes like-off {
+        0%{
+            opacity: 0.7;
+            transform: scale(1);
+        }
+        100%{
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+    
+    .like{
+        opacity: 0.7;
+        transform: scale(1);
+        animation: like-off 150ms ease-out 600ms forwards;
+    }
+}
+
+

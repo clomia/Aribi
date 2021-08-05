@@ -28,7 +28,7 @@ body::-webkit-scrollbar-thumb:hover{
 }
 
 body::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 body::-webkit-scrollbar-track {
     background-color: transparent;
@@ -40,4 +40,8 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-button {
     width: 0;
     height: 0;
+}
+
+.none {
+    display: none;
 }

@@ -107,14 +107,48 @@ window.addEventListener('load', function () {
             }
         }
 
-        // 이미지 스크롤 기능
-        let imageCount = images.length
-        slider.addEventListener("click", function (event) {
-            if (slider.scrollLeft === imageCount * postingWidth - postingWidth) {
-                slider.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-            } else {
-                slider.scrollBy({ top: 0, left: postingWidth, behavior: 'smooth' })
-            }
-        })
+        // 이미지 스크롤 기능, 모바일에는 패널이 없도록 CSS에서 쿼리처리함
+        let leftPanel = posting.querySelector(".posting__x2__left"),
+            rightPanel = posting.querySelector(".posting__x2__right");
+        let imageCount = images.length;
+
+        if (imageCount > 1) {
+            // 이미지 스크롤
+            rightPanel.addEventListener("click", function (event) {
+                slider.scrollBy({ top: 0, left: postingWidth, behavior: 'auto' });
+                leftPanel.classList.remove("none");
+            })
+            leftPanel.addEventListener("click", function (event) {
+                slider.scrollBy({ top: 0, left: -postingWidth, behavior: 'auto' });
+                rightPanel.classList.remove("none");
+            })
+            // 끝에 닿은거 감지하고 버튼 없애는 구현
+            slider.addEventListener("scroll", function (event) {
+                if (slider.scrollLeft >= postingWidth * imageCount - postingWidth) {
+                    rightPanel.classList.add("none");
+                }
+                if (slider.scrollLeft === 0) {
+                    leftPanel.classList.add("none");
+                }
+            })
+        } else {
+            leftPanel.classList.add("none");
+            rightPanel.classList.add("none");
+        }
+
+        // 더블터치(클릭) 좋아요 구현
+        let centerPanel = posting.querySelector(".posting__x2__center"),
+            like = posting.querySelector(".posting__x2__like");
+        function likeAction(event) {
+            like.classList.add("like");
+            //! 함수 넣는 자리!!!
+            console.log("좋아요 입력!!!")
+            //!--------------------
+            setTimeout(function () {
+                like.classList.remove("like");
+            }, 900);
+        }
+        centerPanel.addEventListener("dblclick", likeAction);
+        like.addEventListener("dblclick", likeAction);
     }
 })
