@@ -1,19 +1,5 @@
-let postings = Array(...document.querySelectorAll(".posting"));
-let pkList = postings.map(ele => ele.classList[0]);
-let set = new Set(pkList);
-pkList = [...set];
-
-
-
-function getPk(ele) {
-    if (!isNaN(ele.classList[0])) {
-        return ele.classList[0];
-    } else {
-        console.log("[Error| getPk ] pk가 없는 앨리먼트 입니다")
-    }
-}
-
 window.addEventListener('load', function () {
+    let postings = Array(...document.querySelectorAll(".posting"));
     // 아래 코드도 무겁고 불러올 이미지도 많고 그래서 꼭 DOM로드 후 실행해야 한다!!
 
     for (let posting of postings) {
@@ -111,6 +97,9 @@ window.addEventListener('load', function () {
         }
 
         // 이미지 스크롤 기능, 모바일에는 패널이 없도록 CSS에서 쿼리처리함
+        // 모두 첫 위치로 초기화
+        slider.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
         let leftPanel = posting.querySelector(".posting__x2__left"),
             rightPanel = posting.querySelector(".posting__x2__right");
         let imageCount = images.length;
@@ -141,9 +130,12 @@ window.addEventListener('load', function () {
 
         // 더블터치(클릭) 좋아요 구현
         let centerPanel = posting.querySelector(".posting__x2__center"),
-            like = posting.querySelector(".posting__x2__like");
+            like = posting.querySelector(".posting__x2__like"),
+            // like 버튼은 x3에 있다
+            likeBtn = posting.querySelector(".posting__x3__like");
         function likeAction(event) {
             like.classList.add("like");
+            likeBtn.classList.add("liked");
             //! 함수 넣는 자리!!!
             console.log("좋아요 입력!!!")
             //!--------------------
@@ -153,5 +145,17 @@ window.addEventListener('load', function () {
         }
         centerPanel.addEventListener("dblclick", likeAction);
         like.addEventListener("dblclick", likeAction);
+
+        // *x3
+        //! 로그인 구현 후 좋아요를 달았는지 아닌지 서버데이터로 미리 확인처리하기!!
+        likeBtn.addEventListener("click", function () {
+            if (!Array(...likeBtn.classList).includes("liked")) {
+                likeAction();
+                likeBtn.classList.add("liked");
+            } else {
+                likeBtn.classList.remove("liked");
+            }
+        });
+
     }
 })

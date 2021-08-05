@@ -50,9 +50,7 @@
 
 .posting__x2__left,
 .posting__x2__right,
-.posting__x2__like,
-.posting__x2__center,
-.like {
+.posting__x2__center{
     display: none;
     /* 모바일에서는 필요없다 드레그스크롤이나 막지 않도록 한다*/
 }
@@ -61,9 +59,7 @@
     /*! 이 블럭 내의 코드는 커서를 사용하는 PC에서만 유효하다. */
     .posting__x2__left,
     .posting__x2__right,
-    .posting__x2__like,
-    .posting__x2__center,
-    .like {
+    .posting__x2__center{
         display: block;
     }
 
@@ -103,33 +99,34 @@
         width: 80%;
         height: 100%;
     }
-    /*! 모바일은 더블클릭 이벤트 지원 안되서 PC에서만.. */
-    /* 더블클릭 좋아요 */
-    .posting__x2__like{
-        position: absolute;
-        align-self: center;
-        opacity: 0;
-        transform: scale(0);
-        transition: all 150ms ease-in;
-        fill: white;
-    }
-    
-    @keyframes like-off {
-        0%{
-            opacity: 0.7;
-            transform: scale(1);
-        }
-        100%{
-            transform: scale(0);
-            opacity: 0;
-        }
-    }
-    
-    .like{
+}
+
+/* 더블클릭 좋아요 and 좋아요 버튼의 이벤트 */
+.posting__x2__like{
+    position: absolute;
+    align-self: center;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 150ms ease-in;
+    fill: white;
+}
+
+@keyframes like-off {
+    0%{
         opacity: 0.7;
         transform: scale(1);
-        animation: like-off 150ms ease-out 600ms forwards;
+    }
+    100%{
+        transform: scale(0);
+        opacity: 0;
     }
 }
+
+.like{
+    opacity: 0.7;
+    transform: scale(1);
+    animation: like-off 150ms ease-out 600ms forwards;
+}
+
 
 
