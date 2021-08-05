@@ -1,36 +1,66 @@
 .posting__x3{
     position: relative;
     width: 100%;
+    background-color: white;
+    padding: 0.1px 1em;
+    padding-right: 0px;
+    /* padding-top이 0.1이라도 있어야 배경색이 칠해지더라 */
+
+    border: 1px solid black;
 }
 
-.posting__x3__like{
+.posting__x3__content{
+    display: flex;
+    width: 100%;
+}
+
+.posting__x3__content__p{
+    padding-right: 45px;
+    /* 버튼 없으면 없애기 */
+}
+
+.posting__x3__content__fold-top{
     position: absolute;
-    bottom: 0;
+    right: 0px;
+    top: 0px;
+    width: 50px;
+    height: 25px;
+    opacity: 0.3;
+    transition: all 100ms ease-in-out;
+}
+
+.posting__x3__content__fold-top svg{
+    position: absolute;
+    top: -17px;
+    right: 13px;
+    transform: scale(0.5) rotateZ(-90deg);
+}
+
+.posting__x3__content__fold-bottom{
+    position: absolute;
     left: 0;
-    fill: white;
-    opacity: 0.8;
-    transform: scale(0.34);
-    transition: all 50ms ease-in;
-    margin-left: -10px;
-    margin-bottom: -10px;
+    bottom: 0;
+    width: 100%;
+    height: 1em;
+    display: flex;
+    justify-content: center;
+    opacity: 0.3;
+    transition: all 100ms ease-in-out;
 }
 
-.liked{
-    fill: var(--liked-color);
+.posting__x3__content__fold-bottom svg{
+    position: absolute;
+    bottom: -22px;
+    transform: scale(0.5) rotateZ(90deg);
 }
 
-@media (hover: none) and (pointer: coarse) {
-    /* 모바일 용 */
-}
+
 
 @media not all and (hover: none) and (pointer: coarse) {
-    /* PC용 */
-
-    /* 모바일에서는 hover가 이상하게 작동하거나 필요 없다 */
-    .posting__x3__like:hover {
+    /* PC 용 */
+    .posting__x3__content__fold-top:hover,
+    .posting__x3__content__fold-bottom:hover{
         cursor: pointer;
-        opacity: 1;
-        transform: scale(0.4);
+        opacity: 0.9;
     }
-    
 }

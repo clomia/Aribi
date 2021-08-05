@@ -131,8 +131,7 @@ window.addEventListener('load', function () {
         // 더블터치(클릭) 좋아요 구현
         let centerPanel = posting.querySelector(".posting__x2__center"),
             like = posting.querySelector(".posting__x2__like"),
-            // like 버튼은 x3에 있다
-            likeBtn = posting.querySelector(".posting__x3__like");
+            likeBtn = posting.querySelector(".posting__x2__like-btn");
         function likeAction(event) {
             like.classList.add("like");
             likeBtn.classList.add("liked");
@@ -145,9 +144,10 @@ window.addEventListener('load', function () {
         }
         centerPanel.addEventListener("dblclick", likeAction);
         like.addEventListener("dblclick", likeAction);
-
-        // *x3
         //! 로그인 구현 후 좋아요를 달았는지 아닌지 서버데이터로 미리 확인처리하기!!
+        /* 좋아요버튼을 히든폼의 채크박스랑 연결해놓고 JS에서 채크 조작 해준 뒤
+        패이지가 변할 때 
+        */
         likeBtn.addEventListener("click", function () {
             if (!Array(...likeBtn.classList).includes("liked")) {
                 likeAction();
@@ -157,5 +157,9 @@ window.addEventListener('load', function () {
             }
         });
 
+        //* x3
+        let contentBox = posting.querySelector(".posting__x3__content__p"),
+            fontSize = 16;
+        console.log(contentBox.querySelector("p").innerHTML)
     }
 })

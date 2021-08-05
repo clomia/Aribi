@@ -1,7 +1,15 @@
 <div class="posting__x3">
-    <div class="posting__x3__like">
-        {% include "svg/like_icon.html" %}
+    <div class="posting__x3__content">
+        <div class="posting__x3__content__p">
+            {{ posting.content|linebreaks }}
+            {% comment %} Django의 linebreaks필터가 p와 br태그로 줄바꿈을 구현해준다.
+            이때 p태그는 기본적으로 위아래에 1em만큼의 margin이 있다 {% endcomment %}
+        </div>
+        <div class="posting__x3__content__fold-top">
+            {% include "svg/arrow_icon.html" %}
+        </div>
     </div>
-    <div class="posting__x3__content"></div>
-    <div class="posting__x3__fold-btn"></div>
+    <div class="posting__x3__content__fold-bottom">
+        {% include "svg/arrow_icon.html" %}
+    </div>
 </div>
