@@ -68,7 +68,7 @@ window.addEventListener('load', function () {
             return ele.querySelector(".posting__x2__slider__img__file").querySelector("img");
         }
         let compareArray = new Array();
-        let maxheight = 770;
+        let maxheight = 700;
         for (let image of images) {
             image = getImage(image);
             // [ 프레임 비율과 이미지 비율의 차이 , 이미지 DOM ]
@@ -79,6 +79,9 @@ window.addEventListener('load', function () {
         let baseImage = compareArray[0][1];
         let baseRatio = { x: baseImage.width, y: baseImage.height };
         let frameHeight = postingWidth * (baseRatio.y / baseRatio.x)
+        if (frameHeight > maxheight) {
+            frameHeight = maxheight;
+        }
         // 프레임의 세로길이는 baseRatio를 기준으로 해서 여기서 계산해놓는다(이후고정)
         // baseImage도 이후 변환을 거치기 때문에 baseImage.height는 frameHeight로 쓸 수 없다!!
 
