@@ -16,7 +16,18 @@
 
 .posting__x3__content__p{
     padding-right: 45px;
-    /* 버튼 없으면 없애기 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 2.6em;
+}
+
+.content-opened {
+    padding-right: 12.5px;
 }
 
 .posting__x3__content__fold-top{
@@ -31,8 +42,8 @@
 
 .posting__x3__content__fold-top svg{
     position: absolute;
-    top: -17px;
-    right: 13px;
+    top: -9px;
+    right: 20px;
     transform: scale(0.5) rotateZ(-90deg);
 }
 

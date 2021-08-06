@@ -145,8 +145,7 @@ window.addEventListener('load', function () {
         centerPanel.addEventListener("dblclick", likeAction);
         like.addEventListener("dblclick", likeAction);
         //! 로그인 구현 후 좋아요를 달았는지 아닌지 서버데이터로 미리 확인처리하기!!
-        /* 좋아요버튼을 히든폼의 채크박스랑 연결해놓고 JS에서 채크 조작 해준 뒤
-        패이지가 변할 때 
+        /* 즉각적,동적인 데이터 전송은 form에 action을 안달고 할 수 있어보인다
         */
         likeBtn.addEventListener("click", function () {
             if (!Array(...likeBtn.classList).includes("liked")) {
@@ -158,8 +157,44 @@ window.addEventListener('load', function () {
         });
 
         //* x3
+        // 본문 첫줄만 보이도록 자르고 나머지는 안보이게 줄바꿈 넣기
         let contentBox = posting.querySelector(".posting__x3__content__p"),
+            originContent = contentBox.querySelector("p").innerHTML,
+            foldTopBtn = posting.querySelector(".posting__x3__content__fold-top"),
+            foldBottomBtn = posting.querySelector(".posting__x3__content__fold-bottom"),
             fontSize = 16;
-        console.log(contentBox.querySelector("p").innerHTML)
+        foldBottomBtn.classList.add("none");
+        if (originContent.includes("<br")) {
+            let charLimit = (postingWidth - 61) / fontSize;
+            let firstLine = originContent.split("<br")[0];
+            if (firstLine.length > charLimit) {
+                firstLineEdit = originContent.slice(0, charLimit);
+                contentBox.querySelector("p").innerHTML = firstLineEdit + "<br>" + originContent.slice(charLimit, -1);
+                firstLine = contentBox.querySelector("p").innerHTML.split("<br")[0];
+            }
+            console.log(originContent, contentBox.querySelector("p").innerHTML);
+            let content = contentBox.querySelector("p").innerHTML;
+            let a = content.split("<br>")[0];
+            let b = content.split("<br>").slice(1, -1).join("");
+            let firstLineContent = a + "<br> <br>" + b;
+            contentBox.querySelector("p").innerHTML = firstLineContent;
+
+            foldTopBtn.addEventListener("click", function (event) {
+                contentBox.classList.remove("posting__x3__content__p");
+                contentBox.classList.add("content-opened");
+                contentBox.querySelector("p").innerHTML = originContent;
+                foldTopBtn.classList.add("none");
+                foldBottomBtn.classList.remove("none");
+            })
+            foldBottomBtn.addEventListener("click", function (event) {
+                contentBox.classList.add("posting__x3__content__p");
+                contentBox.classList.remove("content-opened");
+                contentBox.querySelector("p").innerHTML = firstLineContent;
+                foldTopBtn.classList.remove("none");
+                foldBottomBtn.classList.add("none");
+            })
+        } else {
+            foldTopBtn.classList.add("none");
+        }
     }
 })
