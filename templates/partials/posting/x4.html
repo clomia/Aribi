@@ -1,0 +1,10 @@
+<div class="posting__x4">
+    <div class="posting__x4__box">
+        {% for tag in posting.constituents.all  %}
+        <div class="posting__x4__box__tag" kind={{ tag.kind }} >
+            {{ tag }}
+        </div>
+        {% endfor %} 
+        {{count}}
+    </div>
+</div>

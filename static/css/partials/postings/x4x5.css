@@ -1,0 +1,64 @@
+.posting__x4{
+    width: 100%;
+    height: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.posting__x4__box__tag{
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    font-size: 15px;
+    color: black;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 100px;
+    opacity: 0.6;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.posting__x4__box__tag:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.alcohol{
+    opacity: 0.8;
+}
+.liquid{
+    background-color: var(--liquid);
+}
+.ingredient{
+    background-color: var(--ingredient);
+}
+.equipment{
+    background-color: var(--equipment);
+}
+.fruit{
+    background-color: var(--fruit);
+}
+.plant{
+    background-color: var(--plant);
+}
+.teste{
+    background-color: var(--teste);
+}
+.spice{
+    background-color: var(--spice);
+}
+.texture{
+    background-color: var(--texture);
+}
+.scent{
+    background-color: var(--scent);
+}
+.color{
+    background-color: var(--color);
+}
+.other{
+    background-color: var(--other);
+}

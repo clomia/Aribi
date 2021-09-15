@@ -172,7 +172,6 @@ window.addEventListener('load', function () {
                 contentBox.querySelector("p").innerHTML = firstLineEdit + "<br>" + originContent.slice(charLimit, -1);
                 firstLine = contentBox.querySelector("p").innerHTML.split("<br")[0];
             }
-            console.log(originContent, contentBox.querySelector("p").innerHTML);
             let content = contentBox.querySelector("p").innerHTML;
             let a = content.split("<br>")[0];
             let b = content.split("<br>").slice(1, -1).join("");
@@ -196,5 +195,51 @@ window.addEventListener('load', function () {
         } else {
             foldTopBtn.classList.add("none");
         }
+
+        //* x4
+        let tags = posting.querySelectorAll(".posting__x4__box__tag");
+
+        for (let tag of tags) {
+            let kind = tag.getAttribute("kind");
+
+            switch (kind) {
+                case "액체":
+                    tag.classList.add("liquid")
+                    break;
+                case "재료":
+                    tag.classList.add("ingredient")
+                    break;
+                case "용품":
+                    tag.classList.add("equipment")
+                    break;
+                case "과일맛":
+                    tag.classList.add("fruit")
+                    break;
+                case "식물맛":
+                    tag.classList.add("plant")
+                    break;
+                case "기본맛":
+                    tag.classList.add("teste")
+                    break;
+                case "향신료맛":
+                    tag.classList.add("spice")
+                    break;
+                case "입안 감촉":
+                    tag.classList.add("texture")
+                    break;
+                case "냄새":
+                    tag.classList.add("scent")
+                    break;
+                case "색감":
+                    tag.classList.add("color")
+                    break;
+                case "기타 특징":
+                    tag.classList.add("other")
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 })

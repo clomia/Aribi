@@ -34,6 +34,7 @@ class Intro:
             current_obj = class_mapping[data["class"]].objects.get(pk=data["pk"])
             data_ground.extend(current_obj.postings.all())
 
+        # ? 태그 참조 갯수로 포스팅들을 분류, 정렬하는 로직입니다.
         organized = [{"data": data, "count": data_ground.count(data)} for data in set(data_ground)]
         organized.sort(key=lambda x: x["count"], reverse=True)
         mex_ref = organized[0]["count"]
@@ -58,6 +59,7 @@ class Intro:
         """
 
         # 포스팅에 많이 사용된 태그가 앞에 오도록 정렬
+        # ? annotate를 사용해서 reference_count 피쳐를 만든 뒤, order_by에서 해당 피쳐를 사용해 정렬하는 코드입니다.
         organize = lambda model: model.objects.all().annotate(reference_count=Count("postings")).order_by("-reference_count")
         tags = []
 
