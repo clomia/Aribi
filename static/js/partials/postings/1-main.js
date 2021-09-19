@@ -235,32 +235,61 @@ window.addEventListener('load', function () {
         } else {
             foldTopBtn.classList.add("none");
         }
-
+        //*x4x5
+        function contentFold(box, btn, limit, x, xObj) {
+            if (box.offsetHeight > limit) {
+                xObj.classList.add("flip-btn-space")
+                box.classList.add(`${x}max-hight`);
+                btn.addEventListener("click", function (event) {
+                    if (box.classList.contains(`${x}max-hight`)) {
+                        box.classList.remove(`${x}max-hight`);
+                        btn.classList.add("btn-flip");
+                    } else {
+                        box.classList.add(`${x}max-hight`);
+                        btn.classList.remove("btn-flip");
+                    }
+                })
+            } else {
+                // 아니면 더보기 버튼을 없앤다.
+                btn.classList.add("none")
+            }
+        }
         //* x4
         let x4Tags = posting.querySelectorAll(".posting__x4__box__tag"),
             x4Box = posting.querySelector(".posting__x4__box"),
-            x4FoldBtn = posting.querySelector(".posting__x4__fold-down");
+            x4FoldBtn = posting.querySelector(".posting__x4__fold-down"),
+            x4 = posting.querySelector(".posting__x4");
 
         for (let tag of x4Tags) {
             let kind = tag.getAttribute("kind");
             coloring(tag, kind);
         }
+        contentFold(x4Box, x4FoldBtn, 85, "x4", x4)//태그가 두 줄을 초과하면 접기
 
-        if (x4Box.offsetHeight > 85) {
-            // 태그가 두 줄 이상이면 더보기 버튼을 추가한다
-            x4Box.classList.add("x4max-hight");
-            x4FoldBtn.addEventListener("click", function (event) {
-                if (x4Box.classList.contains("x4max-hight")) {
-                    x4Box.classList.remove("x4max-hight");
-                    x4FoldBtn.classList.add("btn-flip");
-                } else {
-                    x4Box.classList.add("x4max-hight");
-                    x4FoldBtn.classList.remove("btn-flip");
-                }
-            })
-        } else {
-            // 아니면 더보기 버튼을 없앤다.
-            x4FoldBtn.classList.add("none")
+        //* x5
+        let x5Tags = posting.querySelectorAll(".posting__x5__box__tag"),
+            x5Box = posting.querySelector(".posting__x5__box"),
+            x5FoldBtn = posting.querySelector(".posting__x5__fold-down"),
+            x5 = posting.querySelector(".posting__x5");
+
+
+        for (let tag of x5Tags) {
+            let kind = tag.getAttribute("kind");
+            coloring(tag, kind);
         }
+        contentFold(x5Box, x5FoldBtn, 85, "x5", x5)//태그가 두 줄을 초과하면 접기
+        // *x4x5
+        let x4BtnTag = posting.querySelector(".posting__x4__box__state"),
+            x5BtnTag = posting.querySelector(".posting__x5__box__state");
+
+        x5.classList.add("none");
+        x4BtnTag.addEventListener("click", function (event) {
+            x4.classList.add("none");
+            x5.classList.remove("none");
+        })
+        x5BtnTag.addEventListener("click", function (event) {
+            x4.classList.remove("none");
+            x5.classList.add("none");
+        })
     }
 })

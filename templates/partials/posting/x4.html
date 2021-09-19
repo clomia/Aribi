@@ -1,7 +1,8 @@
 <div class="posting__x4">
     <div class="posting__x4__box">
+        <div class="posting__x4__box__state">맛 태그 보기</div>
         {% for tag in posting.constituents.all  %}
-        <div class="posting__x4__box__tag" kind={{ tag.kind }} >
+        <div class="posting__x4__box__tag" kind="{{ tag.kind }}" >
             {{ tag }}
         </div>
         {% endfor %} 

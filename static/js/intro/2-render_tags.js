@@ -35,9 +35,6 @@ window.addEventListener('load', function () {
         return obj;
     }
 
-    let constituentCounter = 0;
-    let flavorCounter = 0;
-
     function createTag(data) {
         function createAttr(cssClass, classifier) {
             let ID = classifier + data.pk

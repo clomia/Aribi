@@ -1,20 +1,25 @@
-.posting__x4{
+.posting__x4,
+.posting__x5{
     width: 100%;
     background-color: white;
     border-left: 1px solid rgba(0, 0, 0, 0.2);
     border-right: 1px solid rgba(0, 0, 0, 0.2);
-    padding-top: 6px;
-    padding-bottom: 20px;
-    padding-left: 0.6em;
+    padding: 0 0.6em;
     position: relative;
 }
-.posting__x4__fold-down svg{
+.flip-btn-space{
+    padding-bottom: 20px;
+}
+
+.posting__x4__fold-down svg,
+.posting__x5__fold-down svg{
     transform: scale(0.46) rotateZ(-90deg);
     position: absolute;
     bottom: -18px;
     left: 47%;
 }
-.posting__x4__fold-down{
+.posting__x4__fold-down,
+.posting__x5__fold-down{
     opacity: 0.2;
 }
 .btn-flip{
@@ -22,22 +27,41 @@
 }
 @media not all and (hover: none) and (pointer: coarse) {
     /* PC 용 */
-    .posting__x4__fold-down:hover{
+    .posting__x4__fold-down:hover,
+    .posting__x5__fold-down:hover{
         cursor: pointer;
         opacity: 0.9;
     }
+    .posting__x4__box__tag:hover,
+    .posting__x5__box__tag:hover{
+        opacity: 1;
+        cursor: pointer;
+    }
+    .posting__x4__box__state:hover,
+    .posting__x5__box__state:hover{
+        color: white;
+        background-color:gray;
+        cursor: pointer;
+    }
 }
-.posting__x4__box{
+.posting__x4__box,
+.posting__x5__box{
     overflow: hidden;
 }
-.x4max-hight{
+.x4max-hight{ /* 두줄 */
     max-height: 72px;
 }
-.posting__x4__box__tag{
+.x5max-hight{ /* 두줄 */
+    max-height: 72px;
+}
+.posting__x4__box__tag,
+.posting__x5__box__tag,
+.posting__x4__box__state,
+.posting__x5__box__state{
     display: inline-block;
     font-size: 15px;
     color: black;
-    padding: 5px 10px;
+    padding: 4px 8px;
     margin: 2px;
     border-radius: 100px;
     opacity: 0.6;
@@ -49,44 +73,46 @@
     user-select: none;
 }
 
-.posting__x4__box__tag:hover{
-    opacity: 1;
-    cursor: pointer;
+.posting__x4__box__state,
+.posting__x5__box__state{
+    border: 3px solid gray;
+    color: black;
+    background-color: white;
 }
 
 .alcohol{
     opacity: 0.8;
 }
 .liquid{
-    border: 2px solid var(--liquid);
+    border: 3px solid var(--liquid);
 }
 .ingredient{
-    border: 2px solid var(--ingredient);
+    border: 3px solid var(--ingredient);
 }
 .equipment{
-    border: 2px solid var(--equipment);
+    border: 3px solid var(--equipment);
 }
 .fruit{
-    border: 2px solid var(--fruit);
+    border: 3px solid var(--fruit);
 }
 .plant{
-    border: 2px solid var(--plant);
+    border: 3px solid var(--plant);
 }
 .teste{
-    border: 2px solid var(--teste);
+    border: 3px solid var(--teste);
 }
 .spice{
-    border: 2px solid var(--spice);
+    border: 3px solid var(--spice);
 }
 .texture{
-    border: 2px solid var(--texture);
+    border: 3px solid var(--texture);
 }
 .scent{
-    border: 2px solid var(--scent);
+    border: 3px solid var(--scent);
 }
 .color{
-    border: 2px solid var(--border);
+    border: 3px solid var(--color);
 }
 .other{
-    border: 2px solid var(--other);
+    border: 3px solid var(--other);
 }
