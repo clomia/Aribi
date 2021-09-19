@@ -16,11 +16,11 @@
     transform: scale(0.46) rotateZ(-90deg);
     position: absolute;
     bottom: -18px;
-    left: 47%;
+    left: 48.5%; /* 가운데 위치 포인트 */
 }
 .posting__x4__fold-down,
 .posting__x5__fold-down{
-    opacity: 0.2;
+    opacity: 0.15;
 }
 .btn-flip{
     transform: rotateX(180deg);
@@ -37,10 +37,14 @@
         opacity: 1;
         cursor: pointer;
     }
-    .posting__x4__box__state:hover,
+    .posting__x4__box__state:hover{
+        color: white;
+        background-color:var(--texture);
+        cursor: pointer;
+    }
     .posting__x5__box__state:hover{
         color: white;
-        background-color:gray;
+        background-color:var(--ingredient);
         cursor: pointer;
     }
 }
@@ -73,9 +77,13 @@
     user-select: none;
 }
 
-.posting__x4__box__state,
+.posting__x4__box__state{
+    border: 3px solid var(--texture);
+    color: black;
+    background-color: white;
+}
 .posting__x5__box__state{
-    border: 3px solid gray;
+    border: 3px solid var(--ingredient);
     color: black;
     background-color: white;
 }

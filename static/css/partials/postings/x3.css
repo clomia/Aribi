@@ -37,8 +37,7 @@
     top: 0px;
     width: 50px;
     height: 25px;
-    opacity: 0.3;
-    transition: all 100ms ease-in-out;
+    opacity: 0.15;
 }
 
 .posting__x3__content__fold-top svg{
@@ -56,8 +55,7 @@
     height: 1em;
     display: flex;
     justify-content: center;
-    opacity: 0.3;
-    transition: all 100ms ease-in-out;
+    opacity: 0.15;
 }
 
 .posting__x3__content__fold-bottom svg{
@@ -73,6 +71,6 @@
     .posting__x3__content__fold-top:hover,
     .posting__x3__content__fold-bottom:hover{
         cursor: pointer;
-        opacity: 0.9;
+        opacity: 1;
     }
 }
