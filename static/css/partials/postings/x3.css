@@ -6,7 +6,8 @@
     padding-right: 0px;
     /* padding-top이 0.1이라도 있어야 배경색이 칠해지더라 */
 
-    border: 1px solid black;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .posting__x3__content{

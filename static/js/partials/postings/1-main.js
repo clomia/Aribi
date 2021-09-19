@@ -1,3 +1,43 @@
+function coloring(tag, kind) {
+    switch (kind) {
+        case "액체":
+            tag.classList.add("liquid")
+            break;
+        case "재료":
+            tag.classList.add("ingredient")
+            break;
+        case "용품":
+            tag.classList.add("equipment")
+            break;
+        case "과일맛":
+            tag.classList.add("fruit")
+            break;
+        case "식물맛":
+            tag.classList.add("plant")
+            break;
+        case "기본맛":
+            tag.classList.add("teste")
+            break;
+        case "향신료맛":
+            tag.classList.add("spice")
+            break;
+        case "입안 감촉":
+            tag.classList.add("texture")
+            break;
+        case "냄새":
+            tag.classList.add("scent")
+            break;
+        case "색감":
+            tag.classList.add("color")
+            break;
+        case "기타 특징":
+            tag.classList.add("other")
+            break;
+        default:
+            break;
+    }
+}
+
 window.addEventListener('load', function () {
     let postings = Array(...document.querySelectorAll(".posting"));
     // 아래 코드도 무겁고 불러올 이미지도 많고 그래서 꼭 DOM로드 후 실행해야 한다!!
@@ -197,49 +237,30 @@ window.addEventListener('load', function () {
         }
 
         //* x4
-        let tags = posting.querySelectorAll(".posting__x4__box__tag");
+        let x4Tags = posting.querySelectorAll(".posting__x4__box__tag"),
+            x4Box = posting.querySelector(".posting__x4__box"),
+            x4FoldBtn = posting.querySelector(".posting__x4__fold-down");
 
-        for (let tag of tags) {
+        for (let tag of x4Tags) {
             let kind = tag.getAttribute("kind");
-
-            switch (kind) {
-                case "액체":
-                    tag.classList.add("liquid")
-                    break;
-                case "재료":
-                    tag.classList.add("ingredient")
-                    break;
-                case "용품":
-                    tag.classList.add("equipment")
-                    break;
-                case "과일맛":
-                    tag.classList.add("fruit")
-                    break;
-                case "식물맛":
-                    tag.classList.add("plant")
-                    break;
-                case "기본맛":
-                    tag.classList.add("teste")
-                    break;
-                case "향신료맛":
-                    tag.classList.add("spice")
-                    break;
-                case "입안 감촉":
-                    tag.classList.add("texture")
-                    break;
-                case "냄새":
-                    tag.classList.add("scent")
-                    break;
-                case "색감":
-                    tag.classList.add("color")
-                    break;
-                case "기타 특징":
-                    tag.classList.add("other")
-                    break;
-                default:
-                    break;
-            }
+            coloring(tag, kind);
         }
 
+        if (x4Box.offsetHeight > 85) {
+            // 태그가 두 줄 이상이면 더보기 버튼을 추가한다
+            x4Box.classList.add("x4max-hight");
+            x4FoldBtn.addEventListener("click", function (event) {
+                if (x4Box.classList.contains("x4max-hight")) {
+                    x4Box.classList.remove("x4max-hight");
+                    x4FoldBtn.classList.add("btn-flip");
+                } else {
+                    x4Box.classList.add("x4max-hight");
+                    x4FoldBtn.classList.remove("btn-flip");
+                }
+            })
+        } else {
+            // 아니면 더보기 버튼을 없앤다.
+            x4FoldBtn.classList.add("none")
+        }
     }
 })
