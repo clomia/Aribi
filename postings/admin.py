@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
+from django.db.models import F
 from . import models
 
 
@@ -42,9 +43,10 @@ class PostingAdmin(admin.ModelAdmin):
 
     list_display = (
         "cocktail_name",
-        "alchol",
+        "like_counter",
         "created_by",
         "get_image",
+        "alchol",
         "created",
     )
     ordering = ("-created",)
@@ -69,7 +71,11 @@ class PostingAdmin(admin.ModelAdmin):
 
         return mark_safe(f'<img width="50px" src="{obj.pictures.all()[0].image.url}" />')
 
+    def like_counter(self, obj):
+        return obj.posting_likes.count()
+
     get_image.short_description = "Picture"
+    like_counter.short_description = "Likes"
 
 
 @admin.register(models.Comment)
@@ -80,6 +86,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = (
         "created_by",
         "content",
+        "like_counter",
         "reply_counter",
         "posting",
         "get_image",
@@ -110,7 +117,11 @@ class CommentAdmin(admin.ModelAdmin):
     def reply_counter(self, obj):
         return obj.replies.all().count()
 
+    def like_counter(self, obj):
+        return obj.comment_likes.count()
+
     reply_counter.short_description = "replies"
+    like_counter.short_description = "Likes"
 
     get_image.short_description = "Comment Image"
 
@@ -122,6 +133,7 @@ class ReplyAdmin(admin.ModelAdmin):
 
     list_display = (
         "content",
+        "like_counter",
         "comment",
         "created_by",
         "created",
@@ -136,3 +148,8 @@ class ReplyAdmin(admin.ModelAdmin):
     raw_id_fields = ("created_by",)
 
     inlines = (ReplyLikeInline,)
+
+    def like_counter(self, obj):
+        return obj.reply_likes.count()
+
+    like_counter.short_description = "Likes"

@@ -1,4 +1,8 @@
 <div class="posting__x3">
+    <a class="posting__x3__likes" href="#">
+        {% comment %} 좋아요 누가 눌렀는지 보여주기!! {% endcomment %}
+        {{ posting.posting_likes.count }} Likes
+    </a>
     <div class="posting__x3__content">
         <div class="posting__x3__content__p">
             {{ posting.content|linebreaks }}

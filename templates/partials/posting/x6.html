@@ -1,0 +1,21 @@
+<div class="posting__x6">
+    <div class="posting__x6__preview">
+        {% for comment in posting.top_comment %}
+            {{ comment.created_by }}
+            {{ comment.content }}
+            <br/>
+        {% endfor %}
+    </div>
+    <div class="posting__x6__main none">
+        {% for comment in posting.comments.all %}
+            <img src="{{ comment.created_by.profile_image.url }}" width="30" , hieht="30">
+            {{ comment.created_by }}
+            {{ comment.score }}
+            {{ comment.comment_likes.count }}
+            {{ comment.content }} 
+            {% if comment.image %}
+                <img src="{{ comment.image.url }}" />
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

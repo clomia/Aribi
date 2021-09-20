@@ -1,5 +1,5 @@
-from numpy import average
 from django.db import models
+from django.db.models import Count
 from django_resized import ResizedImageField
 from core.models import CoreModel
 
@@ -18,6 +18,11 @@ class Posting(CoreModel):
 
     def __str__(self):
         return f"{self.created_by} - {self.cocktail_name}"
+
+    def top_comment(self):
+        """좋아요 갯수를 기준으로 상위 3개의 댓글을 반환합니다"""
+        organize = self.comments.all().annotate(likes=Count("comment_likes")).order_by("-likes")
+        return organize[:3]
 
 
 class Picture(CoreModel):

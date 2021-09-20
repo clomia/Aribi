@@ -13,6 +13,7 @@
 .posting__x3__content{
     display: flex;
     width: 100%;
+    padding-top: 10px;
 }
 
 .posting__x3__content__p{
@@ -73,4 +74,15 @@
         cursor: pointer;
         opacity: 1;
     }
+}
+
+.posting__x3__likes{
+    position: absolute;
+    top: 6.5px;
+    left: 17px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.posting__x3__likes:hover{
+    text-decoration: underline;
 }
