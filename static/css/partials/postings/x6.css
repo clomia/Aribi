@@ -1,0 +1,28 @@
+.posting__x6{
+    width: 100%;
+    background-color: white;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0 0.6em;
+}
+.posting__x6-margin{
+    width: 100%;
+    background-color: white;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0 0.6em;
+    height: 10px;
+}
+.posting__x6__btn{
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 0px;
+}
+
+.posting__x6__btn:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    text-underline-position:under;
+}

@@ -21,6 +21,7 @@
 .posting__x4__fold-down,
 .posting__x5__fold-down{
     opacity: 0.15;
+    padding-bottom: -10px;
 }
 .btn-flip{
     transform: rotateX(180deg);

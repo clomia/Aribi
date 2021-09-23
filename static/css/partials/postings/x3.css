@@ -85,4 +85,6 @@
 }
 .posting__x3__likes:hover{
     text-decoration: underline;
+    text-underline-position:under;
+    cursor: pointer;
 }

@@ -204,8 +204,8 @@ window.addEventListener('load', function () {
             foldBottomBtn = posting.querySelector(".posting__x3__content__fold-bottom"),
             fontSize = 16;
         foldBottomBtn.classList.add("none");
+        let charLimit = (postingWidth - 61) / fontSize;
         if (originContent.includes("<br")) {
-            let charLimit = (postingWidth - 61) / fontSize;
             let firstLine = originContent.split("<br")[0];
             if (firstLine.length > charLimit) {
                 firstLineEdit = originContent.slice(0, charLimit);
@@ -236,6 +236,7 @@ window.addEventListener('load', function () {
             foldTopBtn.classList.add("none");
         }
         //*x4x5
+        let x6Margin = posting.querySelector(".posting__x6-margin");
         function contentFold(box, btn, limit, x, xObj) {
             if (box.offsetHeight > limit) {
                 xObj.classList.add("flip-btn-space")
@@ -249,6 +250,7 @@ window.addEventListener('load', function () {
                         btn.classList.remove("btn-flip");
                     }
                 })
+                x6Margin.classList.add("none")
             } else {
                 // 아니면 더보기 버튼을 없앤다.
                 btn.classList.add("none")
@@ -272,7 +274,6 @@ window.addEventListener('load', function () {
             x5FoldBtn = posting.querySelector(".posting__x5__fold-down"),
             x5 = posting.querySelector(".posting__x5");
 
-
         for (let tag of x5Tags) {
             let kind = tag.getAttribute("kind");
             coloring(tag, kind);
@@ -290,6 +291,24 @@ window.addEventListener('load', function () {
         x5BtnTag.addEventListener("click", function (event) {
             x4.classList.remove("none");
             x5.classList.add("none");
+        })
+        // *x6
+        let commentOpenBtn = posting.querySelector(".posting__x6__btn");
+        let commentsCount = commentOpenBtn.getAttribute("comments");
+        if (commentsCount == "0") {
+            commentOpenBtn.classList.add("none");
+        }
+
+        let comments = posting.querySelector(".posting__x6__comment");
+        let content = commentOpenBtn.innerHTML
+        commentOpenBtn.addEventListener("click", function (event) {
+            if (comments.classList.contains("none")) {
+                comments.classList.remove("none");
+                commentOpenBtn.innerHTML = "댓글창 접기";
+            } else {
+                comments.classList.add("none");
+                commentOpenBtn.innerHTML = content;
+            }
         })
     }
 })
