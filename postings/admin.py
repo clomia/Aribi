@@ -48,6 +48,7 @@ class PostingAdmin(admin.ModelAdmin):
         "get_image",
         "alchol",
         "created",
+        "created_ago",
     )
     ordering = ("-created",)
 

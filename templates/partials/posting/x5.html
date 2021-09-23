@@ -1,11 +1,11 @@
 <div class="posting__x5">
     <div class="posting__x5__box">
         <div class="posting__x5__box__state">재료 태그 보기</div>
-        {% for tag in posting.flavor_tags.all  %}
-        <div class="posting__x5__box__tag" kind="{{ tag.category }}" >
+        {% for tag in posting.flavor_tags.all %}
+        <div class="posting__x5__box__tag" kind="{{ tag.category }}">
             {{ tag }}
         </div>
-        {% endfor %} 
+        {% endfor %}
     </div>
     <div class="posting__x5__fold-down">
         {% include "svg/arrow_icon.html" %}

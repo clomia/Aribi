@@ -1,11 +1,11 @@
 <div class="posting__x1">
     <div class="posting__x1__profile img-frame">
         <a href="#">
-        {% if posting.created_by.profile_image %}
-            <img class="img" src="{{ posting.created_by.profile_image.url }}" alt="프로필 이미지"> 
-        {% else %}
-            <img class="img" src="기본 이미지 URL" alt="프로필 이미지"> 
-        {% endif %}
+            {% if posting.created_by.profile_image %}
+            <img class="img" src="{{ posting.created_by.profile_image.url }}" alt="프로필 이미지">
+            {% else %}
+            <img class="img" src="기본 이미지 URL" alt="프로필 이미지">
+            {% endif %}
         </a>
     </div>
     <div class="posting__x1__center">

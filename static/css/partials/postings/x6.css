@@ -26,3 +26,18 @@
     cursor: pointer;
     text-underline-position:under;
 }
+.posting__x6__comment__info{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.posting__x6__comment__info__profile{
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+}
+.posting__x6__comment__info__data{
+    margin-left: 50px;
+    padding: 10px 0;
+}

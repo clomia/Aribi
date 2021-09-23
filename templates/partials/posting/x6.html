@@ -1,24 +1,33 @@
 <div class="posting__x6-margin"></div>
 <div class="posting__x6">
     <div class="posting__x6__btn" comments="{{ posting.comments.count }}">
-    댓글 {{ posting.comments.count }}개 모두 보기
+        댓글 {{ posting.comments.count }}개 모두 보기
     </div>
     <div class="posting__x6__comment none">
         {% for comment in posting.comments.all %}
-            <img src="{{ comment.created_by.profile_image.url }}" width="30" , hieht="30">
-            {{ comment.created_by }}
-            {{ comment.score }}
-            {{ comment.comment_likes.count }}
-            {{ comment.content }} 
-            {% if comment.image %}
-                <img src="{{ comment.image.url }}" />
-            {% endif %}
+            <div class="posting__x6__comment__info">
+                <div class="posting__x6__comment__info__profile">
+                    <img src="{{ comment.created_by.profile_image.url }}" width="30" , hieht="30">
+                </div>
+                <div class="posting__x6__comment__info__data">
+                {{ comment.created_by }}
+                {{ comment.created_ago }}
+                {% if comment.score %}
+                    {{ comment.score }}점
+                {% endif %}
+                좋아요 {{ comment.comment_likes.count }}개
+                </div>
+            </div>
+            <div class="posting__x6__comment__main">
+                {{ comment.content }}
+                <div>
+                    <div class="posting__x6__comment__img">
+                        {% if comment.image %}
+                            <img src="{{ comment.image.url }}" />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        {% comment %} 
-        (저차정보로 붕괴되지 않도록 별점 평균 등은 내지 않는다)
-        알콜 도수
-        댓글 갯수
-        
-        {% endcomment %}
-        </div>
+    </div>
 </div>
