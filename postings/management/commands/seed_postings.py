@@ -26,6 +26,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         total = int(options.get("total"))
         all_users = User.objects.all()
+        print(f"유저 {all_users.count()}명")
         all_constituents = Constituent.objects.all()
         all_flavor_tags = FlavorTag.objects.all()
         cocktail_names, lorems, conversations = pylist_loader("cocktails", "lorems", "conversations")
@@ -70,7 +71,6 @@ class Command(BaseCommand):
                         posting=posting,
                         created_by=random.choice(all_users),
                         image=self.comment_image(),
-                        score=random.randint(1, 5),
                         content=self.comment_content(conversations, lorems),
                     )
                 )

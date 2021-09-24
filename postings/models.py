@@ -45,7 +45,6 @@ class Comment(CoreModel):
     posting = models.ForeignKey("postings.Posting", on_delete=models.CASCADE, related_name=related_name)
     created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
     image = ResizedImageField(upload_to="comment_images", size=[500, 360], null=True, blank=True)
-    score = models.SmallIntegerField(null=True, blank=True)
     content = models.TextField()
 
     def __str__(self):

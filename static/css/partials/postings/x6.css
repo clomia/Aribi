@@ -19,6 +19,7 @@
     height: 30px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding: 5px 0px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .posting__x6__btn:hover{
@@ -36,8 +37,10 @@
     border-radius: 50%;
     overflow: hidden;
     position: absolute;
+    height: 30px;
 }
 .posting__x6__comment__info__data{
     margin-left: 50px;
     padding: 10px 0;
+    width: 100%;
 }

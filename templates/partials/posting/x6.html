@@ -12,9 +12,6 @@
                 <div class="posting__x6__comment__info__data">
                 {{ comment.created_by }}
                 {{ comment.created_ago }}
-                {% if comment.score %}
-                    {{ comment.score }}점
-                {% endif %}
                 좋아요 {{ comment.comment_likes.count }}개
                 </div>
             </div>

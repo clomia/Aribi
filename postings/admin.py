@@ -91,16 +91,13 @@ class CommentAdmin(admin.ModelAdmin):
         "reply_counter",
         "posting",
         "get_image",
-        "score",
         "created",
     )
     search_fields = (
         "posting__cocktail_name",
         "created_by__username",
-        "score",
         "content",
     )
-    list_filter = ("score",)
 
     ordering = ("-created",)
     raw_id_fields = ("created_by",)
