@@ -9,10 +9,17 @@
                 <div class="posting__x6__comment__info__profile">
                     <img src="{{ comment.created_by.profile_image.url }}" width="30" , hieht="30">
                 </div>
-                <div class="posting__x6__comment__info__data">
-                {{ comment.created_by }}
-                {{ comment.created_ago }}
-                좋아요 {{ comment.comment_likes.count }}개
+                <div class="posting__x6__comment__info__created_by">
+                    {{ comment.created_by }}
+                </div>
+                <div class="posting__x6__comment__info__created_ago">
+                    {{ comment.created_ago }}
+                </div>
+                <div class="posting__x6__comment__info__like-btn">
+                    {% include "svg/like_icon.html" %}
+                </div>
+                <div class="posting__x6__comment__info__like">
+                    좋아요 {{ comment.comment_likes.count }}개
                 </div>
             </div>
             <div class="posting__x6__comment__main">

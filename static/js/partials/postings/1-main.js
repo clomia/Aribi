@@ -310,5 +310,16 @@ window.addEventListener('load', function () {
                 commentOpenBtn.innerHTML = content;
             }
         })
+
+        let commentLikeBtns = posting.querySelectorAll(".posting__x6__comment__info__like-btn");
+        for (let btn of commentLikeBtns) {
+            btn.addEventListener("click", function (event) {
+                if (btn.classList.contains("commentLiked")) {
+                    btn.classList.remove("commentLiked");
+                } else {
+                    btn.classList.add("commentLiked");
+                }
+            })
+        }
     }
 })

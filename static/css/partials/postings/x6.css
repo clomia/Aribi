@@ -39,8 +39,45 @@
     position: absolute;
     height: 30px;
 }
-.posting__x6__comment__info__data{
-    margin-left: 50px;
+.posting__x6__comment__info__created_by,
+.posting__x6__comment__info__created_ago,
+.posting__x6__comment__info__like{
     padding: 10px 0;
-    width: 100%;
+}
+
+.posting__x6__comment__info__created_by{
+    margin-left: 40px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.posting__x6__comment__info__created_ago{
+    margin-left: 5px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.posting__x6__comment__info__like-btn{
+    margin-left: 10px;
+}
+.posting__x6__comment__info__like-btn:hover{
+    cursor: pointer;
+}
+
+.posting__x6__comment__info__like-btn svg{
+    width: 20px;
+    height: 20px;
+    fill: rgba(0, 0, 0, 0.05);
+}
+.commentLiked svg {
+    fill: red;
+}
+
+.posting__x6__comment__info__like{
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.posting__x6__comment__main{
+    font-size: 15.3px;
 }
