@@ -38,11 +38,13 @@
     overflow: hidden;
     position: absolute;
     height: 30px;
+    top: 9px;
 }
 .posting__x6__comment__info__created_by,
 .posting__x6__comment__info__created_ago,
 .posting__x6__comment__info__like{
-    padding: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 .posting__x6__comment__info__created_by{
@@ -59,14 +61,15 @@
 
 .posting__x6__comment__info__like-btn{
     margin-left: 10px;
+    margin-bottom: -7.5px;
 }
 .posting__x6__comment__info__like-btn:hover{
     cursor: pointer;
 }
 
 .posting__x6__comment__info__like-btn svg{
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     fill: rgba(0, 0, 0, 0.05);
 }
 .commentLiked svg {
@@ -74,10 +77,15 @@
 }
 
 .posting__x6__comment__info__like{
-    margin-left: 10px;
+    margin-left: 7px;
     font-size: 15px;
 }
 
 .posting__x6__comment__main{
     font-size: 15.3px;
+    margin-left: 40px;
+}
+
+.posting__x6__comment__img{
+    margin: 10px 0;
 }

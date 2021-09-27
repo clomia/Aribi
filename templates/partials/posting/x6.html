@@ -24,12 +24,10 @@
             </div>
             <div class="posting__x6__comment__main">
                 {{ comment.content }}
-                <div>
-                    <div class="posting__x6__comment__img">
-                        {% if comment.image %}
-                            <img src="{{ comment.image.url }}" />
-                        {% endif %}
-                    </div>
+                <div class="posting__x6__comment__img">
+                    {% if comment.image %}
+                        <img src="{{ comment.image.url }}" />
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
