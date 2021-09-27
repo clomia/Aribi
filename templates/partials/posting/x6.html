@@ -24,12 +24,41 @@
             </div>
             <div class="posting__x6__comment__main">
                 {{ comment.content }}
-                <div class="posting__x6__comment__img">
+                <div class="posting__x6__comment__main__img">
                     {% if comment.image %}
                         <img src="{{ comment.image.url }}" />
                     {% endif %}
                 </div>
             </div>
+            {% for reply in comment.replies.all %}
+                <div class="posting__x6__comment__reply">
+                    <div class="posting__x6__comment__reply__info">
+                        <div class="posting__x6__comment__reply__info__profile">
+                            <img src="{{ reply.created_by.profile_image.url }}" width="30" , hieht="30">
+                        </div>
+                        <div class="posting__x6__comment__reply__info__created_by">
+                            {{ reply.created_by }}
+                        </div>
+                        <div class="posting__x6__comment__reply__info__created_ago">
+                            {{ reply.created_ago }}
+                        </div>
+                        <div class="posting__x6__comment__reply__info__like-btn">
+                            {% include "svg/like_icon.html" %}
+                        </div>
+                        <div class="posting__x6__comment__reply__info__like">
+                            좋아요 {{ reply.reply_likes.count }}개
+                        </div>
+                    </div>
+                    <div class="posting__x6__comment__reply__main">
+                        {{ reply.content }}
+                        <div class="posting__x6__comment__reply__main__img">
+                            {% if reply.image %}
+                                <img src="{{ reply.image.url }}" />
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         {% endfor %}
     </div>
 </div>
