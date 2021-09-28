@@ -21,6 +21,9 @@
                 <div class="posting__x6__comment__info__like">
                     좋아요 {{ comment.comment_likes.count }}개
                 </div>
+                <div class="posting__x6__comment__info__reply-count">
+                    답글 {{ comment.replies.count }}개
+                </div>
             </div>
             <div class="posting__x6__comment__main">
                 {{ comment.content }}

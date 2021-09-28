@@ -311,15 +311,33 @@ window.addEventListener('load', function () {
             }
         })
 
-        let commentLikeBtns = posting.querySelectorAll(".posting__x6__comment__info__like-btn");
-        for (let btn of commentLikeBtns) {
-            btn.addEventListener("click", function (event) {
-                if (btn.classList.contains("commentLiked")) {
-                    btn.classList.remove("commentLiked");
-                } else {
-                    btn.classList.add("commentLiked");
-                }
-            })
+        let commentLikeBtns = posting.querySelectorAll(".posting__x6__comment__info__like-btn"),
+            replyLikeBtns = posting.querySelectorAll(".posting__x6__comment__reply__info__like-btn");
+
+        function likeBtnfunc(btns) {
+            for (let btn of btns) {
+                btn.addEventListener("click", function (event) {
+                    if (btn.classList.contains("commentLiked")) {
+                        btn.classList.remove("commentLiked");
+                    } else {
+                        btn.classList.add("commentLiked");
+                    }
+                })
+            }
         }
+        likeBtnfunc(commentLikeBtns);
+        likeBtnfunc(replyLikeBtns);
+
+        // let commentImages = posting.querySelectorAll(".posting__x6__comment__main__img"),
+        //     replyImages = posting.querySelectorAll("posting__x6__comment__reply__main__img");
+
+        // function sizeOptimize(images) {
+        //     for (let img of images) {
+        //         console.log(img.clientWidth);
+        //     }
+        // }
+
+        // sizeOptimize(commentImages);
+        // sizeOptimize(replyImages);
     }
 })
