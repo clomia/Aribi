@@ -300,7 +300,7 @@ window.addEventListener('load', function () {
         }
 
         let comments = posting.querySelector(".posting__x6__comment");
-        let content = commentOpenBtn.innerHTML
+        let content = commentOpenBtn.innerHTML;
         commentOpenBtn.addEventListener("click", function (event) {
             if (comments.classList.contains("none")) {
                 comments.classList.remove("none");
@@ -328,16 +328,6 @@ window.addEventListener('load', function () {
         likeBtnfunc(commentLikeBtns);
         likeBtnfunc(replyLikeBtns);
 
-        // let commentImages = posting.querySelectorAll(".posting__x6__comment__main__img"),
-        //     replyImages = posting.querySelectorAll("posting__x6__comment__reply__main__img");
-
-        // function sizeOptimize(images) {
-        //     for (let img of images) {
-        //         console.log(img.clientWidth);
-        //     }
-        // }
-
-        // sizeOptimize(commentImages);
-        // sizeOptimize(replyImages);
+        let replyBtn = posting.querySelectorAll(".posting__x6__comment__info__reply-btn");
     }
 })
