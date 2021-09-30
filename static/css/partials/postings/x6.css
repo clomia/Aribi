@@ -152,3 +152,24 @@
     height: 50px;
     background-color: red;
 }
+
+.reply-input__form{
+    width: 100%;
+    height: 100%;
+}
+
+.reply-input__form textarea{
+    resize: none;
+    height: 100%;
+
+}
+
+.reply-input__form button{
+    height: 100%;
+    width: 50px;
+}
+
+.reply-input__form input{
+    height: 100%;
+    width: 50px;
+}

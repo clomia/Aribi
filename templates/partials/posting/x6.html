@@ -35,7 +35,13 @@
                         <img src="{{ comment.image.url }}" />
                     {% endif %}
                 </div>
-                <div class="reply-input"></div>
+                <div class="reply-input">
+                    <form class="reply-input__form" action="">
+                        <textarea name="reply" placeholder="comment" maxlength="200" required id="" cols="30" rows="10"></textarea>
+                        <input type="file" accept="image/*">
+                        <button type="submit"></button>
+                    </form>
+                </div>
             </div>
             {% for reply in comment.replies.all %}
                 <div class="posting__x6__comment__reply">
@@ -66,7 +72,13 @@
                                 <img src="{{ reply.image.url }}" />
                             {% endif %}
                         </div>
-                        <div class="reply-input"></div>
+                        <div class="reply-input">
+                            <form class="reply-input__form" action="">
+                                <textarea name="reply" placeholder="comment" maxlength="200" required cols="30" rows="10"></textarea>
+                                <input type="file" accept="image/*">
+                                <button type="submit"></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             {% endfor %}

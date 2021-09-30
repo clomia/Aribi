@@ -52,7 +52,7 @@ class Intro:
     @classmethod
     def main(cls, request):
         """
-        htnml에 DOM을 뿌린 후 JavaScript에서 가져가도록 합니다.
+        html에 DOM을 뿌린 후 JavaScript에서 가져가도록 합니다.
 
         JavaScript가 두 클래스를 동시에 뿌릴 수 있도록 zip을 써서 데이터를 가공함
         즉, 앞단에서는 포스팅 갯수 많은 순서대로 constituent,flavorTag가 순서대로 뿌려짐
