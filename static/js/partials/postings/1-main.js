@@ -329,6 +329,5 @@ window.addEventListener('load', function () {
         likeBtnfunc(replyLikeBtns);
 
         let replyBtn = posting.querySelectorAll(".posting__x6__comment__info__reply-btn");
-
     }
 })

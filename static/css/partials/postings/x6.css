@@ -147,29 +147,30 @@
     object-fit: contain;
 }
 
-.reply-input{
+.reply-form{
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 50px;
     background-color: red;
 }
 
-.reply-input__form{
-    width: 100%;
-    height: 100%;
-}
-
-.reply-input__form textarea{
+.reply-form textarea{
     resize: none;
-    height: 100%;
-
+    overflow-y: hidden;
+    height: 2em;
 }
 
-.reply-input__form button{
-    height: 100%;
-    width: 50px;
+.reply-form button{
+    height: 1.6em;
+    width: 150px;
 }
 
-.reply-input__form input{
-    height: 100%;
-    width: 50px;
+.reply-form input{
+    height: 1.6em;
+    width: 400px;
+}
+
+.reply-form__btns{
+    display: flex;
+    justify-content: flex-end;
 }

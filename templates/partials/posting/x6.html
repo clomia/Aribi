@@ -30,18 +30,7 @@
             </div>
             <div class="posting__x6__comment__main">
                 {{ comment.content }}
-                <div class="posting__x6__comment__main__img">
-                    {% if comment.image %}
-                        <img src="{{ comment.image.url }}" />
-                    {% endif %}
-                </div>
-                <div class="reply-input">
-                    <form class="reply-input__form" action="">
-                        <textarea name="reply" placeholder="comment" maxlength="200" required id="" cols="30" rows="10"></textarea>
-                        <input type="file" accept="image/*">
-                        <button type="submit"></button>
-                    </form>
-                </div>
+                {% include "partials/posting/reply-form.html" %}
             </div>
             {% for reply in comment.replies.all %}
                 <div class="posting__x6__comment__reply">
@@ -67,18 +56,7 @@
                     </div>
                     <div class="posting__x6__comment__reply__main">
                         {{ reply.content }}
-                        <div class="posting__x6__comment__reply__main__img">
-                            {% if reply.image %}
-                                <img src="{{ reply.image.url }}" />
-                            {% endif %}
-                        </div>
-                        <div class="reply-input">
-                            <form class="reply-input__form" action="">
-                                <textarea name="reply" placeholder="comment" maxlength="200" required cols="30" rows="10"></textarea>
-                                <input type="file" accept="image/*">
-                                <button type="submit"></button>
-                            </form>
-                        </div>
+                        {% include "partials/posting/reply-form.html" %}
                     </div>
                 </div>
             {% endfor %}
