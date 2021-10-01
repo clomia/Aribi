@@ -1,4 +1,4 @@
 function resize(obj) {
-    obj.style.height = "1px";
-    obj.style.height = (12 + obj.scrollHeight) + "px";
+    obj.style.height = "31px";
+    obj.style.height = obj.scrollHeight + "px";
 }

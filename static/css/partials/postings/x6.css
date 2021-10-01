@@ -149,28 +149,56 @@
 
 .reply-form{
     display: flex;
-    flex-direction: column;
     width: 100%;
-    background-color: red;
+    margin-top: 10px;
+}
+
+.reply-form textarea,
+.reply-form button {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+}
+
+.reply-form textarea:active,
+.reply-form button:active {
+    outline: none;
+}
+
+.reply-form textarea:focus,
+.reply-form button:focus {
+    outline: none;
+}
+
+@media not all and (hover: none) and (pointer: coarse) {
+    /* PC 용 */
+
+    .reply-form textarea:hover,
+    .reply-form button:hover {
+        border: 2px solid rgba(99, 0, 0, 0.3);
+    }
+
+    .reply-form button:hover {
+        cursor: pointer;
+    }
 }
 
 .reply-form textarea{
     resize: none;
     overflow-y: hidden;
-    height: 2em;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    width: 80%;
+    height: 100%;
+    border-radius: 15px;
+    padding: 15px;
+    height: 47px;
 }
 
 .reply-form button{
-    height: 1.6em;
-    width: 150px;
-}
-
-.reply-form input{
-    height: 1.6em;
-    width: 400px;
-}
-
-.reply-form__btns{
-    display: flex;
-    justify-content: flex-end;
+    height: 47px;
+    width: 20%;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }

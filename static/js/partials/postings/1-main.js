@@ -328,6 +328,29 @@ window.addEventListener('load', function () {
         likeBtnfunc(commentLikeBtns);
         likeBtnfunc(replyLikeBtns);
 
-        let replyBtn = posting.querySelectorAll(".posting__x6__comment__info__reply-btn");
+        let replyBtns = posting.querySelectorAll(".posting__x6__comment__info__reply-btn"),
+            replyReplyBtns = posting.querySelectorAll(".posting__x6__comment__reply__info__reply-btn");
+
+        function replyBtnProcess(btns) {
+            Array(...btns).map(function (replyBtn) {
+                let replyForm = replyBtn.parentElement.nextElementSibling.querySelector("form");
+
+                replyBtn.addEventListener("click", function (event) {
+                    if (replyForm.classList.contains("none")) {
+                        replyForm.classList.remove("none");
+                        replyBtn.innerHTML = "작성취소";
+                        let targetUserName = replyBtn.parentElement.firstChild.nextElementSibling.nextElementSibling.innerHTML.trim();
+                        let textArea = replyForm.querySelector("div").querySelector("textarea");
+                        textArea.value = `[${targetUserName}에게 답장]   `;
+                        console.log(targetUserName.trim())
+                    } else {
+                        replyForm.classList.add("none");
+                        replyBtn.innerHTML = "답글작성";
+                    }
+                })
+            })
+        }
+        replyBtnProcess(replyBtns);
+        replyBtnProcess(replyReplyBtns);
     }
 })
