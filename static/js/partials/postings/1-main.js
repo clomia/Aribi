@@ -1,46 +1,45 @@
 function coloring(tag, kind) {
     switch (kind) {
         case "액체":
-            tag.classList.add("liquid")
+            tag.classList.add("posting-tag-liquid")
             break;
         case "재료":
-            tag.classList.add("ingredient")
+            tag.classList.add("posting-tag-ingredient")
             break;
         case "용품":
-            tag.classList.add("equipment")
+            tag.classList.add("posting-tag-equipment")
             break;
         case "과일맛":
-            tag.classList.add("fruit")
+            tag.classList.add("posting-tag-fruit")
             break;
         case "식물맛":
-            tag.classList.add("plant")
+            tag.classList.add("posting-tag-plant")
             break;
         case "기본맛":
-            tag.classList.add("teste")
+            tag.classList.add("posting-tag-teste")
             break;
         case "향신료맛":
-            tag.classList.add("spice")
+            tag.classList.add("posting-tag-spice")
             break;
         case "입안 감촉":
-            tag.classList.add("texture")
+            tag.classList.add("posting-tag-texture")
             break;
         case "냄새":
-            tag.classList.add("scent")
+            tag.classList.add("posting-tag-scent")
             break;
         case "색감":
-            tag.classList.add("color")
+            tag.classList.add("posting-tag-color")
             break;
         case "기타 특징":
-            tag.classList.add("other")
+            tag.classList.add("posting-tag-other")
             break;
         default:
             break;
     }
 }
 
-window.addEventListener('load', function () {
+function postingScripting() {
     let postings = Array(...document.querySelectorAll(".posting"));
-    // 아래 코드도 무겁고 불러올 이미지도 많고 그래서 꼭 DOM로드 후 실행해야 한다!!
 
     for (let posting of postings) {
         //* x1
@@ -156,7 +155,7 @@ window.addEventListener('load', function () {
             })
             // 끝에 닿은거 감지하고 버튼 없애는 구현
             slider.addEventListener("scroll", function (event) {
-                if (slider.scrollLeft >= postingWidth * imageCount - postingWidth) {
+                if (slider.scrollLeft + 15 >= postingWidth * imageCount - postingWidth) {
                     rightPanel.classList.add("none");
                 }
                 if (slider.scrollLeft === 0) {
@@ -347,7 +346,6 @@ window.addEventListener('load', function () {
                         let targetUserName = replyBtn.parentElement.firstChild.nextElementSibling.nextElementSibling.innerHTML.trim();
                         let textArea = replyForm.querySelector("div").querySelector("textarea");
                         textArea.value = `[${targetUserName}에게 답장]   `;
-                        console.log(targetUserName.trim())
                     } else {
                         replyForm.classList.add("none");
                         replyBtn.innerHTML = "답글작성";
@@ -358,4 +356,6 @@ window.addEventListener('load', function () {
         replyBtnProcess(replyBtns);
         replyBtnProcess(replyReplyBtns);
     }
-})
+}
+// 코드 무겁고 불러올 이미지도 많고 그래서 꼭 DOM로드 후 실행해야 한다!!
+window.addEventListener('load', postingScripting);

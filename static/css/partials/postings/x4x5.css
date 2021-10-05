@@ -92,36 +92,36 @@
 .alcohol{
     opacity: 0.8;
 }
-.liquid{
+.posting-tag-liquid{
     border: 3px solid var(--liquid);
 }
-.ingredient{
+.posting-tag-ingredient{
     border: 3px solid var(--ingredient);
 }
-.equipment{
+.posting-tag-equipment{
     border: 3px solid var(--equipment);
 }
-.fruit{
+.posting-tag-fruit{
     border: 3px solid var(--fruit);
 }
-.plant{
+.posting-tag-plant{
     border: 3px solid var(--plant);
 }
-.teste{
+.posting-tag-teste{
     border: 3px solid var(--teste);
 }
-.spice{
+.posting-tag-spice{
     border: 3px solid var(--spice);
 }
-.texture{
+.posting-tag-texture{
     border: 3px solid var(--texture);
 }
-.scent{
+.posting-tag-scent{
     border: 3px solid var(--scent);
 }
-.color{
+.posting-tag-color{
     border: 3px solid var(--color);
 }
-.other{
+.posting-tag-other{
     border: 3px solid var(--other);
 }

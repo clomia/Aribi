@@ -1,0 +1,23 @@
+<div class="sort-btn">
+    <div class="sort-btn__ele sort-btn__latest sort-btn__selected">
+        최신순
+    </div>
+    <div class="sort-btn__ele sort-btn__popularity">
+        인기순
+    </div>
+</div>
+<div class="postings-section">
+    <div class="postings-section__latest">
+        {% for posting in latest_postings %}
+            {% include "partials/posting/main.html" %}
+        {% endfor %}
+    </div>
+    <div class="postings-section__popularity none">
+        {% for posting in popularity_postings %}
+            {% include "partials/posting/main.html" %}
+        {% endfor %}
+    </div>
+</div>
+
+{% comment %} popularity_postings
+latest_postings {% endcomment %}

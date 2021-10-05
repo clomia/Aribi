@@ -4,6 +4,7 @@
 @import "tag_space.css";
 @import "table_animation.css";
 @import "spec_btn.css";
+@import "postings.css";
 
 * {
     /* django가 원인인지 자꾸 멋대로 속성이 생긴다. 일단 이 속성은 여기 *에서 정의해야만 적용되더라..*/

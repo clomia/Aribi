@@ -7,7 +7,9 @@
 
 {% block body %}
 
-    {% include 'page/intro/search-eles.html' %}
+    {% include "page/intro/search-eles.html" %}
+    {% include "page/intro/postings.html" %}
     {{ "intro"|js_module_import }}
+    {{ "partials/postings"|js_module_import }}
 
 {% endblock body %}

@@ -3,6 +3,9 @@
         {% comment %} 좋아요 누가 눌렀는지 보여주기!! {% endcomment %}
         Like {{ posting.posting_likes.count }}개
     </a>
+    <div class="posting__x3__created-ago">
+        {{ posting.created_ago }}
+    </div>
     <div class="posting__x3__content">
         <div class="posting__x3__content__p">
             {{ posting.content|linebreaks }}
