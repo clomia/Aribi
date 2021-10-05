@@ -205,13 +205,13 @@ window.addEventListener('load', function () {
             fontSize = 16;
         foldBottomBtn.classList.add("none");
         let charLimit = (postingWidth - 61) / fontSize;
-        if (originContent.includes("<br")) {
+        function contentCut() {
             let firstLine = originContent.split("<br")[0];
             if (firstLine.length > charLimit) {
                 firstLineEdit = originContent.slice(0, charLimit);
                 contentBox.querySelector("p").innerHTML = firstLineEdit + "<br>" + originContent.slice(charLimit, -1);
                 firstLine = contentBox.querySelector("p").innerHTML.split("<br")[0];
-            }
+            } // 2021.10.05 위 코드박스는 유효한 코드라는것을 확인함.
             let content = contentBox.querySelector("p").innerHTML;
             let a = content.split("<br>")[0];
             let b = content.split("<br>").slice(1, -1).join("");
@@ -232,6 +232,11 @@ window.addEventListener('load', function () {
                 foldTopBtn.classList.remove("none");
                 foldBottomBtn.classList.add("none");
             })
+        }
+        if (originContent.includes("<br")) {
+            contentCut();
+        } else if (originContent.length > charLimit) {
+            contentCut(); //본문 요약본이 올바르게 만들어지지 않는 오류 해결
         } else {
             foldTopBtn.classList.add("none");
         }
