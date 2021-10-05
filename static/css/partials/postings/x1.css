@@ -29,22 +29,12 @@
     margin-bottom: 2px;
 }
 
-.posting__x1__center__top:hover{
-    cursor: pointer;
-    text-underline-position:under;
-    text-decoration:underline;
-}
-
 .posting__x1__center__bottom{
     font-size: 13px;
     text-align: center;
     color: gray;
     opacity: 0.4;
     transition: all 100ms ease-in-out;
-}
-
-.posting__x1__center__bottom:hover{
-    opacity: 1;
 }
 
 .posting__x1__menu-btn{
@@ -72,25 +62,51 @@
     }
 }
 
-.posting__x1__menu-btn:hover {
-    cursor: pointer;
+@media screen and (max-width: 615px) {
+    .posting__x1__center__top{
+        font-size: 14px;
+    }
+    .posting__x1__profile{
+        width: 35px;
+        height: 35px;
+    }
+    /* 글자 오버랩 되면 프로필 찌그러지는것 완화 */
+}
+
+@media not all and (hover: none) and (pointer: coarse) {
+    /* PC 용 */
+
+    .posting__x1__center__top:hover{
+        cursor: pointer;
+        text-underline-position:under;
+        text-decoration:underline;
+    }
+
+    .posting__x1__center__bottom:hover{
+        opacity: 1;
+    }
+
+    .posting__x1__menu-btn:hover {
+        cursor: pointer;
+    }
+    .c1-bounce {
+        animation: c-bounce 300ms ease-in-out infinite alternate;
+        /* skew 10s ease-in-out infinite alternate; */
+    }
+    .c2-bounce {
+        animation: c-bounce 300ms 100ms ease-in-out infinite alternate;
+    }
+    .c3-bounce {
+        animation: c-bounce 300ms 200ms ease-in-out infinite alternate;
+    }
+    .posting__x1__menu-btn__box__menu:hover{
+        background-color: rgba(255, 255, 255, 0.7);
+    }
 }
 
 .menu-3{
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-
-.c1-bounce {
-    animation: c-bounce 300ms ease-in-out infinite alternate;
-    /* skew 10s ease-in-out infinite alternate; */
-}
-.c2-bounce {
-    animation: c-bounce 300ms 100ms ease-in-out infinite alternate;
-}
-.c3-bounce {
-    animation: c-bounce 300ms 200ms ease-in-out infinite alternate;
-}
-
 
 .posting__x1__menu-btn__box{
     position: absolute;
@@ -106,7 +122,4 @@
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.5);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-.posting__x1__menu-btn__box__menu:hover{
-    background-color: rgba(255, 255, 255, 0.7);
 }

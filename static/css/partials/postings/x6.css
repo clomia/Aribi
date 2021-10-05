@@ -22,11 +22,6 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
-.posting__x6__btn:hover{
-    text-decoration: underline;
-    cursor: pointer;
-    text-underline-position:under;
-}
 .posting__x6__comment__info,
 .posting__x6__comment__reply__info{
     display: flex;
@@ -41,18 +36,6 @@
     position: absolute;
     height: 30px;
     top: 9px;
-}
-
-.posting__x6__comment__info__profile:hover,
-.posting__x6__comment__reply__info__profile:hover{
-    cursor: pointer;
-}
-
-.posting__x6__comment__info__created_by:hover,
-.posting__x6__comment__reply__info__created_by:hover{
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-position:under;
 }
 
 .posting__x6__comment__info__created_by,
@@ -87,10 +70,7 @@
     margin-left: 10px;
     margin-bottom: -8px;
 }
-.posting__x6__comment__info__like-btn:hover,
-.posting__x6__comment__reply__info__like-btn:hover{
-    cursor: pointer;
-}
+
 
 .posting__x6__comment__info__like-btn svg,
 .posting__x6__comment__reply__info__like-btn svg{
@@ -108,14 +88,7 @@
     font-size: 15px;
 }
 
-.posting__x6__comment__info__like:hover,
-.posting__x6__comment__reply__info__like:hover,
-.posting__x6__comment__info__reply-btn:hover,
-.posting__x6__comment__reply__info__reply-btn:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-position:under;
-}
+
 
 .posting__x6__comment__info__reply-count,
 .posting__x6__comment__info__reply-btn,
@@ -182,6 +155,52 @@
 
     .reply-form button:hover {
         cursor: pointer;
+    }
+
+    .posting__x6__btn:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        text-underline-position:under;
+    }
+
+    .posting__x6__comment__info__profile:hover,
+    .posting__x6__comment__reply__info__profile:hover{
+        cursor: pointer;
+    }
+
+    .posting__x6__comment__info__created_by:hover,
+    .posting__x6__comment__reply__info__created_by:hover{
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-position:under;
+    }
+
+    .posting__x6__comment__info__like-btn:hover,
+    .posting__x6__comment__reply__info__like-btn:hover{
+        cursor: pointer;
+    }
+
+    .posting__x6__comment__info__like:hover,
+    .posting__x6__comment__reply__info__like:hover,
+    .posting__x6__comment__info__reply-btn:hover,
+    .posting__x6__comment__reply__info__reply-btn:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-position:under;
+    }
+}
+
+@media screen and (max-width: 615px) {
+    .posting__x6__comment__info__created_by,
+    .posting__x6__comment__reply__info__created_by,
+    .posting__x6__comment__info__created_ago,
+    .posting__x6__comment__reply__info__created_ago,
+    .posting__x6__comment__info__like,
+    .posting__x6__comment__reply__info__like,
+    .posting__x6__comment__info__reply-count,
+    .posting__x6__comment__info__reply-btn,
+    .posting__x6__comment__reply__info__reply-btn{
+        font-size: 2.6vmin;
     }
 }
 
