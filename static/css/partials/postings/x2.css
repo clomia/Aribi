@@ -1,8 +1,10 @@
 .posting__x2{
     position: relative;
-    background-color: rgba(0, 0, 0, 0);
     display: flex;
     justify-content: center;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    /* border 안으로 이미지가 들어간다 */
 }
 
 .posting__x2__slider{
