@@ -7,45 +7,6 @@
 @import "x6.css";
 @import "x7.css";
 
-body{
-    padding: 200px 0;
-}
-
-
-* {
-    /* django가 원인인지 자꾸 멋대로 속성이 생긴다. 일단 이 속성은 여기 *에서 정의해야만 적용되더라..*/
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-body {
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-color) transparent;
-}
-
-body::-webkit-scrollbar-thumb:hover{
-    background-color: var(--scrollbar--hover-color);
-}
-
-body::-webkit-scrollbar {
-    width: 12px;
-}
-body::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-body::-webkit-scrollbar-thumb {
-    border-radius: 1.5px;
-    background-color: var(--scrollbar-color);
-}
-body::-webkit-scrollbar-button {
-    width: 0;
-    height: 0;
-}
-
 .none {
     display: none;
 }

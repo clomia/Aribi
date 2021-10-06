@@ -288,10 +288,22 @@ function postingScript(posting) {
     x4BtnTag.addEventListener("click", function (event) {
         x4.classList.add("none");
         x5.classList.remove("none");
+
+        if (x5.classList.contains("flip-btn-space")) {
+            x6Margin.classList.add("none")
+        } else {
+            x6Margin.classList.remove("none")
+        }
     })
     x5BtnTag.addEventListener("click", function (event) {
         x4.classList.remove("none");
         x5.classList.add("none");
+
+        if (x4.classList.contains("flip-btn-space")) {
+            x6Margin.classList.add("none")
+        } else {
+            x6Margin.classList.remove("none")
+        }
     })
     // *x6
     let commentOpenBtn = posting.querySelector(".posting__x6__btn");

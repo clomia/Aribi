@@ -8,8 +8,6 @@
     position: relative;
     border-radius: 5px 5px 0 0;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    /* 여기 아래로는 개발용 */
-    margin-top: 60px;
 }
 
 .posting__x1__profile,
