@@ -1,0 +1,31 @@
+.sort-btn{
+    display: flex;
+    width: var(--intro-width);
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 15px;
+}
+.sort-btn__ele{
+    width: 30vmin;
+    height: 7vmin;
+    background: #f3f0f1;
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.15);
+}
+
+.sort-btn__ele span {
+    line-height: 100px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 32px;
+    font-weight: semibold;
+}
+
+.sort-btn__selected{
+    box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.25);
+}
