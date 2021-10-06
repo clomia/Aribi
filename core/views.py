@@ -17,11 +17,11 @@ class_mapping = {
 class Intro:
     """인트로 페이지"""
 
-    def get_popularity_postings(*, offset: int, step=3):
+    def get_popularity_postings(*, offset: int, step=8):
         # ? 관계형 필드로 정렬할때 .all().annotate를 사용하지 않으면 이상한 결과가 나오더라
         return Posting.objects.all().annotate(likes=Count("posting_likes")).order_by("-likes")[offset : offset + step]
 
-    def get_latest_postings(*, offset: int, step=3):
+    def get_latest_postings(*, offset: int, step=8):
         return Posting.objects.order_by("-created")[offset : offset + step]
 
     def search(word):
@@ -58,16 +58,6 @@ class Intro:
         "search": search,
         "tag_search": tag_search,
     }
-
-    @classmethod
-    def posting_loader(cls, request):
-        """만약 더이상 로딩할게 없으면 postings는 빈 QuerySet이 된다. 아무런 문제 없다."""
-        order_by, offset = request.POST.get("order_by"), int(request.POST.get("offset"))
-        if order_by == "latest":
-            postings = cls.get_latest_postings(offset=offset)
-        elif order_by == "popularity":
-            postings = cls.get_popularity_postings(offset=offset)
-        return render(request, "partials/postings/main.html", {"postings": postings})
 
     @classmethod
     def main(cls, request):
