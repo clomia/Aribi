@@ -1,31 +1,38 @@
 .sort-btn{
     display: flex;
     width: var(--intro-width);
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-top: 20px;
     padding: 0 15px;
 }
 .sort-btn__ele{
-    width: 30vmin;
-    height: 7vmin;
+    width: 20vmin;
+    height: 5vmin;
     background: #f3f0f1;
     border-radius: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.8), 3px 3px 5px rgba(0, 0, 0, 0.2);
     color: rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 615px) {
+    .sort-btn__ele{
+        width: 162px;
+        height: 38px;
+    }
 }
 
 .sort-btn__ele span {
     line-height: 100px;
     font-family: "Montserrat", sans-serif;
-    font-size: 32px;
+    font-size: 25px;
     font-weight: semibold;
 }
 
 .sort-btn__selected{
-    box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5), inset 4px 4px 8px rgba(0, 0, 0, 0.1);
     color: rgba(0, 0, 0, 0.25);
 }
