@@ -15,7 +15,7 @@
     align-items: center;
     cursor: pointer;
     box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.8), 3px 3px 5px rgba(0, 0, 0, 0.2);
-    color: rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.2);
 }
 
 .sort-btn__ele span {
@@ -27,7 +27,7 @@
 
 .sort-btn__selected{
     box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5), inset 4px 4px 8px rgba(0, 0, 0, 0.1);
-    color: rgba(0, 0, 0, 0.25);
+    color: rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 615px) {
@@ -41,7 +41,7 @@
     }
 
     .sort-btn__ele span{
-        font-size: 20px;
+        font-size: 15px;
     }
 }
 

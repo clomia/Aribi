@@ -6,7 +6,7 @@
 {% endblock head %}
 
 {% block body %}
-
+    {% include "page/intro/logo.html" %}
     {% include "page/intro/search-eles.html" %}
     {% include "page/intro/postings.html" %}
     {{ "intro"|js_module_import }}
