@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% include "partials/mini/social_login.html" %}
+
+<form method="POST" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Login</button>
+</form>
+
+{% endblock body %}

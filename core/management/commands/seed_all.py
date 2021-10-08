@@ -9,18 +9,18 @@ class Command(BaseCommand):
     --OS 에러 발생--
     """
 
-    help = "모든 데이터를 생성합니다."
+    help = "모든 데이터를 생성합니다. [!! 슈퍼유저를 생성한 후, 프로필 이미지까지 등록을 해둔 뒤 커멘드를 실행하세요 슈퍼유저는 수동으로 만들어야 합니다.]"
 
     def handle(self, *args, **options):
 
         prefix = "python manage.py seed_"
 
         command_list = [
-            prefix + "users --total 150",
-            prefix + "constituents --total 150",
+            prefix + "users --total 100",
+            prefix + "constituents --total 100",
             prefix + "flavor_tags",
-            prefix + "postings --total 200",
-            prefix + "custom_lists --total 140",
+            prefix + "postings --total 130",
+            prefix + "custom_lists --total 100",
         ]
 
         for command in command_list:

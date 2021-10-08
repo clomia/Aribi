@@ -20,9 +20,10 @@ class UserAdmin(UserAdmin):
     ) + UserAdmin.fieldsets
 
     list_display = (
-        "username",
+        "name",
         "login_method",
         "created",
+        "username",
     )
 
     list_filter = ("login_method",)

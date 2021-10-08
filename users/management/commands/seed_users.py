@@ -11,7 +11,7 @@ MEDIA_ROOT = settings.MEDIA_ROOT
 
 class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
-        """ 생성된 이름의 성별균형 , 성과 이름이 맞도록 하기 위한 오버라이딩입니다. """
+        """생성된 이름의 성별균형 , 성과 이름이 맞도록 하기 위한 오버라이딩입니다."""
         # * 이것이 잘 작동한다는것은 확인되었습니다.
         self.get_gender = cycle((True, False))
         self.name = None
@@ -42,6 +42,7 @@ class Command(BaseCommand):
             에서 하나를 셈플링합니다.
 
             셈플링된 값이 이미 있다면 다시 한번 더 셈플링 합니다.
+            #![10/9] username이 unique하다는것은 보장되어있다.
             """
             if (not self.name) or (not x):
                 self.name = namer.generate(next(self.get_gender))
@@ -55,6 +56,7 @@ class Command(BaseCommand):
                 + (f"{en_name}{random.randint(0,10000)}",) * 2
             )
             result = random.choice(sample)
+            #! createsuperuser를 먼저 하지 않으면 if User.objects.all() 조건이 충족되지 않는다!!
             if (all_users := User.objects.all()) and not result in [user.username for user in all_users]:
                 # 유저가 없는데 username확인하면 에러나기 때문에 유저가 있는지부터 확인하는 조건문
                 self.stdout.write(self.style.SUCCESS(str(result)))
@@ -65,7 +67,7 @@ class Command(BaseCommand):
             return self.name[0]
 
         def last_name(x):
-            """ first_name 이후에 호출되어야 합니다! """
+            """first_name 이후에 호출되어야 합니다!"""
             name = self.name
             self.name = None
             return name[1:]
@@ -77,6 +79,7 @@ class Command(BaseCommand):
                 "first_name": first_name,
                 "username": username,
                 "last_name": last_name,
+                "name": username,
                 "login_method": lambda x: random.choice(User.LOGIN_METHODS),
                 "profile_image": lambda x: os.path.join(MEDIA_ROOT, f"profile_images/{random.randint(1,50)}.jpg"),
             },
