@@ -99,3 +99,18 @@ def kakao_callback(request):
     # AttributeError -> 'NoneType' object has no attribute 'get'
     except (KakaoException, AttributeError):
         return redirect(reverse("users:login"))
+
+
+def naver_login(request):
+
+    return redirect(
+        f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code"
+    )
+
+
+class NaverException(Exception):
+    pass
+
+
+def naver_callback(request):
+    pass
