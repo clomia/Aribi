@@ -1,0 +1,55 @@
+.sexy-btn {
+    position: relative;
+    color: #3b3b3b;
+    z-index: 2;
+    line-height: 40px;
+    padding: 0;
+    background-color: transparent;
+}
+
+@media all and (hover: none) and (pointer: coarse) {
+    /* 모바일용 */
+    .sexy-btn {
+        border: 2px solid #3b3b3b;
+    }
+}
+
+@media not all and (hover: none) and (pointer: coarse) {
+    /* PC 용 hover시 선이 교차하는 효과는 모바일에서 적용되지 않는다 */
+    .sexy-btn:hover{
+        border: none;
+        cursor: pointer;
+    }
+    .sexy-btn:before,
+    .sexy-btn:after {
+        position: absolute;
+        content: "";
+        width: 0%;
+        height: 0%;
+        border: 2px solid;
+        z-index: -1;
+        transition: all 0.3s ease;
+    }
+    .sexy-btn:before {
+        top: 0;
+        left: 0;
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+        border-top-color: #3b3b3b;
+        border-left-color: #3b3b3b;
+    }
+    .sexy-btn:after{
+        bottom: 0;
+        right: 0;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-bottom-color: #3b3b3b;
+        border-right-color: #3b3b3b;
+    }
+    .sexy-btn:hover:before,
+    .sexy-btn:hover:after {
+        border-color: #3b3b3b;
+        height: 100%;
+        width: 100%;
+    }
+}

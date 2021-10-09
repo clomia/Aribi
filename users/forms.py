@@ -5,8 +5,8 @@ from . import models
 
 class LoginForm(forms.Form):
 
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(label_suffix="", label="아이디")
+    password = forms.CharField(widget=forms.PasswordInput, label_suffix="", label="비밀번호")
 
     def clean(self):
 
@@ -25,7 +25,13 @@ class LoginForm(forms.Form):
 
 class SignUpForm(UserCreationForm):
 
-    username = forms.CharField()
+    username = forms.CharField(label_suffix="", label="아이디")
+    password1 = forms.CharField(
+        widget=forms.PasswordInput,
+        label_suffix="",
+        label="비밀번호",
+    )
+    password2 = forms.CharField(widget=forms.PasswordInput, label_suffix="", label="비밀번호 확인")
 
     class Meta:
         model = models.User

@@ -1,8 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load importer %}
+
+{% block head %} 
+    {{ "login-page.css"|css_import }} 
+{% endblock head %}
+
 {% block body %}
-<form method="POST" action="{% url 'users:signup' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>Sign up</button>
-</form>
+<div class="box signup">
+    <div class="box__go-to-back">
+        <a href="{% url 'users:login' %}">
+            {% include "svg/arrow-bar_icon.html" %}
+        </a>
+    </div>
+    <div class="box__form">
+        <form method="POST" action="{% url 'users:signup' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="sexy-btn sign-up">회원가입</button>
+        </form>
+    </div>
+</div>
+
+
+
+
 {% endblock body %}

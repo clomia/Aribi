@@ -1,0 +1,126 @@
+@import "social-btn.css";
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: #f4f4f4;
+}
+
+.box{
+    width: 70vmin;
+    height: 80vmin;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border-radius: 20vmin; */
+    padding: 10vmin;
+    box-shadow: inset 3px -15px 25px rgba(255, 255, 255, 0.8), 3px 15px 25px rgba(0, 0, 0, 0.2);
+    color: #3b3b3b;
+    background-color: white;
+    position: relative;
+}
+
+.box__social{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.box__social__svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.box__social__svg svg{
+    width: 20vmin;
+    height: 5vmin;
+    fill: #3b3b3b;
+}
+
+.box__go-to-back{
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
+
+.box__go-to-back a svg {
+    width: 8vmin;
+    height: 3vmin;
+}
+
+.box__form{
+    margin-top: 10vmin;
+}
+
+.box__form form{
+    width: 35vmin;
+    display: flex;
+    flex-direction: column;
+}
+
+.box__form form label{
+    margin-right: 30px;
+    font-size: 18px;
+}
+
+.box__form form input{
+    outline: none;
+    border: none;
+    /* reset */
+    width: 35vmin;
+    margin-top: 10px;
+    border-bottom: 1px solid #3b3b3b;
+    font-size: 18px;
+}
+
+.box__form form input:focus{
+    outline: none;
+    /* reset */
+}
+
+.box__form form button {
+    width: 100%;
+    font-size: 18px;
+}
+
+
+.box__form form ul {
+    list-style:none;
+    padding-left:0px;
+}
+
+.box__social__svg svg{
+    opacity: 0.87;
+}
+
+/* signup */
+
+.box__signup a button{
+    width: 35vmin;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.sign-up{
+    margin-top: 40px;
+}
+
+@media all and (hover: none) and (pointer: coarse) {
+    /* 모바일용 */
+    .box{
+        height: 70vmax;
+    }
+    .signup{
+        height: 90vmax;
+    }
+    .box__signup a button,
+    .box__form form label{
+        font-size: 14px;
+    }
+    .box__social{
+        margin-top: 30px;
+    }
+}
