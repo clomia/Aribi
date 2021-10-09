@@ -1,0 +1,97 @@
+
+.github-ref__ul {
+    position: relative;
+    display: flex;
+    transform: rotate(-25deg) skew(25deg);
+    transform-style: preserve-3d;
+}
+.github-ref__ul li {
+    position: relative;
+    list-style: none;
+    width: 60px;
+    height: 60px;
+    margin: 0px 20px;
+}
+.github-ref__ul li:before{
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: -5px;
+    width: 100%;
+    height: 10px;
+    background: #494949;
+    transform: skewX(-41deg);
+}
+.github-ref__ul li:after{
+    content: '';
+    position: absolute;
+    top:5px;
+    left: -9px;
+    width: 9px;
+    height: 100%;
+    background: #494949;
+    transform: skewY(-49deg);
+}
+.github-ref__ul li span{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    background: #494949;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 30px !important;
+    transition: 1.5s ease-out;
+}
+.github-ref__ul li:hover span {
+    z-index: 1000;
+    transition: .3s;
+    color: #fff;
+}
+.github-ref__ul li:hover span:nth-child(5){
+    transform: translate(40px, -40px);
+    opacity: 1;
+    fill: #494949;
+}
+.github-ref__ul li:hover span:nth-child(4){
+    transform: translate(30px, -30px);
+    opacity: .8;
+}
+.github-ref__ul li:hover span:nth-child(3){
+    transform: translate(20px, -20px);
+    opacity: .6;
+}
+.github-ref__ul li:hover span:nth-child(2){
+    transform: translate(10px, -10px);
+    opacity: .4;
+}
+.github-ref__ul li:hover span:nth-child(1){
+    transform: translate(0px, 0px);
+    opacity: .2;
+}
+.github-ref__ul li:hover span{
+    background: #91e4d0 !important;
+}
+
+
+.github-ref__ul li span:nth-child(5){
+    fill: white;
+}
+
+.github-ref__ul li span:nth-child(5) svg{
+    width: 70%;
+    height: 70%;
+}
+
+/* -------------------------------------------------------- */
+
+.github-ref{
+    padding-top: 70px;
+    padding-bottom: 100px;
+    padding-right: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
