@@ -1,0 +1,19 @@
+.profile,
+.profile img{
+    width: 50px;
+    height: 50px;
+}
+
+.profile{
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: -3px -3px 5px rgb(255 255 255 / 80%), 3px 3px 5px rgb(0 0 0 / 20%);
+}
+
+@media all and (hover: none) and (pointer: coarse) {
+    .profile,
+    .profile img{
+        width: 30px;
+        height: 30px;
+    }
+}

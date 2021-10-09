@@ -1,0 +1,14 @@
+@import "login-btn.css";
+@import "login-profile.css";
+
+.nav {
+    display: flex;
+    justify-content: right;
+    width: 80vmin;
+}
+
+.user-section{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+}

@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% block body %}
 
-{% include "partials/mini/social_login.html" %}
+<div>
+    <a href="{% url 'users:kakao-login' %}">카카오로 로그인</a>
+    <a href="{% url 'users:github-login' %}">깃헙으로 로그인</a>
+</div>
 
 <form method="POST" action="{% url 'users:login' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button>Login</button>
 </form>
+<a href="{% url 'users:signup' %}">Aribi 계정 만들기</a>
 
 {% endblock body %}

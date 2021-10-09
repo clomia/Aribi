@@ -21,7 +21,11 @@ class User(AbstractUser, CoreModel):
 
     login_method = models.CharField(max_length=50, choices=LOGIN_CHOICES, default=LOGIN_DEFAULT)
     profile_image = ResizedImageField(
-        upload_to="profile_images", size=[170, 170], crop=["middle", "center"], quality=-1, blank=True
+        upload_to="profile_images",
+        size=[170, 170],
+        crop=["middle", "center"],
+        quality=-1,
+        default="profile_images/default-profile.jpg",
     )
     bio = models.TextField(blank=True)
 
