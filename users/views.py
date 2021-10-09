@@ -106,7 +106,7 @@ def kakao_callback(request):
             user = models.User.objects.create(
                 name=kakao_name,
                 username=username,
-                login_method=models.User.LOGING_KAKAO,
+                login_method=models.User.LOGIN_KAKAO,
             )
             user.set_unusable_password()
             user.save()
@@ -167,7 +167,7 @@ def github_callback(request):
                     user = models.User.objects.create(
                         name=github_name,
                         username=username,
-                        login_method=models.User.LOGING_GITHUB,
+                        login_method=models.User.LOGIN_GITHUB,
                     )
                     user.set_unusable_password()
                     user.save()
