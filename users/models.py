@@ -7,7 +7,12 @@ from core.models import CoreModel
 class User(AbstractUser, CoreModel):
     """유저 모델입니다."""
 
-    LOGIN_METHODS = (LOGIN_DEFAULT := "default", LOGING_KAKAO := "kakao", LOGIN_NAVER := "naver")
+    LOGIN_METHODS = (
+        LOGIN_DEFAULT := "default",
+        LOGIN_KAKAO := "kakao",
+        LOGIN_NAVER := "naver",
+        LOGIN_GITHUB := "github",
+    )
     LOGIN_CHOICES = tuple((i, i) for i in LOGIN_METHODS)
 
     # ? username은 유저의 고윳값이며 이 name 필드를 사용자명으로 사용합니다.

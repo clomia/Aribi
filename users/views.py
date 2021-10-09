@@ -5,8 +5,20 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from . import forms, models
 
-REST_API_KEY = os.environ.get("KAKAO_REST_API_KEY")
-REDIRECT_URI = "http://127.0.0.1:8000/users/login/kakao/callback"
+
+redirect_uri = lambda x: f"http://127.0.0.1:8000/users/login/{x}/callback"
+social = {
+    "kakao": {
+        "key": os.environ.get("KAKAO_REST_API_KEY"),
+        "redirect_uri": redirect_uri("kakao"),
+    },
+    "github": {
+        "id": os.environ.get("GITHUB_ID"),
+        "secret": os.environ.get("GITHUB_SECRET"),
+        "redirect_uri": redirect_uri("github"),
+    },
+}
+social_username = lambda method, _id: method + str(_id)
 
 
 class LoginView(FormView):
@@ -50,24 +62,29 @@ class SignUpView(FormView):
         return super().form_valid(form)
 
 
+# ------------  Kakao  ----------------
+class KakaoException(Exception):
+    pass
+
+
 def kakao_login(request):
 
     return redirect(
-        f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code"
+        "https://kauth.kakao.com/oauth/authorize"
+        + f"?client_id={social['kakao']['key']}"
+        + f"&redirect_uri={social['kakao']['redirect_uri']}"
+        + f"&response_type=code"
     )
-
-
-class KakaoException(Exception):
-    pass
 
 
 def kakao_callback(request):
     try:
         code = request.GET.get("code")
         token_request = requests.get(
-            "https://kauth.kakao.com/oauth/token?grant_type=authorization_code"
-            + f"&client_id={REST_API_KEY}"
-            + f"&redirect_uri={REDIRECT_URI}"
+            "https://kauth.kakao.com/oauth/token"
+            + "?grant_type=authorization_code"
+            + f"&client_id={social['kakao']['key']}"
+            + f"&redirect_uri={social['kakao']['redirect_uri']}"
             + f"&code={code}"
         )
         token_json = token_request.json()
@@ -79,9 +96,10 @@ def kakao_callback(request):
             "https://kapi.kakao.com/v2/user/me", headers={"Authorization": f"Bearer {access_token}"}
         )
         profile_json = profile_request.json()
-        kakao_id = profile_json.get("id")
+        user_id = profile_json.get("id")
+        # AttributeError -> 'NoneType' object has no attribute 'get'
         kakao_name = profile_json.get("properties").get("nickname")
-        username = models.User.LOGING_KAKAO + str(kakao_id)  #! 소셜 로그인시 user_id 생성 규칙
+        username = social_username(models.User.LOGIN_KAKAO, user_id)
         try:
             user = models.User.objects.get(username=username)
         except models.User.DoesNotExist:
@@ -96,21 +114,67 @@ def kakao_callback(request):
         login(request, user)
         return redirect(reverse("core:intro"))
 
-    # AttributeError -> 'NoneType' object has no attribute 'get'
     except (KakaoException, AttributeError):
         return redirect(reverse("users:login"))
 
 
-def naver_login(request):
+# ------------  Github  ----------------
+class GithubException(Exception):
+    pass
 
+
+def github_login(request):
     return redirect(
-        f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code"
+        "https://github.com/login/oauth/authorize"
+        + f"?client_id={social['github']['id']}"
+        + f"&redirect_uri={social['github']['redirect_uri']}"
+        + "&scope=read:user"
     )
 
 
-class NaverException(Exception):
-    pass
+def github_callback(request):
+    try:
+        client_id = social["github"]["id"]
+        client_secret = social["github"]["secret"]
+        if code := request.GET.get("code", None):
+            result = requests.post(
+                "https://github.com/login/oauth/access_token"
+                + f"?client_id={client_id}"
+                + f"&client_secret={client_secret}"
+                + f"&code={code}",
+                headers={"Accept": "application/json"},
+            )
+            if (result_json := result.json()).get("error", None):
+                raise GithubException()
+            else:
+                access_token = result_json.get("access_token")
+                api_request = requests.get(
+                    "https://api.github.com/user",
+                    headers={
+                        "Authorization": f"token {access_token}",
+                        "Accept": "application/json",
+                    },
+                )
+                profile_json = api_request.json()
+                if not (github_name := profile_json.get("login", None)):
+                    raise GithubException()
 
-
-def naver_callback(request):
-    pass
+                user_id = profile_json.get("id")
+                username = social_username(models.User.LOGIN_GITHUB, user_id)
+                try:
+                    user = models.User.objects.get(username=username)
+                except models.User.DoesNotExist:
+                    user = models.User.objects.create(
+                        name=github_name,
+                        username=username,
+                        login_method=models.User.LOGING_GITHUB,
+                    )
+                    user.set_unusable_password()
+                    user.save()
+                login(request, user)
+                # * SUCCESS
+                return redirect(reverse("core:intro"))
+        else:
+            raise GithubException()
+    except GithubException:
+        return redirect(reverse("users:login"))

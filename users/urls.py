@@ -9,6 +9,6 @@ urlpatterns = [
     path("signup", views.SignUpView.as_view(), name="signup"),
     path("login/kakao", views.kakao_login, name="kakao-login"),
     path("login/kakao/callback", views.kakao_callback, name="kakao-callback"),
-    path("login/naver", views.naver_login, name="naver-login"),
-    path("login/naver/callback", views.naver_callback, name="naver-callback"),
+    path("login/github", views.github_login, name="github-login"),
+    path("login/github/callback", views.github_callback, name="github-callback"),
 ]
