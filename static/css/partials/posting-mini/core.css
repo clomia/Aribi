@@ -1,0 +1,80 @@
+.posting-mini{
+    box-shadow: inset 1px -5px 8px rgba(255, 255, 255, 0.8), 1px 5px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    width: 615px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    padding: 20px;
+    color: #3b3b3b;
+}
+
+.posting-mini__text{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.posting-mini__text__content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.posting-mini__text__content__name{
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.posting-mini__text__tagbox{
+    margin-top: 20px;
+    margin-right: 20px;
+    opacity: 0.6;
+}
+
+.posting-mini__text__tagbox__constituent,
+.posting-mini__text__tagbox__flavor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.posting-mini__img img {
+    min-width: 130px;
+    min-height: 160px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 615px) {
+    .mini__text__content__name{
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 615px) {
+    .posting-mini{
+        width: 100%;
+    }
+}
+

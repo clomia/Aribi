@@ -1,3 +1,4 @@
 @import "base.css";
 @import "partials/postings/core.css";
+@import "partials/posting-mini/core.css";
 @import "page/posting-detail/core.css";

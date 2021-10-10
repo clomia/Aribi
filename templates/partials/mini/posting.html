@@ -1,29 +1,29 @@
 <a href="{% url 'postings:detail' pk=posting.pk %}">
     <div class="posting-mini">
-        <div class="posting-mini__main">
-            <div class="posting-mini__main__content">   
-                <div class="posting-mini__main__content__name">
-                    {{ posting.cocktail_name }} [{{ posting.comments.count }}]
+        <div class="posting-mini__text">
+            <div class="posting-mini__text__content">   
+                <div class="posting-mini__text__content__name">
+                    {{ posting.cocktail_name }}
                 </div>
-                <div class="posting-mini__main__content__info">
-                    {{ posting.created_by.name }} | {{ posting.created_ago }} | {{ posting.posting_likes.count }}
+                <div class="posting-mini__text__content__info">
+                    {{ posting.created_by.name }} | {{ posting.created_ago }} | 좋아요 {{ posting.posting_likes.count }}개 | 댓글 {{ posting.comments.count }}개
                 </div>
             </div>
-            <div class="posting-mini__main__img">
-                <img src="{{ posting.pictures.all.0.image.url }}" height="50px">
+            <div class="posting-mini__text__tagbox">
+                <div class="posting-mini__text__tagbox__constituent">
+                    {% for constituent in posting.constituents.all|slice:":8" %}
+                        <div class="posting-mini__text__tagbox____tag">#{{ constituent }}</div>
+                    {% endfor %}
+                </div>
+                <div class="posting-mini__text__tagbox__flavor">
+                    {% for flavor in posting.flavor_tags.all|slice:":8" %}
+                        <div class="posting-mini__text__tagbox____tag">#{{ flavor }}</div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
-        <div class="posting-mini__tagbox">
-            <div class="posting-mini__tagbox__constituent">
-                {% for constituent in posting.constituents.all|slice:":8" %}
-                    #{{ constituent }} 
-                {% endfor %}
-            </div>
-            <div class="posting-mini__tagbox__flavor">
-                {% for flavor in posting.flavor_tags.all|slice:":8" %}
-                    #{{ flavor }} 
-                {% endfor %}
-            </div>
+        <div class="posting-mini__img">
+            <img src="{{ posting.pictures.all.0.image.url }}" width="130px" height="160px">
         </div>
     </div>
 </a>
