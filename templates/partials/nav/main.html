@@ -1,20 +1,20 @@
 <div class="nav">
 
-<div class="user-section">
-    <div class="login-logout-btn">
-        {% if user.is_authenticated %}
-            {% include "partials/nav/logout-btn.html" %}
-        {% else %}
-            {% include "partials/nav/login-btn.html" %}
-        {% endif %}
+    <div class="user-section">
+        <div class="login-logout-btn">
+            {% if user.is_authenticated %}
+                {% include "partials/nav/logout-btn.html" %}
+            {% else %}
+                {% include "partials/nav/login-btn.html" %}
+            {% endif %}
+        </div>
+        <div class="login-profile">
+            {% if user.is_authenticated %}
+                {% include "partials/nav/user-profile.html" %}
+            {% else %}
+                {% include "partials/nav/logo-profile.html" %}
+            {% endif %}
+        </div>
     </div>
-    <div class="login-profile">
-        {% if user.is_authenticated %}
-            {% include "partials/nav/user-profile.html" %}
-        {% else %}
-            {% include "partials/nav/logo-profile.html" %}
-        {% endif %}
-    </div>
-</div>
 
 </div>

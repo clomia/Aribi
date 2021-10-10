@@ -1,4 +1,6 @@
 {% load static %}
-<div class="profile">
-    <img src="{% static 'img/logo-mini.png' %}">
-</div>
+<a href="{% url 'core:intro' %}">
+    <div class="profile">
+        <img src="{% static 'img/logo-mini.png' %}">
+    </div>
+</a>
