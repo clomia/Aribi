@@ -25,18 +25,14 @@ sortBtn.addEventListener("click", function (event) {
         sortBtn.classList.remove("latest");
         latestPostings.classList.add("none");
         popularityPostings.classList.remove("none");
-        if (!isMobile) {
-            sortBtnButton.innerHTML = "인기 포스팅"
-        }
+        sortBtnButton.innerHTML = "인기 포스팅"
     } else {
         // 인기순 정렬
         sortBtn.classList.remove("popularity");
         sortBtn.classList.add("latest");
         latestPostings.classList.remove("none");
         popularityPostings.classList.add("none");
-        if (!isMobile) {
-            sortBtnButton.innerHTML = "최신 포스팅"
-        }
+        sortBtnButton.innerHTML = "최신 포스팅"
     }
 })
 
