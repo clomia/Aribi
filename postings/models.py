@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from django.db.models import Count
 from django_resized import ResizedImageField
 from core.models import CoreModel
@@ -14,7 +15,6 @@ class Posting(CoreModel):
     content = models.TextField(null=True, blank=True)
     constituents = models.ManyToManyField("archives.Constituent", related_name=related_name)
     flavor_tags = models.ManyToManyField("archives.FlavorTag", related_name=related_name)
-    alchol = models.FloatField(null=True, blank=True)  #! 이 부분은 포스팅이 생성될때 view가 레시피를 받아서 계산해 넣는다.
 
     def __str__(self):
         return f"{self.created_by} - {self.cocktail_name}"

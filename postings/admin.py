@@ -46,7 +46,6 @@ class PostingAdmin(admin.ModelAdmin):
         "like_counter",
         "created_by",
         "get_image",
-        "alchol",
         "created",
         "created_ago",
     )

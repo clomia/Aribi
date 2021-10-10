@@ -1,7 +1,8 @@
 from django.urls import path
+from . import views
 
-app_name = "posting"
+app_name = "postings"
 
 urlpatterns = [
-    # path("results/", , name="search_result"),
+    path("<int:pk>", views.posting, name="detail"),
 ]

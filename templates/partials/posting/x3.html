@@ -1,7 +1,7 @@
 <div class="posting__x3">
     <a class="posting__x3__likes" href="#">
         {% comment %} 좋아요 누가 눌렀는지 보여주기!! {% endcomment %}
-        Like {{ posting.posting_likes.count }}개
+        좋아요 {{ posting.posting_likes.count }}개
     </a>
     <div class="posting__x3__created-ago">
         {{ posting.created_ago }}

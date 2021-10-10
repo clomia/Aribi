@@ -25,10 +25,9 @@ class Intro:
         return Posting.objects.order_by("-created")[offset : offset + step]
 
     def search(word):
-        (word,) = word
         results = {
             "cocktail_name": Posting.objects.filter(cocktail_name__iregex=rf"{word}"),
-            "created_by": Posting.objects.filter(created_by__username__iregex=rf"{word}"),
+            "created_by": Posting.objects.filter(created_by__name__iregex=rf"{word}"),
             "content": Posting.objects.filter(content__iregex=rf"{word}"),
             "constituents": Posting.objects.filter(constituents__name__iregex=rf"{word}"),
             "flavor_tags": Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"),

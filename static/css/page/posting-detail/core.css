@@ -1,0 +1,15 @@
+body{
+    display: flex;
+    justify-content: center;
+    height: 200vh;
+}
+
+.posting-ele{
+    margin-top: 100px;
+}
+
+.posting {
+    /* 이 border-radius가 없으면 posting bottom border가 이상하게 적용된다 */
+    border-radius: 5px;
+    box-shadow: 3px -12px 20px rgba(255, 255, 255, 0.8), 3px 12px 20px rgba(0, 0, 0, 0.2);
+}

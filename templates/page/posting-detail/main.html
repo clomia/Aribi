@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load importer %}
+
+{% block head %} 
+    {{ "posting-detail-page.css"|css_import }} 
+{% endblock head %}
+
+
+{% block body %}
+    <div class="posting-ele">
+        {% include "partials/posting/main.html" %}
+    </div>
+    <div class="related-postings">
+        {% for posting in related_postings %}
+            {% include "partials/mini/posting.html" %}
+        {% endfor %}
+    </div>
+    {{ "partials/postings"|js_module_import }}
+{% endblock body %}

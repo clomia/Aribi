@@ -9,9 +9,11 @@
         </a>
     </div>
     <div class="posting__x1__center">
-        <div class="posting__x1__center__top">
-            {{ posting.cocktail_name }}
-        </div>
+        <a href="{% url 'postings:detail' pk=posting.pk %}">
+            <div class="posting__x1__center__top">
+                {{ posting.cocktail_name }}
+            </div>
+        </a>
         <a href="#">
             <div class="posting__x1__center__bottom">
                 {{ posting.created_by.name }}

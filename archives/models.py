@@ -14,24 +14,10 @@ class Constituent(CoreModel):
     name = models.CharField(max_length=255)
     created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
     kind = models.CharField(max_length=50, choices=TYPE_CHOICES, null=False)
-    description = models.TextField(blank=True)
     alcohol = models.IntegerField(null=True, blank=True)
-    reference = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.name
-
-
-class ConstituentImage(CoreModel):
-    """칵테일 재료,용품 이미지 모델입니다"""
-
-    related_name = "constituent_images"
-
-    image = ResizedImageField(upload_to="archive_images", null=True, blank=True)
-    constituent = models.ForeignKey("archives.Constituent", on_delete=models.CASCADE, related_name=related_name)
-
-    def __str__(self):
-        return f"[아카이브 사진] {self.constituent}"
 
 
 class FlavorTag(CoreModel):

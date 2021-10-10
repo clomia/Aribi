@@ -367,6 +367,7 @@ function postingScript(posting) {
 }
 
 function postingScripting() {
+    //! 포스팅이 하나여도 괜찮다!!
     let postings = Array(...document.querySelectorAll(".posting"));
 
     for (let posting of postings) {
