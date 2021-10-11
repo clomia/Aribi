@@ -1,9 +1,10 @@
 @import "login-btn.css";
 @import "login-profile.css";
+@import "write-btn.css";
 
 .nav {
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     width: 80vmin;
 }
 

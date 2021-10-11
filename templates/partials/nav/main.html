@@ -1,5 +1,12 @@
 <div class="nav">
-
+    <a href="#">
+        <div class="nav__write-button">
+            <div class="nav__write-button__svg">
+                {% include "svg/write_icon.html" %}
+                <div class="nav__write-button__text"></div>
+            </div>
+        </div>
+    </a>
     <div class="user-section">
         <div class="login-logout-btn">
             {% if user.is_authenticated %}

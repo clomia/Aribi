@@ -16,7 +16,8 @@ function detectMobileDevice(agent) {
     return mobileRegex.some(mobile => agent.match(mobile))
 }
 
-const isMobile = detectMobileDevice(window.navigator.userAgent)
+//전역에 const 쓰지 마라 js 스크립트 막 합쳐지는데 나중에 곤란해진다
+let isMobile = detectMobileDevice(window.navigator.userAgent)
 
 sortBtn.addEventListener("click", function (event) {
     if (sortBtn.classList.contains("latest")) {

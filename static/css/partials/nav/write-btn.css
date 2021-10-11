@@ -1,0 +1,48 @@
+.nav__write-button{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-top: 40px;
+    box-shadow: -3px -3px 5px rgb(255 255 255 / 80%), 3px 3px 5px rgb(0 0 0 / 20%);
+    transition: width 300ms ease;
+}
+.nav__write-button__svg{
+    display: flex;
+    padding-left: 10px;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.nav__write-button__svg svg{
+    width: 30px;
+    height: 30px;
+    fill: #3b3b3b;
+    opacity: 0.7;
+}
+@keyframes opacityOn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@media not all and (hover: none) and (pointer: coarse) {
+    /* pc용 */
+    .nav__write-button:hover {
+        width: 200px;
+    }
+    .nav__write-button:hover .nav__write-button__text{
+        width: 100%;
+        animation: opacityOn 100ms ease 200ms forwards;
+    }
+    .nav__write-button:hover .nav__write-button__svg svg{
+        opacity: 1;
+    }
+    .nav__write-button__text{
+        text-align: center;
+        opacity: 0;
+        color: #3b3b3b;
+    }
+}
