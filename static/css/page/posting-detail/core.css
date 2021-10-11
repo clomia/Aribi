@@ -27,6 +27,7 @@ body{
     .nav{
         width: 100%;
         padding-right: 10px;
+        padding-left: 20px;
     }
     .intro-btn{
         width: 100%;

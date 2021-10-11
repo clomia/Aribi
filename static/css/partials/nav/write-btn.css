@@ -3,7 +3,7 @@
     height: 50px;
     border-radius: 25px;
     margin-top: 40px;
-    box-shadow: -3px -3px 5px rgb(255 255 255 / 80%), 3px 3px 5px rgb(0 0 0 / 20%);
+    box-shadow: -3px -3px 5px rgb(255 255 255 / 80%), 3px 3px 5px rgb(0 0 0 / 8.5%);
     transition: width 300ms ease;
 }
 .nav__write-button__svg{
@@ -44,5 +44,24 @@
         text-align: center;
         opacity: 0;
         color: #3b3b3b;
+    }
+}
+
+@media all and (hover: none) and (pointer: coarse) {
+    /* 모바일용 */
+    .nav__write-button{
+        width: 35px;
+        height: 30px;
+        display: flex;
+    }
+    .nav__write-button__svg{
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+    }
+    .nav__write-button__svg svg{
+        width: 20px;
+        height: 20px;
     }
 }
