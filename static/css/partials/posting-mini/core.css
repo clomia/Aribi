@@ -27,6 +27,10 @@
 .posting-mini__text__content__name{
     font-size: 17px;
     margin-bottom: 10px;
+    text-align: center;
+}
+.posting-mini__text__content__info{
+    text-align: center;
 }
 
 .posting-mini__text__tagbox{
