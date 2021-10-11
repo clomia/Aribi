@@ -1,0 +1,44 @@
+@import "file-input.css";
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: #f4f4f4;
+}
+
+.box{
+    width: 70vmin;
+    height: 80vmin;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border-radius: 20vmin; */
+    padding: 10vmin;
+    box-shadow: inset 3px -15px 25px rgba(255, 255, 255, 0.8), 3px 15px 25px rgba(0, 0, 0, 0.2);
+    color: #3b3b3b;
+    background-color: white;
+    position: relative;
+}
+
+.box__go-to-back{
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
+
+.box__go-to-back a svg {
+    width: 5vmin;
+    height: 2vmin;
+}
+
+@media all and (hover: none) and (pointer: coarse) {
+    /* 모바일용 */
+    .box{
+        height: 70vmax;
+    }
+}
+
+.none{
+    display: none;
+}

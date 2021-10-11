@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from postings.models import Posting
+from postings import forms
 from postings.function import get_correlation_list
 
 
@@ -16,3 +17,20 @@ def posting(request, pk):
             "related_postings": related_postings,
         },
     )
+
+
+def posting_create_form(request):
+    if not request.POST:
+        form = forms.PostingCreate
+        return render(
+            request,
+            "page/posting-create/main.html",
+            {
+                "form": form,
+            },
+        )
+    else:
+        # print(request.POST, request, dir(request), request.GET)
+        print(request.FILES, request.COOKIES, request.session, request.parse_file_upload, request.upload_handlers)
+        print(imag := request.POST["image"], type(imag))
+        #! 포스팅 생성 후 pk로 url 구해서 거기로 reverse, redirect

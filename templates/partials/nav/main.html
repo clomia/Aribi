@@ -1,5 +1,5 @@
 <div class="nav">
-    <a href="#">
+    <a href="{% if user.is_authenticated %}{% url 'postings:create' %}{% else %}{% url 'users:login' %}{% endif %}">
         <div class="nav__write-button">
             <div class="nav__write-button__svg">
                 {% include "svg/write_icon.html" %}

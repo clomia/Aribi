@@ -3,7 +3,7 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
-from . import forms, models
+from users import forms, models
 
 
 redirect_uri = lambda x: f"http://127.0.0.1:8000/users/login/{x}/callback"

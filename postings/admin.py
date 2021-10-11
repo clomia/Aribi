@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 from django.db.models import F
-from . import models
+from postings import models
 
 
 class PictureInline(admin.StackedInline):

@@ -1,0 +1,32 @@
+.img-box{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img-box__add-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.img-box__mixin__delete-btn{
+    width: 40px;
+    height: 40px;
+    background-color: violet;
+}
+
+.img-box__mixin__img{
+    min-width: 120px;
+    min-height: 120px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: hidden;
+}
+

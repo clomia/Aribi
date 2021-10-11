@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load importer %}
+
+{% block head %} 
+    {{ "posting-create-page.css"|css_import }} 
+{% endblock head %}
+
+
+{% block body %}
+    <div class="box">
+        <div class="box__go-to-back">
+            <a href="/">
+                {% include "svg/arrow-bar_icon.html" %}
+            </a>
+        </div>
+        <form method="POST" action="{% url 'postings:create' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="img-box">
+                <div class="img-box__add-btn">이미지 추가하기</div>
+            </div>
+            {{ form.as_p }}
+            <button>버튼</button>
+        </form>
+    </div>
+
+    {{ "posting-create"|js_module_import }}
+{% endblock body %}
