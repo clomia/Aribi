@@ -15,8 +15,10 @@
         </div>
         <form method="POST" action="{% url 'postings:create' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="img-box">
-                <div class="img-box__add-btn">이미지 추가하기</div>
+            <div class="img-box-wrap">
+                <div class="img-box">
+                    <div class="img-box__add-btn sexy-btn">이미지 선택하기</div>
+                </div>
             </div>
             {{ form.as_p }}
             <button>버튼</button>
