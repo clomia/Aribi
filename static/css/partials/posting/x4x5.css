@@ -33,11 +33,6 @@
         cursor: pointer;
         opacity: 0.9;
     }
-    .posting__x4__box__tag:hover,
-    .posting__x5__box__tag:hover{
-        opacity: 1;
-        cursor: pointer;
-    }
     .posting__x4__box__state:hover{
         color: white;
         background-color:var(--texture);
@@ -69,7 +64,7 @@
     padding: 4px 8px;
     margin: 2px;
     border-radius: 100px;
-    opacity: 0.6;
+    opacity: 0.64;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
