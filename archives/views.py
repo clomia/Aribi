@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.utils import IntegrityError
 from django.http import HttpResponse
 from archives.models import Constituent, FlavorTag
 from users.models import User
@@ -23,7 +24,7 @@ def create_tag_ajax(request):
                 alcohol=alcohol,
             )
             return HttpResponse("true")
-        except:
+        except IntegrityError:
             return HttpResponse("")
     elif _class == "flavor_tags":
         try:
@@ -33,5 +34,5 @@ def create_tag_ajax(request):
                 category=_type,
             )
             return HttpResponse("true")
-        except:
+        except IntegrityError:
             return HttpResponse("")

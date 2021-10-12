@@ -183,7 +183,7 @@ constituentSubmitBtn.addEventListener("click", function (event) {
                 addTag(name, className);
                 constituentCreate.classList.add("none");
             } else {
-                alert("태그 생성에 실패하였습니다. 이미 존재하는 태그이거나 입력값이 잘못되었습니다.");
+                alert("이미 존재하는 태그입니다.");
             }
         }
     }
@@ -212,7 +212,7 @@ flavorSubmitBtn.addEventListener("click", function (event) {
                 addTag(name, className);
                 constituentCreate.classList.add("none");
             } else {
-                alert("태그 생성에 실패하였습니다. 이미 존재하는 태그이거나 입력값이 잘못되었습니다.");
+                alert("이미 존재하는 태그입니다.");
             }
         }
     }

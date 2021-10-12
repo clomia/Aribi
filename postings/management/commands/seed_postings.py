@@ -39,7 +39,6 @@ class Command(BaseCommand):
                 "created_by": lambda x: random.choice(all_users),
                 "cocktail_name": lambda x: random.choice(cocktail_names),
                 "content": lambda x: "\n".join(random.sample(lorems, k=random.randint(1, 7))),
-                "alchol": lambda x: random.randint(1, 50),
             },
         )
         pk_list = seeder.execute()[Posting]
