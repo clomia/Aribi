@@ -15,6 +15,7 @@
         </div>
         <form method="POST" action="{% url 'postings:create' %}" enctype="multipart/form-data">
             {% csrf_token %}
+            <input class="username-data" type="text" name="username" hidden value="{{ user.username }}">
             <div class="img-box-wrap">
                 <div class="img-box">
                     <div class="img-box__add-btn sexy-btn">이미지 선택하기</div>

@@ -79,7 +79,7 @@ function addTag(name, className) {
     const lastLi = lis[lis.length - 1];
     const lastId = lastLi.firstChild.getAttribute("for");
     _temp = lastId.split("_")
-    const inputId = `id_${className}_${_temp[_temp.length - 1]}`;
+    const inputId = `id_${className}_${Number(_temp[_temp.length - 1]) + 1}`;
     input.id = inputId;
     label.setAttribute("for", inputId);
     label.innerHTML = name;
@@ -224,7 +224,7 @@ window.addEventListener('load', function () {
                 success = Boolean(httpRequest.responseText);
                 if (success) {
                     addTag(name, className);
-                    constituentCreate.classList.add("none");
+                    flavorCreate.classList.add("none");
                 } else {
                     alert("이미 존재하는 태그입니다.");
                 }

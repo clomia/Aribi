@@ -13,6 +13,11 @@ window.addEventListener('load', function () {
         event.preventDefault();
 
         //텍스트 입력은 html이 검사해줌
+        const username = document.querySelector(".username-data");
+        if (!username.value) {
+            reject("로그인이 필요합니다.")
+            return;
+        }
 
         // 이미지가 입력되었는가?
         const images = document.querySelectorAll(".img-box__mixin__img");
