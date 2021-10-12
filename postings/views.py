@@ -21,7 +21,7 @@ def posting(request, pk):
 
 def posting_create_form(request):
     if not request.POST:
-        form = forms.PostingCreate
+        form = forms.PostingCreateFrom
         return render(
             request,
             "page/posting-create/main.html",

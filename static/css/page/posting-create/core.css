@@ -1,4 +1,5 @@
 @import "file-input.css";
+@import "text-input.css";
 
 body{
     display: flex;
@@ -24,6 +25,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .box__go-to-back{
@@ -40,10 +42,16 @@ body{
 @media all and (hover: none) and (pointer: coarse) {
     /* 모바일용 */
     .box{
-        height: 70vmax;
+        padding-top: 15vmin;
     }
 }
 
 .none{
     display: none;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
 }
