@@ -3,7 +3,7 @@ from typing import Callable, Tuple
 from django.core.management.base import BaseCommand
 from django_seed import Seed
 from django.conf import settings
-from archives.models import Constituent, ConstituentImage
+from archives.models import Constituent
 from users.models import User
 from tools.lorem import pylist_loader
 
@@ -23,12 +23,18 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        description, elements, constituent_list = self.seed_supporter()
+        elements, constituent_list = self.seed_supporter()
 
         def name(x):
-            """ 이것이 호출될때마다 새로운 타입의 데이터 생성 함수를 만들어냅니다. """
+            """이것이 호출될때마다 새로운 타입의 데이터 생성 함수를 만들어냅니다."""
             self.now_type = random.choice(constituent_list)
-            return elements(self.now_type)[0]()
+            _name = elements(self.now_type)[0]()
+            try:
+                Constituent.objects.get(name=_name)
+            except Constituent.DoesNotExist:
+                return _name
+            else:
+                return _name + str(random.randint(1, 10000))
 
         def kind(x):
             return elements(self.now_type)[1]()
@@ -45,7 +51,6 @@ class Command(BaseCommand):
             {
                 "name": name,
                 "created_by": lambda x: random.choice(all_users),
-                "description": description,
                 "kind": kind,
                 "alcohol": alcohol,
             },
@@ -53,12 +58,6 @@ class Command(BaseCommand):
         pk_list = seeder.execute()[Constituent]
         for pk in pk_list:
             constituent = Constituent.objects.get(pk=pk)
-            count = random.randint(1, 4)
-            for _ in range(count):
-                ConstituentImage.objects.create(
-                    image=os.path.join(MEDIA_ROOT, f"archive_images/{random.randint(1,49)}.jpg"),
-                    constituent=constituent,
-                )
             if not constituent.name:
                 # 약 2%확률로 이름없는 객체가 생성된다 원인을 못찾아서 일단 여기서 처리한다.
                 constituent.delete()
@@ -69,15 +68,12 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f"{total} constituents created!"))
 
     def seed_supporter(self) -> Tuple[Callable, Tuple]:
-        """ 데이터 생성자 고차함수입니다. """
+        """데이터 생성자 고차함수입니다."""
 
         constituent_list = ("alcoholic_drinks", "drinks", "ingredients", "equipments")
 
         lorem, *constituents = pylist_loader("lorems", *constituent_list)
         constituents = {key: value for key, value in zip(constituent_list, constituents)}
-
-        def description(x):
-            return "\n".join(random.sample(lorem, k=2))
 
         def elements(container) -> Tuple[Callable]:
             """
@@ -90,7 +86,7 @@ class Command(BaseCommand):
             """
 
             def name():
-                """ container라는 ref가 있기 때문에 lambda로 만들면 안된다. """
+                """container라는 ref가 있기 때문에 lambda로 만들면 안된다."""
                 return random.choice(constituents[container])
 
             if container == "alcoholic_drinks":
@@ -106,9 +102,9 @@ class Command(BaseCommand):
             }
 
             def kind():
-                """ container라는 ref가 있기 때문에 lambda로 만들면 안된다. """
+                """container라는 ref가 있기 때문에 lambda로 만들면 안된다."""
                 return type_dict[container]
 
             return name, kind, alcohol
 
-        return description, elements, constituent_list
+        return elements, constituent_list

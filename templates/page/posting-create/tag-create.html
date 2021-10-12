@@ -1,0 +1,45 @@
+<div class="create-tag">
+    <div class="none username">{{ user.username }}</div>
+    <div class="create-tag__help-text">해당하는 태그가 없다면 태그를 만들 수 있습니다.</div>
+    <div class="create-tag__btn-field">
+        <div class="create-tag__btn-field__constituent-btn sexy-btn">재료 태그 만들기</div>
+        <div class="create-tag__btn-field__flavor-btn sexy-btn">맛 태그 만들기</div>
+    </div>
+    <div class="create-tag__constituent none">
+        <input type="text" class="create-tag__constituent__input-name" placeholder="태그 이름" maxlength="30">
+        <div class="label-wrap">
+            <label class="create-tag__constituent__label selected-constituent" for="liquid">액체(음료,술,시럼 등)</label>
+            <label class="create-tag__constituent__label" for="ingredient">재료(액체가 아닌 재료)</label>
+            <label class="create-tag__constituent__label" for="equipment">용품(잔,조주용품 등)</label>
+        </div>
+
+        <input class="none" type="radio" name="kind" value="liquid" id="liquid" checked>
+        <input class="none" type="radio" name="kind" value="ingredient" id="ingredient">
+        <input class="none" type="radio" name="kind" value="equipment" id="equipment">
+        <input type="number" class="create-tag__constituent__input-alcohol" min="0" max="100" maxlength="3" placeholder="알콜이 포함되어있다면 도수(%)를 입력해주세요." oninput="numberMaxLength(this);" >
+        <div class="create-tag__constituent__submit sexy-btn">재료 태그 생성</div>
+    </div>
+    <div class="create-tag__flavor none">
+        <input type="text" class="create-tag__flavor__input-expression" placeholder="태그 이름" maxlength="30">
+        <div class="label-wrap">
+            <label class="create-tag__flavor__label selected-flavor" for="fruit">과일맛</label>
+            <label class="create-tag__flavor__label" for="plant">식물맛</label>
+            <label class="create-tag__flavor__label" for="taste">기본맛</label>
+            <label class="create-tag__flavor__label" for="spice">향신료맛</label>
+            <label class="create-tag__flavor__label" for="texture">입안 감촉</label>
+            <label class="create-tag__flavor__label" for="scent">향</label>
+            <label class="create-tag__flavor__label" for="color">색감</label>
+            <label class="create-tag__flavor__label" for="other">기타 특징</label>
+        </div>
+
+        <input class="none" type="radio" name="category" value="fruit" id="fruit" checked>
+        <input class="none" type="radio" name="category" value="plant" id="plant">
+        <input class="none" type="radio" name="category" value="taste" id="taste">
+        <input class="none" type="radio" name="category" value="spice" id="spice">
+        <input class="none" type="radio" name="category" value="texture" id="texture">
+        <input class="none" type="radio" name="category" value="scent" id="scent">
+        <input class="none" type="radio" name="category" value="color" id="color">
+        <input class="none" type="radio" name="category" value="other" id="other">
+        <div class="create-tag__flavor__submit sexy-btn">맛 태그 생성</div>
+    </div>
+</div>

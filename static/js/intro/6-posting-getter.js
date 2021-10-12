@@ -70,8 +70,6 @@ window.onscroll = function () {
                 // 이상 없음, 응답 받았음
                 response = httpRequest.responseText;
                 scope.innerHTML += response;
-            } else {
-                // 아직 준비되지 않음
             }
         }
     }

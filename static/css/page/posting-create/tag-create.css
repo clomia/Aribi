@@ -1,0 +1,119 @@
+.create-tag{
+    width: 70vmin;
+    padding: 0 7vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-tag__help-text{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    color: #3b3b3b;
+    opacity: 0.6;
+}
+
+.create-tag__btn-field{
+    display: flex;
+    width: 70vmin;
+    padding: 0 7vmin;
+}
+
+.create-tag__btn-field__constituent-btn,
+.create-tag__btn-field__flavor-btn{
+    width: 50%;
+    margin-top: 24px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+@media all and (hover: none) and (pointer: coarse) {
+    /* 모바일용 */
+    .create-tag__btn-field__constituent-btn,
+    .create-tag__btn-field__flavor-btn{
+        line-height: normal;
+        font-size: 4vmin;
+    }
+    ::placeholder{
+        font-size: 3.88vmin;
+    }
+}
+
+.create-tag__btn-field__constituent-btn{
+    margin-right: 20px;
+}
+
+.create-tag__btn-field__flavor-btn{
+    margin-left: 20px;
+}
+
+.create-tag__constituent,
+.create-tag__flavor{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label-wrap{
+    display: flex;
+    width: 70%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.create-tag__constituent__label,
+.create-tag__flavor__label{
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    opacity: 0.7;
+    text-align: center;
+}
+
+.create-tag__constituent__label:hover,
+.create-tag__flavor__label:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.create-tag__constituent__label{
+    border: 2px solid #919de5;
+}
+.create-tag__flavor__label{
+    border: 2px solid #e59191;
+}
+
+.selected-constituent{
+    background-color: #919de5;
+    color: white;
+}
+
+.selected-flavor{
+    background-color: #e59191;
+    color: white;
+}
+
+.create-tag__constituent__input-alcohol{
+    border: none;
+    border-bottom: 1px solid #3b3b3b;
+    width: 70%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.create-tag__constituent__input-alcohol:focus{
+    outline: none;
+}
+
+.create-tag__constituent__submit,
+.create-tag__flavor__submit{
+    width: 200px;
+    height: 50px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    margin-top: 20px;
+}

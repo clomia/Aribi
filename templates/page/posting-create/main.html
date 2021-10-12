@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load importer %}
 
-{% block head %} 
-    {{ "posting-create-page.css"|css_import }} 
+{% block head %}
+    {{ "posting-create-page.css"|css_import }}
 {% endblock head %}
 
 
@@ -21,7 +21,41 @@
                 </div>
             </div>
             {{ form }}
-            <div class="tag-box"></div>
+            <div class="tag-box">
+                <div class="tag-box__constituents">
+                    <div class="tag-box__constituents__help-text">
+                        하단에서 재료 태그를 클릭해서 추가하세요.
+                        <br>
+                        추가된 태그를 다시 클릭하여 제거할 수 있습니다.
+                    </div>
+                    <div class="tag-box__constituents__selected">
+                        <div class="tag-box__constituents__selected__field"></div>
+                    </div>
+                    <div class="tag-box__constituents__search-box">
+                        <input type="text" placeholder="재료 태그를 검색하세요">
+                    </div>
+                    <div class="tag-box__constituents__content">
+                        <div class="tag-box__constituents__content__field"></div>
+                    </div>
+                </div>
+                <div class="tag-box__flavors">
+                    <div class="tag-box__flavors__help-text">
+                        하단에서 맛 태그를 클릭해서 추가하세요.
+                        <br>
+                        추가된 태그를 다시 클릭하여 제거할 수 있습니다.
+                    </div>
+                    <div class="tag-box__flavors__selected">
+                        <div class="tag-box__flavors__selected__field"></div>
+                    </div>
+                    <div class="tag-box__flavors__search-box">
+                        <input type="text" placeholder="맛 태그를 검색하세요">
+                    </div>
+                    <div class="tag-box__flavors__content">
+                        <div class="tag-box__flavors__content__field"></div>
+                    </div>
+                </div>
+            </div>
+            {% include 'page/posting-create/tag-create.html' %}
             <button>버튼</button>
         </form>
     </div>

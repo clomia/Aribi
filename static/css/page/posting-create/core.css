@@ -1,5 +1,7 @@
 @import "file-input.css";
 @import "text-input.css";
+@import "tag-input.css";
+@import "tag-create.css";
 
 body{
     display: flex;
@@ -9,6 +11,7 @@ body{
 
 .box{
     width: 70vmin;
+    height: 10000vmin;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
@@ -54,4 +57,14 @@ ul {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+}
+
+.box form label {
+    display: none;
+}
+
+.create-tag__constituent__label,
+.create-tag__flavor__label{
+    /* 위에있는 .box form label 셀렉터랑 겹쳐서 그 아래에 정의한다. */
+    display: flex !important;
 }

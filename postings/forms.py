@@ -40,7 +40,7 @@ class PostingCreateFrom(forms.ModelForm):
         self.fields[name].widget = forms.widgets.CheckboxSelectMultiple(
             attrs={
                 "class": "none",
-            }
+            },
         )
         self.fields[name].help_text = ""
         self.fields[name].queryset = model.objects.all()
