@@ -163,69 +163,72 @@ function sendData(data) {
     return httpRequest;
 }
 
-const constituentSubmitBtn = document.querySelector(".create-tag__constituent__submit");
-const flavorSubmitBtn = document.querySelector(".create-tag__flavor__submit");
+window.addEventListener('load', function () {
 
-constituentSubmitBtn.addEventListener("click", function (event) {
-    const type = document.querySelector('input[name="kind"]:checked').value;
-    const name = document.querySelector(".create-tag__constituent__input-name").value;
-    let alcohol = Number(alcoholInput.value);
-    if (!name) {
-        alert("재료 이름을 입력해주세요.");
-        return;
-    }
-    if (isNaN(alcohol) || alcohol < 0 || alcohol > 100) {
-        alert("올바른 알콜 도수를 입력해주세요.");
-        return;
-    }
-    if (!username) {
-        alert("로그인 후 이용해주세요.");
-        return;
-    }
-    if (!alcohol) {
-        alcohol = 0;
-    }
-    const className = "constituents";
-    const httpRequest = sendData(`class=${className}&name=${name}&type=${type}&alcohol=${alcohol}&username=${username}`);
-    httpRequest.onreadystatechange = function () {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            // 이상 없음, 응답 받았음
-            success = Boolean(httpRequest.responseText);
-            if (success) {
-                addTag(name, className);
-                constituentCreate.classList.add("none");
-            } else {
-                alert("이미 존재하는 태그입니다.");
+    const constituentSubmitBtn = document.querySelector(".create-tag__constituent__submit");
+    const flavorSubmitBtn = document.querySelector(".create-tag__flavor__submit");
+
+    constituentSubmitBtn.addEventListener("click", function (event) {
+        const type = document.querySelector('input[name="kind"]:checked').value;
+        const name = document.querySelector(".create-tag__constituent__input-name").value;
+        let alcohol = Number(alcoholInput.value);
+        if (!name) {
+            alert("재료 이름을 입력해주세요.");
+            return;
+        }
+        if (isNaN(alcohol) || alcohol < 0 || alcohol > 100) {
+            alert("올바른 알콜 도수를 입력해주세요.");
+            return;
+        }
+        if (!username) {
+            alert("로그인 후 이용해주세요.");
+            return;
+        }
+        if (!alcohol) {
+            alcohol = 0;
+        }
+        const className = "constituents";
+        const httpRequest = sendData(`class=${className}&name=${name}&type=${type}&alcohol=${alcohol}&username=${username}`);
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                // 이상 없음, 응답 받았음
+                success = Boolean(httpRequest.responseText);
+                if (success) {
+                    addTag(name, className);
+                    constituentCreate.classList.add("none");
+                } else {
+                    alert("이미 존재하는 태그입니다.");
+                }
             }
         }
-    }
-})
+    })
 
 
-flavorSubmitBtn.addEventListener("click", function (event) {
-    const type = document.querySelector('input[name="category"]:checked').value;
-    const name = document.querySelector(".create-tag__flavor__input-expression").value;
-    if (!name) {
-        alert("맛을 입력해주세요.");
-        return;
-    }
-    if (!username) {
-        alert("로그인 후 이용해주세요.");
-        return;
-    }
-    const alcohol = 0;
-    const className = "flavor_tags";
-    const httpRequest = sendData(`class=${className}&name=${name}&type=${type}&alcohol=${alcohol}&username=${username}`);
-    httpRequest.onreadystatechange = function () {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            // 이상 없음, 응답 받았음
-            success = Boolean(httpRequest.responseText);
-            if (success) {
-                addTag(name, className);
-                constituentCreate.classList.add("none");
-            } else {
-                alert("이미 존재하는 태그입니다.");
+    flavorSubmitBtn.addEventListener("click", function (event) {
+        const type = document.querySelector('input[name="category"]:checked').value;
+        const name = document.querySelector(".create-tag__flavor__input-expression").value;
+        if (!name) {
+            alert("맛을 입력해주세요.");
+            return;
+        }
+        if (!username) {
+            alert("로그인 후 이용해주세요.");
+            return;
+        }
+        const alcohol = 0;
+        const className = "flavor_tags";
+        const httpRequest = sendData(`class=${className}&name=${name}&type=${type}&alcohol=${alcohol}&username=${username}`);
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                // 이상 없음, 응답 받았음
+                success = Boolean(httpRequest.responseText);
+                if (success) {
+                    addTag(name, className);
+                    constituentCreate.classList.add("none");
+                } else {
+                    alert("이미 존재하는 태그입니다.");
+                }
             }
         }
-    }
+    })
 })
