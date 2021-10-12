@@ -11,8 +11,7 @@ body{
 
 .box{
     width: 70vmin;
-    height: 10000vmin;
-    margin-top: 40px;
+    margin: 10vmin 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,4 +66,9 @@ ul {
 .create-tag__flavor__label{
     /* 위에있는 .box form label 셀렉터랑 겹쳐서 그 아래에 정의한다. */
     display: flex !important;
+}
+
+.submit-btn{
+    margin-top: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.43);
 }

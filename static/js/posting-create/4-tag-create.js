@@ -49,6 +49,11 @@ window.addEventListener('load', function () {
             const [constituentLabel, flavorLabel] = targetLabel;
             constituentLabel.classList.add("selected-constituent");
             flavorLabel.classList.add("selected-flavor");
+            if (!(constituentId === "liquid")) {
+                alcoholInput.classList.add('none');
+            } else {
+                alcoholInput.classList.remove('none');
+            }
         })
     }
 })
@@ -113,10 +118,17 @@ function addTag(name, className) {
             tag.classList.remove("none");
         })
     })
-    tag.click()
-    //*이벤트리스너가 비동기로 실행되는거면 firstChild가 없을 수도 있어서 이 부분을 바꿔야 한다.
+    //*이벤트리스너는 비동기로 실행되기때문에 태그가 추가된것을 확인한 후 스크롤하도록 한다.
     const seletedTagBox = document.querySelector(`.tag-box__${className}__selected__field`);
-    seletedTagBox.firstChild.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    let observer = new MutationObserver((mutations) => {
+        if (seletedTagBox.firstChild) {
+            seletedTagBox.firstChild.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    })
+    observer.observe(seletedTagBox, { childList: true });
+
+    tag.click()
 }
 
 //------------ AJAX----------------
