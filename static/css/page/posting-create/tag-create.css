@@ -71,30 +71,95 @@
     margin: 5px;
     padding: 5px 10px;
     border-radius: 100px;
-    opacity: 0.7;
     text-align: center;
+    color: rgba(0, 0, 0, 0.65);
 }
 
 .create-tag__constituent__label:hover,
 .create-tag__flavor__label:hover{
-    opacity: 1;
     cursor: pointer;
+    color: rgba(0, 0, 0, 1);
 }
 
-.create-tag__constituent__label{
-    border: 2px solid #919de5;
+.create-tag__constituent__label[for=liquid]{
+    border: 2px solid var(--liquid);
 }
-.create-tag__flavor__label{
-    border: 2px solid #e59191;
+.create-tag__constituent__label[for=ingredient]{
+    border: 2px solid var(--ingredient);
+}
+.create-tag__constituent__label[for=equipment]{
+    border: 2px solid var(--equipment);
 }
 
-.selected-constituent{
-    background-color: #919de5;
+.create-tag__flavor__label[for=fruit]{
+    border: 2px solid var(--fruit);
+}
+.create-tag__flavor__label[for=plant]{
+    border: 2px solid var(--plant);
+}
+.create-tag__flavor__label[for=taste]{
+    border: 2px solid var(--teste);
+}
+.create-tag__flavor__label[for=spice]{
+    border: 2px solid var(--spice);
+}
+.create-tag__flavor__label[for=texture]{
+    border: 2px solid var(--texture);
+}
+.create-tag__flavor__label[for=scent]{
+    border: 2px solid var(--scent);
+}
+.create-tag__flavor__label[for=color]{
+    border: 2px solid var(--color);
+}
+.create-tag__flavor__label[for=other]{
+    border: 2px solid var(--other);
+}
+
+
+.selected-constituent[for=liquid]{
+    background-color: var(--liquid);
+    color: white;
+}
+.selected-constituent[for=ingredient]{
+    background-color: var(--ingredient);
+    color: white;
+}
+.selected-constituent[for=equipment]{
+    background-color: var(--equipment);
     color: white;
 }
 
-.selected-flavor{
-    background-color: #e59191;
+.selected-flavor[for=fruit]{
+    background-color: var(--fruit);
+    color: white;
+}
+.selected-flavor[for=plant]{
+    background-color: var(--plant);
+    color: white;
+}
+.selected-flavor[for=taste]{
+    background-color: var(--teste);
+    color: white;
+}
+.selected-flavor[for=spice]{
+    background-color: var(--spice);
+    color: white;
+}
+.selected-flavor[for=texture]{
+    background-color: var(--texture);
+    color: white;
+}
+.selected-flavor[for=scent]{
+    background-color: var(--scent);
+    color: white;
+}
+.selected-flavor[for=color]{
+    background-color: var(--color);
+    color: white;
+}
+.selected-flavor[for=other]{
+    background-color: var(--other);
     color: white;
 }
 

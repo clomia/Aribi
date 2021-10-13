@@ -51,14 +51,17 @@ def posting_create_form(request):
     p_get = lambda x: v if len(v := request.POST.getlist(x)) != 1 else v[0]
     # post 데이터가 없을때 (if request.GET:으로 하면 안됨!!)
     if not request.POST:
-        form = forms.PostingCreateFrom
-        return render(
-            request,
-            "page/posting-create/main.html",
-            {
-                "form": form,
-            },
-        )
+        if request.user.is_authenticated:
+            form = forms.PostingCreateFrom
+            return render(
+                request,
+                "page/posting-create/main.html",
+                {
+                    "form": form,
+                },
+            )
+        else:
+            return redirect(reverse("users:login"))
     else:
         user = User.objects.get(username=p_get("username"))
         cocktail_name = p_get("cocktail_name")

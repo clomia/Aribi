@@ -19,7 +19,7 @@ class Command(BaseCommand):
             prefix + "users --total 100",
             prefix + "constituents --total 100",
             prefix + "flavor_tags",
-            prefix + "postings --total 10",
+            prefix + "postings --total 130",
             prefix + "custom_lists --total 100",
         ]
 
