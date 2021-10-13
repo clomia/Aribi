@@ -38,6 +38,138 @@ function coloring(tag, kind) {
     }
 }
 
+function makeComment(content, name, username, userPk, commentPk, imageUrl) {
+    function sendData(data) {
+        // Ajax로 데이터를 전송후 httpRequest객체를 반환합니다.
+
+        const httpRequest = new XMLHttpRequest();
+        httpRequest.open("POST", "/postings/update-ajax", true);
+        // 이게 있어야 정보가 제대로 보내진다.
+        httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // 이게 있어야 SCRF토큰 인증을 거칠 수 있다.
+        httpRequest.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        // 이것이 서버로 보낼 request이다. 쿼리형식을 지켜야 서버에서 QueryDict로 올바르게 변환된다
+        httpRequest.send(data);
+        return httpRequest;
+    }
+
+    //! 유저 프로필 패이지 만들면 여기에 userPk사용해서 링크 추가!!
+    const info = document.createElement("div");
+    info.classList.add("posting__x6__comment__info");
+    //------------
+    const profile = document.createElement("div");
+    profile.classList.add("posting__x6__comment__info__profile");
+    const img = document.createElement("img");
+    img.setAttribute("src", imageUrl);
+    img.setAttribute("width", "30");
+    img.setAttribute("heignt", "30");
+    profile.append(img);
+    info.append(profile);
+    //------------
+    const createdBy = document.createElement("div");
+    createdBy.classList.add("posting__x6__comment__info__created_by");
+    createdBy.innerHTML = ` ${name} `; //한칸씩 공백 있음!
+    info.append(createdBy);
+    const createdAgo = document.createElement("div");
+    createdAgo.classList.add("posting__x6__comment__info__created_ago");
+    createdAgo.innerHTML = " 방금 ";
+    info.append(createdAgo);
+    //-------------
+    const likeBtn = document.createElement("div");
+    likeBtn.classList.add("posting__x6__comment__info__like-btn");
+    likeBtn.setAttribute("commentpk", commentPk);
+    likeBtn.innerHTML = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 500 500" style="user-select: auto;" xml:space="preserve">
+    <path style="fill-rule: evenodd; clip-rule: evenodd; user-select: auto;" d="M249.956,476.814c-26.019-24.189-51.336-47.111-75.944-70.768
+        c-35.944-34.549-72.289-68.758-106.747-104.75C38.116,270.859,14.192,236.235,5.11,194.006
+        C-11.334,117.561,25.645,43.068,111.906,24.867c45.844-9.671,83.115,9.72,114.561,41.954c8.054,8.247,15.341,17.241,23.271,26.231
+        c10.725-11.49,20.434-23.381,31.637-33.627c35.977-32.914,77.045-46.44,124.875-29.596c49.619,17.471,80.486,51.428,90.053,103.808
+        c9.434,51.612-8.465,95.569-37.764,136.472c-27.664,38.615-62.906,70.051-96.93,102.59c-32.088,30.693-64.742,60.793-97.182,91.127
+        C259.979,467.984,255.363,471.975,249.956,476.814z"></path></svg>`;
+    info.append(likeBtn);
+    //----------------
+    const likeCount = document.createElement("div");
+    likeCount.classList.add("posting__x6__comment__info__like");
+    likeCount.innerHTML = " 좋아요 0개 ";
+    info.append(likeCount);
+    const replyCount = document.createElement("div");
+    replyCount.classList.add("posting__x6__comment__info__reply-count");
+    replyCount.innerHTML = " 답글 0개 ";
+    info.append(replyCount);
+    const replyBtn = document.createElement("div");
+    replyBtn.classList.add("posting__x6__comment__info__reply-btn");
+    replyBtn.innerHTML = " 답글작성 ";
+    info.append(replyBtn);
+    //*------info 완성-----------
+    const main = document.createElement("div");
+    main.classList.add("posting__x6__comment__main");
+    main.innerText = content;
+    //-------
+    const form = document.createElement("form");
+    form.classList.add("none")
+    const replyForm = document.createElement("div");
+    replyForm.classList.add("reply-form");
+    const textArea = document.createElement("textarea");
+    textArea.setAttribute("name", "reply");
+    textArea.setAttribute("maxlength", "200");
+    textArea.setAttribute("cols", "30");
+    textArea.setAttribute("rows", "10");
+    textArea.setAttribute("onkeydown", "resize(this)");
+    textArea.setAttribute("onkeyup", "resize(this)");
+    textArea.required = true;
+    const replySubmit = document.createElement("div");
+    replySubmit.innerHTML = "작성";
+
+    replyForm.append(textArea)
+    replyForm.append(replySubmit)
+    form.append(replyForm)
+    main.append(form)
+    //*--------main 완성----------
+    likeBtn.addEventListener("click", function (event) {
+        if (likeBtn.classList.contains("commentLiked")) {
+            // Like 제거!
+            httpRequest = sendData(`type=removeCommentLike&commentPk=${commentPk}&username=${username}`);
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    // 이상 없음, 응답 받았음
+                    success = Boolean(httpRequest.responseText);
+                    if (success) {
+                        likeBtn.classList.remove("commentLiked");
+                    }
+                }
+            }
+        } else {
+            // Like 입력!
+            httpRequest = sendData(`type=commentLike&commentPk=${commentPk}&username=${username}`);
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    // 이상 없음, 응답 받았음
+                    login = Boolean(httpRequest.responseText);
+                    if (login) {
+                        likeBtn.classList.add("commentLiked");
+                    } else {
+                        alert("좋아요 입력은 로그인 후 이용해주세요.");
+                        return;
+                    }
+                }
+            }
+        }
+    })
+
+    replyBtn.addEventListener("click", function (event) {
+        if (form.classList.contains("none")) {
+            form.classList.remove("none");
+            replyBtn.innerHTML = "작성취소";
+            let textArea = form.querySelector("div").querySelector("textarea");
+            textArea.value = `[${name}에게 답장] `;
+        } else {
+            form.classList.add("none");
+            replyBtn.innerHTML = "답글작성";
+        }
+    })
+
+    return [info, main]
+}
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -472,7 +604,7 @@ function postingScript(posting) {
                     replyBtn.innerHTML = "작성취소";
                     let targetUserName = replyBtn.parentElement.firstChild.nextElementSibling.nextElementSibling.innerHTML.trim();
                     let textArea = replyForm.querySelector("div").querySelector("textarea");
-                    textArea.value = `[${targetUserName}에게 답장]   `;
+                    textArea.value = `[${targetUserName}에게 답장] `;
                 } else {
                     replyForm.classList.add("none");
                     replyBtn.innerHTML = "답글작성";
@@ -482,6 +614,36 @@ function postingScript(posting) {
     }
     replyBtnProcess(replyBtns);
     replyBtnProcess(replyReplyBtns);
+
+    //------------- Comment , Reply Submit ------------------------
+    let commentInputSection = posting.querySelector(".posting__x7__comment-input");
+    let commentText = commentInputSection.querySelector("textarea");
+    let commentSubmit = commentInputSection.querySelector("div");
+
+    commentSubmit.addEventListener("click", function (event) {
+        let commentTextValue = commentText.value
+        commentText.value = ""
+        commentText.style.height = "47px";
+        httpRequest = sendData(`type=comment&postingPk=${postingPk}&username=${username}&text=${commentTextValue}`);
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                // 이상 없음, 응답 받았음
+                data = httpRequest.responseText;
+                if (data) {
+                    //! 댓글 추가
+                    let [name, imageUrl, userPk, commentPk] = data.split("&$")
+                    let [info, main] = makeComment(commentTextValue, name, username, userPk, commentPk, imageUrl)
+                    let commentBox = posting.querySelector(".posting__x6__comment");
+                    commentBox.append(info);
+                    commentBox.append(main);
+                    commentOpenBtn.click();
+                } else {
+                    alert("로그인 후 댓글을 작성할 수 있습니다.")
+                    return;
+                }
+            }
+        }
+    })
 }
 
 function postingScripting() {

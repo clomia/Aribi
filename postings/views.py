@@ -49,6 +49,18 @@ posting_like_manager = LikeManager("posting", PostingLike, Posting)
 comment_like_manager = LikeManager("comment", CommentLike, Comment)
 reply_like_manager = LikeManager("reply", ReplyLike, Reply)
 
+
+def add_comment(post_request):
+    posting = Posting.objects.get(pk=post_request.get("postingPk"))
+    user = User.objects.get(username=post_request.get("username"))
+    comment = Comment.objects.create(
+        posting=posting,
+        created_by=user,
+        content=post_request.get("text"),
+    )
+    return HttpResponse(f"{user.name}&${user.profile_image.url}&${user.pk}&${comment.pk}")
+
+
 ajax_update_func_map = {
     "postingLike": posting_like_manager.add,
     "removePostingLike": posting_like_manager.remove,
@@ -56,17 +68,21 @@ ajax_update_func_map = {
     "removeCommentLike": comment_like_manager.remove,
     "replyLike": reply_like_manager.add,
     "removeReplyLike": reply_like_manager.remove,
+    "comment": add_comment,
 }
 
 
 def posting_update_ajax(request):
-    try:
-        if not request.POST.get("username"):
-            return HttpResponse("")
-        return ajax_update_func_map[request.POST.get("type")](request.POST)
-    except:
-        print("[posting_update_ajax] ajax요청이 잘못되었습니다")
-        return HttpResponse("ajax요청이 잘못되었습니다")
+    # try:
+    print(request.POST)
+    if not request.POST.get("username"):
+        return HttpResponse("")
+    return ajax_update_func_map[request.POST.get("type")](request.POST)
+
+
+# except:
+#     print("[posting_update_ajax] ajax요청이 잘못되었습니다")
+#     return HttpResponse("ajax요청이 잘못되었습니다")
 
 
 def posting_detail(request, pk):
@@ -93,6 +109,7 @@ def get_archive_obj(data, *, model):
     for i in data:
         try:
             obj = model.objects.get(pk=int(i))
+            # get을 하기전에 int로 바꿀 수 없으면 여기로 온다
         except ValueError:
             if model == FlavorTag:
                 obj = model.objects.get(expression=i)

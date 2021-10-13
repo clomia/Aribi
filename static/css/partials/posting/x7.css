@@ -14,22 +14,28 @@
 }
 
 .posting__x7__comment-input textarea,
-.posting__x7__comment-input button {
+.posting__x7__comment-input div {
     background: transparent;
     box-shadow: none;
     border: none;
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 15px;
+    color: #3b3b3b;
+}
+
+.posting__x7__comment-input div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 
-.posting__x7__comment-input textarea:active,
-.posting__x7__comment-input button:active {
+.posting__x7__comment-input textarea:active{
     outline: none;
 }
 
-.posting__x7__comment-input textarea:focus,
-.posting__x7__comment-input button:focus {
+.posting__x7__comment-input textarea:focus{
     outline: none;
 }
 
@@ -38,11 +44,11 @@
     /* PC 용 */
 
     .posting__x7__comment-input textarea:hover,
-    .posting__x7__comment-input button:hover {
+    .posting__x7__comment-input div:hover {
         border: 2px solid rgba(99, 0, 0, 0.4);
     }
 
-    .posting__x7__comment-input button:hover {
+    .posting__x7__comment-input div:hover {
         cursor: pointer;
     }
 }
@@ -59,7 +65,7 @@
     height: 47px;
 }
 
-.posting__x7__comment-input button{
+.posting__x7__comment-input div{
     height: 47px;
     width: 20%;
     border: 2px solid rgba(0, 0, 0, 0.25);
