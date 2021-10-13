@@ -1,10 +1,47 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from postings.models import Posting, Picture
+from postings.models import Posting, Picture, PostingLike
 from users.models import User
 from archives.models import Constituent, FlavorTag
 from postings import forms
 from postings.function import get_correlation_list
+
+
+def posting_like(post_request):
+    pk, username = post_request.get("postingPk"), post_request.get("username")
+    posting = Posting.objects.get(pk=int(pk))
+    created_by = User.objects.get(username=username)
+    like_obj = PostingLike.objects.filter(created_by=created_by, posting=posting)
+    if not like_obj:
+        PostingLike.objects.create(created_by=created_by, posting=posting)
+    return HttpResponse("true")
+
+
+def remove_posting_like(post_request):
+    pk, username = post_request.get("postingPk"), post_request.get("username")
+    posting = Posting.objects.get(pk=int(pk))
+    created_by = User.objects.get(username=username)
+    like_obj = PostingLike.objects.filter(created_by=created_by, posting=posting)
+    # 애초에 중복되는게 있으면 안되므로 쿼리셋 통으로 지운다.
+    like_obj.delete()
+    return HttpResponse("true")
+
+
+ajax_update_func_map = {
+    "postingLike": posting_like,
+    "removePostingLike": remove_posting_like,
+}
+
+
+def posting_update_ajax(request):
+    try:
+        if not request.POST.get("username"):
+            return HttpResponse("")
+        return ajax_update_func_map[request.POST.get("type")](request.POST)
+    except Exception as e:
+        print("[posting_update_ajax] ajax요청이 잘못되었습니다\n", e)
+        return HttpResponse("ajax요청이 잘못되었습니다")
 
 
 def posting_detail(request, pk):

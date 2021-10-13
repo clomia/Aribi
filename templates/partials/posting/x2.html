@@ -1,3 +1,4 @@
+{% load obj_check %}
 <div class="posting__x2">
     <div class="posting__x2__slider">
         {% for picture in posting.pictures.all %}
@@ -19,7 +20,7 @@
     <div class="posting__x2__like">
         {% include "svg/like_icon.html" %}
     </div>
-    <div class="posting__x2__like-btn">
+    <div class="posting__x2__like-btn {% if posting.pk|posting_like_check:user.username %}liked{% endif %}">
         {% include "svg/like_icon.html" %}
     </div>
 </div>
