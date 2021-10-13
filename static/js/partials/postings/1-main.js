@@ -200,23 +200,27 @@ function postingScript(posting) {
         like = posting.querySelector(".posting__x2__like"),
         likeBtn = posting.querySelector(".posting__x2__like-btn");
     function addLike(event) {
+        // like는 효과 liked는 구분자
+        like.classList.add("like");
+        setTimeout(function () {
+            like.classList.remove("like");
+        }, 900);
+        if (Array(...likeBtn.classList).includes("liked")) {
+            return;
+        } else {
+            likeBtn.classList.add("liked");
+        }
         const httpRequest = sendData(`type=postingLike&postingPk=${postingPk}&username=${username}`);
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 // 이상 없음, 응답 받았음
                 login = Boolean(httpRequest.responseText);
-                if (login) {
-                    like.classList.add("like");
-                    likeBtn.classList.add("liked");
-                } else {
+                if (!login) {
                     alert("좋아요 입력은 로그인 후 이용해주세요.");
                     return;
                 }
             }
         }
-        setTimeout(function () {
-            like.classList.remove("like");
-        }, 900);
     }
     function removeLike(event) {
         const httpRequest = sendData(`type=removePostingLike&postingPk=${postingPk}&username=${username}`);
