@@ -201,21 +201,22 @@ function postingScript(posting) {
         likeBtn = posting.querySelector(".posting__x2__like-btn");
     function addLike(event) {
         // like는 효과 liked는 구분자
-        like.classList.add("like");
-        setTimeout(function () {
-            like.classList.remove("like");
-        }, 900);
-        if (Array(...likeBtn.classList).includes("liked")) {
-            return;
-        } else {
-            likeBtn.classList.add("liked");
-        }
         const httpRequest = sendData(`type=postingLike&postingPk=${postingPk}&username=${username}`);
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 // 이상 없음, 응답 받았음
                 login = Boolean(httpRequest.responseText);
-                if (!login) {
+                if (login) {
+                    if (Array(...likeBtn.classList).includes("liked")) {
+                        return;
+                    } else {
+                        likeBtn.classList.add("liked");
+                        like.classList.add("like");
+                        setTimeout(function () {
+                            like.classList.remove("like");
+                        }, 900);
+                    }
+                } else {
                     alert("좋아요 입력은 로그인 후 이용해주세요.");
                     return;
                 }
@@ -231,7 +232,7 @@ function postingScript(posting) {
                 if (success) {
                     likeBtn.classList.remove("liked");
                 } else {
-                    alert(success); // 응답을 그대로 표기
+                    alert("좋아요 입력은 로그인 후 이용해주세요.");
                     return;
                 }
             }
@@ -385,19 +386,78 @@ function postingScript(posting) {
     let commentLikeBtns = posting.querySelectorAll(".posting__x6__comment__info__like-btn"),
         replyLikeBtns = posting.querySelectorAll(".posting__x6__comment__reply__info__like-btn");
 
-    function likeBtnfunc(btns) {
+    function commentLikeBtnfunc(btns) {
         for (let btn of btns) {
+            let commentPk = btn.getAttribute("commentPk");
             btn.addEventListener("click", function (event) {
                 if (btn.classList.contains("commentLiked")) {
-                    btn.classList.remove("commentLiked");
+                    // Like 제거!
+                    httpRequest = sendData(`type=removeCommentLike&commentPk=${commentPk}&username=${username}`);
+                    httpRequest.onreadystatechange = function () {
+                        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                            // 이상 없음, 응답 받았음
+                            success = Boolean(httpRequest.responseText);
+                            if (success) {
+                                btn.classList.remove("commentLiked");
+                            }
+                        }
+                    }
                 } else {
-                    btn.classList.add("commentLiked");
+                    // Like 입력!
+                    httpRequest = sendData(`type=commentLike&commentPk=${commentPk}&username=${username}`);
+                    httpRequest.onreadystatechange = function () {
+                        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                            // 이상 없음, 응답 받았음
+                            login = Boolean(httpRequest.responseText);
+                            if (login) {
+                                btn.classList.add("commentLiked");
+                            } else {
+                                alert("좋아요 입력은 로그인 후 이용해주세요.");
+                                return;
+                            }
+                        }
+                    }
                 }
             })
         }
     }
-    likeBtnfunc(commentLikeBtns);
-    likeBtnfunc(replyLikeBtns);
+    function replyLikeBtnfunc(btns) {
+        for (let btn of btns) {
+            let replyPk = btn.getAttribute("replyPk");
+            btn.addEventListener("click", function (event) {
+                if (btn.classList.contains("commentLiked")) {
+                    // Like 제거!
+                    httpRequest = sendData(`type=removeReplyLike&replyPk=${replyPk}&username=${username}`);
+                    httpRequest.onreadystatechange = function () {
+                        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                            // 이상 없음, 응답 받았음
+                            success = Boolean(httpRequest.responseText);
+                            if (success) {
+                                btn.classList.remove("commentLiked"); // 클래스명은 commentLiked그대로 쓴다
+                            }
+                        }
+                    }
+                } else {
+                    // Like 입력!
+                    httpRequest = sendData(`type=replyLike&replyPk=${replyPk}&username=${username}`);
+                    httpRequest.onreadystatechange = function () {
+                        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                            // 이상 없음, 응답 받았음
+                            login = Boolean(httpRequest.responseText);
+                            if (login) {
+                                btn.classList.add("commentLiked"); // 클래스명은 commentLiked그대로 쓴다
+                            } else {
+                                alert("좋아요 입력은 로그인 후 이용해주세요.");
+                                return;
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    }
+    commentLikeBtnfunc(commentLikeBtns);
+    replyLikeBtnfunc(replyLikeBtns);
 
     let replyBtns = posting.querySelectorAll(".posting__x6__comment__info__reply-btn"),
         replyReplyBtns = posting.querySelectorAll(".posting__x6__comment__reply__info__reply-btn");

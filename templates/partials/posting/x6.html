@@ -1,3 +1,4 @@
+{% load obj_check %}
 <div class="posting__x6-margin"></div>
 <div class="posting__x6">
     <div class="posting__x6__btn" comments="{{ posting.comments.count }}">
@@ -15,7 +16,7 @@
                 <div class="posting__x6__comment__info__created_ago">
                     {{ comment.created_ago }}
                 </div>
-                <div class="posting__x6__comment__info__like-btn">
+                <div class="posting__x6__comment__info__like-btn {% if comment.pk|comment_like_check:user.username %}commentLiked{% endif %}" commentPk="{{ comment.pk }}">
                     {% include "svg/like_icon.html" %}
                 </div>
                 <div class="posting__x6__comment__info__like">
@@ -44,7 +45,7 @@
                         <div class="posting__x6__comment__reply__info__created_ago">
                             {{ reply.created_ago }}
                         </div>
-                        <div class="posting__x6__comment__reply__info__like-btn">
+                        <div class="posting__x6__comment__reply__info__like-btn {% if reply.pk|reply_like_check:user.username %}commentLiked{% endif %}" replyPk="{{ reply.pk }}" >
                             {% include "svg/like_icon.html" %}
                         </div>
                         <div class="posting__x6__comment__reply__info__like">
