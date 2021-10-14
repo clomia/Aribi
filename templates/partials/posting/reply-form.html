@@ -1,6 +1,6 @@
 <form class="none">
     <div class="reply-form">
         <textarea name="reply" maxlength="200" required cols="30" rows="10" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
-        <div commentPk="{{ comment.pk }}">작성</div>
+        <div commentPk="{{ comment.pk }}" onclick="closeReplyReply(this)">작성</div>
     </div>
 </form>

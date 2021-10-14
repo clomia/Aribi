@@ -129,6 +129,7 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
     const replySubmit = document.createElement("div");
     replySubmit.innerHTML = "작성";
     replySubmit.setAttribute("commentPk", commentPk)
+    replySubmit.setAttribute("onclick", "closeReplyReply(this)")
 
     replyForm.append(textArea)
     replyForm.append(replySubmit)
@@ -331,6 +332,7 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
     const replySubmit = document.createElement("div");
     replySubmit.innerHTML = "작성";
     replySubmit.setAttribute("commentPk", commentPk)
+    replySubmit.setAttribute("onclick", "closeReplyReply(this)")
 
     replyForm.append(textArea)
     replyForm.append(replySubmit)
