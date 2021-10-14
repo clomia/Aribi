@@ -39,7 +39,21 @@ function coloring(tag, kind) {
 }
 const replyUsedPostingObj = [];
 // 답글이 만든 답글이 답글을 달때는 Posting변수에 접근할 수가 없다 그래서 여기에 두고 쓰려고 한다. (댓글이 만든 답글도 마찬가지)
-
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        let cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
 function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl, commentSection, posting) {
 
@@ -447,24 +461,6 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
     })
 
     return [info, main]
-}
-
-
-
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        let cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
 }
 
 function postingScript(posting) {

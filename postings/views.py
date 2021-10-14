@@ -86,6 +86,17 @@ reply_like_manager = LikeManager("reply", ReplyLike, Reply)
 comment_manager = CommentObjManager(Comment, Posting, "comment", "posting")
 reply_manager = CommentObjManager(Reply, Comment, "reply", "comment")
 
+
+def remove_posting(post_request):
+    posting = Posting.objects.get(pk=post_request.get("postingPk"))
+    user = User.objects.get(username=post_request.get("username"))
+    if posting.created_by == user:
+        posting.delete()
+        return HttpResponse("true")
+    else:
+        return HttpResponse("")
+
+
 ajax_update_func_map = {
     "postingLike": posting_like_manager.add,
     "removePostingLike": posting_like_manager.remove,
@@ -97,6 +108,7 @@ ajax_update_func_map = {
     "removeComment": comment_manager.remove,
     "reply": reply_manager.create,
     "removeReply": reply_manager.remove,
+    "removePosting": remove_posting,
 }
 
 
