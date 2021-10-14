@@ -27,3 +27,5 @@ introBtn.addEventListener("mouseleave", function (event) {
         introBtnButton.innerHTML = "Aribi"
     }
 })
+
+window.scrollTo({ top: 0, behavior: 'smooth' });

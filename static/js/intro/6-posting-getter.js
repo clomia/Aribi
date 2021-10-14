@@ -55,7 +55,7 @@ function sendData(data) {
     httpRequest.send(data);
     return httpRequest;
 }
-
+window.scrollTo({ top: 0, behavior: 'smooth' });
 window.onscroll = function () {
     const totalPageHeight = document.body.scrollHeight;
     const scrollPoint = window.scrollY + window.innerHeight;

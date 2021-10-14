@@ -46,7 +46,9 @@
 .posting__x6__comment__reply__info__like,
 .posting__x6__comment__info__reply-count,
 .posting__x6__comment__info__reply-btn,
-.posting__x6__comment__reply__info__reply-btn {
+.posting__x6__comment__reply__info__reply-btn,
+.posting__x6__comment__info__delete-btn,
+.posting__x6__comment__reply__info__delete-btn {
     padding-top: 10px;
     padding-bottom: 5px;
 }
@@ -92,6 +94,8 @@
 
 .posting__x6__comment__info__reply-count,
 .posting__x6__comment__info__reply-btn,
+.posting__x6__comment__info__delete-btn,
+.posting__x6__comment__reply__info__delete-btn,
 .posting__x6__comment__reply__info__reply-btn {
     margin-left: 7px;
     font-size: 15px;
@@ -183,6 +187,8 @@
     .posting__x6__comment__info__like:hover,
     .posting__x6__comment__reply__info__like:hover,
     .posting__x6__comment__info__reply-btn:hover,
+    .posting__x6__comment__info__delete-btn:hover,
+    .posting__x6__comment__reply__info__delete-btn:hover,
     .posting__x6__comment__reply__info__reply-btn:hover {
         cursor: pointer;
         text-decoration: underline;
@@ -199,6 +205,8 @@
     .posting__x6__comment__reply__info__like,
     .posting__x6__comment__info__reply-count,
     .posting__x6__comment__info__reply-btn,
+    .posting__x6__comment__info__delete-btn,
+    .posting__x6__comment__reply__info__delete-btn,
     .posting__x6__comment__reply__info__reply-btn{
         font-size: 2.6vmin;
     }

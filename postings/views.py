@@ -45,21 +45,46 @@ class LikeManager:
         return HttpResponse("true")
 
 
+class CommentObjManager:
+    def __init__(self, comment_model, target_model, comment_obj_name: str, target_name: str):
+        self.comment_model = comment_model
+        self.target_model = target_model
+        self.comment_obj_name = comment_obj_name
+        self.target_name = target_name
+
+    def create(self, post_request):
+        content = post_request.get("text")
+        target_pk = int(post_request.get(self.target_name + "Pk"))
+
+        target_obj = self.target_model.objects.get(pk=target_pk)
+        user = User.objects.get(username=post_request.get("username"))
+        comment_obj = self.comment_model.objects.create(
+            **{
+                self.target_name: target_obj,
+                "created_by": user,
+                "content": content,
+            }
+        )
+        ajax_response = f"{user.name}&${user.profile_image.url}&${user.pk}&${comment_obj.pk}"
+        return HttpResponse(ajax_response if self.target_name == "posting" else ajax_response + f"&${target_obj.pk}")
+
+    def remove(self, post_request):
+        comment_obj_pk = post_request.get(self.comment_obj_name + "Pk")
+        comment_obj = self.comment_model.objects.get(pk=comment_obj_pk)
+        user = User.objects.get(username=post_request.get("username"))
+        if comment_obj.created_by == user:
+            comment_obj.delete()
+            return HttpResponse("true")
+        else:
+            return HttpResponse("")
+
+
 posting_like_manager = LikeManager("posting", PostingLike, Posting)
 comment_like_manager = LikeManager("comment", CommentLike, Comment)
 reply_like_manager = LikeManager("reply", ReplyLike, Reply)
 
-
-def add_comment(post_request):
-    posting = Posting.objects.get(pk=post_request.get("postingPk"))
-    user = User.objects.get(username=post_request.get("username"))
-    comment = Comment.objects.create(
-        posting=posting,
-        created_by=user,
-        content=post_request.get("text"),
-    )
-    return HttpResponse(f"{user.name}&${user.profile_image.url}&${user.pk}&${comment.pk}")
-
+comment_manager = CommentObjManager(Comment, Posting, "comment", "posting")
+reply_manager = CommentObjManager(Reply, Comment, "reply", "comment")
 
 ajax_update_func_map = {
     "postingLike": posting_like_manager.add,
@@ -68,21 +93,21 @@ ajax_update_func_map = {
     "removeCommentLike": comment_like_manager.remove,
     "replyLike": reply_like_manager.add,
     "removeReplyLike": reply_like_manager.remove,
-    "comment": add_comment,
+    "comment": comment_manager.create,
+    "removeComment": comment_manager.remove,
+    "reply": reply_manager.create,
+    "removeReply": reply_manager.remove,
 }
 
 
 def posting_update_ajax(request):
-    # try:
-    print(request.POST)
-    if not request.POST.get("username"):
-        return HttpResponse("")
-    return ajax_update_func_map[request.POST.get("type")](request.POST)
-
-
-# except:
-#     print("[posting_update_ajax] ajax요청이 잘못되었습니다")
-#     return HttpResponse("ajax요청이 잘못되었습니다")
+    try:
+        if not request.POST.get("username"):
+            return HttpResponse("")
+        return ajax_update_func_map[request.POST.get("type")](request.POST)
+    except:
+        print("[posting_update_ajax]함수에서 예외 발생")
+        return HttpResponse("ajax요청이 잘못되었습니다")
 
 
 def posting_detail(request, pk):

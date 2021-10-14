@@ -28,8 +28,11 @@
                 <div class="posting__x6__comment__info__reply-btn">
                     답글작성
                 </div>
+                <div class="posting__x6__comment__info__delete-btn {% if comment.created_by.pk != user.pk %}none{% endif %}">
+                    삭제
+                </div>
             </div>
-            <div class="posting__x6__comment__main">
+            <div class="posting__x6__comment__main" >
                 {{ comment.content }}
                 {% include "partials/posting/reply-form.html" %}
             </div>
@@ -51,8 +54,11 @@
                         <div class="posting__x6__comment__reply__info__like">
                             좋아요 {{ reply.reply_likes.count }}개
                         </div>
-                        <div class="posting__x6__comment__reply__info__reply-btn">
+                        <div class="posting__x6__comment__reply__info__reply-btn"" >
                             답글작성
+                        </div>
+                        <div class="posting__x6__comment__reply__info__delete-btn {% if reply.created_by.pk != user.pk %}none{% endif %}" >
+                            삭제
                         </div>
                     </div>
                     <div class="posting__x6__comment__reply__main">
