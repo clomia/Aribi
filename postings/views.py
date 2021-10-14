@@ -141,7 +141,7 @@ def posting_detail(request, pk):
 
 def get_archive_obj(data, *, model):
     """입력받은 데이터에 해당하는 archive 오브젝트들을 반환합니다."""
-
+    print(data)
     result_list = []
     for i in data:
         try:
@@ -198,3 +198,39 @@ def posting_create_form(request):
             Picture.objects.create(image=request.FILES[i], posting=created_posting)
 
         return redirect(reverse("postings:detail", kwargs={"pk": created_posting.pk}))
+
+
+def posting_edit_form(request, pk):
+    p_get = lambda x: v if len(v := request.POST.getlist(x)) != 1 else v[0]
+    # post 데이터가 없을때 (if request.GET:으로 하면 안됨!!)
+    if not request.POST:
+        if request.user.is_authenticated:
+            form = forms.PostingCreateFrom
+            posting = Posting.objects.get(pk=pk)
+            return render(
+                request,
+                "page/posting-edit/main.html",
+                {
+                    "form": form,
+                    "posting": posting,
+                },
+            )
+        else:
+            return redirect(reverse("users:login"))
+    else:
+        posting_pk = p_get("postingPk")
+        user = User.objects.get(username=p_get("username"))
+        constituents = get_archive_obj(p_get("constituents"), model=Constituent)
+        flavor_tags = get_archive_obj(p_get("flavor_tags"), model=FlavorTag)
+
+        # Replace section
+        if (target_posting := Posting.objects.get(pk=posting_pk)).created_by == user:
+            target_posting.cocktail_name = p_get("cocktail_name")
+            target_posting.content = p_get("content")
+            # replace ManyToMany
+            target_posting.constituents.clear()
+            target_posting.flavor_tags.clear()
+            target_posting.constituents.set(constituents)
+            target_posting.flavor_tags.set(flavor_tags)
+
+        return redirect(reverse("postings:detail", kwargs={"pk": posting_pk}))

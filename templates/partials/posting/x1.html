@@ -27,7 +27,7 @@
                 <div class="posting__x1__menu-btn__box__menu menu-1">리스트에 추가</div>
             {% endif %}
             {% if user.is_authenticated and user == posting.created_by %}
-                <div class="posting__x1__menu-btn__box__menu menu-2">수정</div>
+                <a href="{% url 'postings:edit' pk=posting.pk %}" class="posting__x1__menu-btn__box__menu menu-2">수정</a>
                 <div class="posting__x1__menu-btn__box__menu menu-3" onclick="postingDelete(this)">삭제</div>
             {% endif %}
         </div>

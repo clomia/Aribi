@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load importer %}
+
+{% block head %}
+    {{ "posting-create-page.css"|css_import }}
+{% endblock head %}
+
+
+{% block body %}
+    <div class="posting-info none">
+        <div class="posting-posting-info__cocktail-name">{{ posting.cocktail_name }}</div>
+        <div class="posting-posting-info__content">{{ posting.content }}</div>
+        <div class="posting-posting-info__constituents">
+            {% for tag_name in posting.constituents.all %}
+                <div class="posting-posting-info__constituents-name">{{ tag_name }}</div>
+            {% endfor %}
+        </div>
+        <div class="posting-posting-info__flavor-tags">
+            {% for tag_name in posting.flavor_tags.all %}
+                <div class="posting-posting-info__flavor-tags-name">{{ tag_name }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="box">
+        <div class="box__go-to-back">
+            <a href="/">
+                {% include "svg/arrow-bar_icon.html" %}
+            </a>
+        </div>
+        <form method="POST" action="{% url 'postings:edit' pk=posting.pk %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input class="posting-data" type="text" name="postingPk" hidden value="{{ posting.pk }}">
+            <input class="username-data" type="text" name="username" hidden value="{{ user.username }}">
+            <div class="img-box-wrap none">
+                <div class="img-box">
+                    <div class="img-box__add-btn sexy-btn">이미지 선택하기</div>
+                </div>
+            </div>
+            {{ form }}
+            <div class="tag-box">
+                <div class="tag-box__constituents">
+                    <div class="tag-box__constituents__help-text">
+                        하단에서 재료 태그를 클릭해서 추가하세요.
+                        <br>
+                        추가된 태그를 다시 클릭하여 제거할 수 있습니다.
+                    </div>
+                    <div class="tag-box__constituents__selected">
+                        <div class="tag-box__constituents__selected__field"></div>
+                    </div>
+                    <div class="tag-box__constituents__search-box">
+                        <input type="text" placeholder="재료 태그를 검색하세요">
+                    </div>
+                    <div class="tag-box__constituents__content">
+                        <div class="tag-box__constituents__content__field"></div>
+                    </div>
+                </div>
+                <div class="tag-box__flavors">
+                    <div class="tag-box__flavors__help-text">
+                        하단에서 맛 태그를 클릭해서 추가하세요.
+                        <br>
+                        추가된 태그를 다시 클릭하여 제거할 수 있습니다.
+                    </div>
+                    <div class="tag-box__flavors__selected">
+                        <div class="tag-box__flavors__selected__field"></div>
+                    </div>
+                    <div class="tag-box__flavors__search-box">
+                        <input type="text" placeholder="맛 태그를 검색하세요">
+                    </div>
+                    <div class="tag-box__flavors__content">
+                        <div class="tag-box__flavors__content__field"></div>
+                    </div>
+                </div>
+            </div>
+            {% include 'page/posting-edit/tag-create.html' %}
+            <button class="sexy-btn submit-btn">등록</button>
+        </form>
+    </div>
+
+    {{ "posting-create"|js_module_import }}
+    {{ "posting-edit"|js_module_import }} 
+    {% comment %}! posting-edit 스크립트가 create page를 변경시켜서 edit 패이지를 구현해준다!! {% endcomment %}
+    {% comment %} 그렇기 때문에 두 모듈을 차례대로 다 불러와야 Edit 페이지가 만들어진다 {% endcomment %}
+{% endblock body %}

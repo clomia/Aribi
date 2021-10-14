@@ -24,7 +24,7 @@ category_mapping = {
 def create_tag_ajax(request):
     _class, name, _type, _alcohol, username = (
         request.POST.get("class"),
-        request.POST.get("name"),
+        request.POST.get("name").strip(),
         request.POST.get("type"),
         int(request.POST.get("alcohol")),
         request.POST.get("username"),
