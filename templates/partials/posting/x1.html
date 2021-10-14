@@ -1,11 +1,7 @@
 <div class="posting__x1">
     <div class="posting__x1__profile img-frame">
         <a href="#">
-            {% if posting.created_by.profile_image %}
             <img class="img" src="{{ posting.created_by.profile_image.url }}" alt="프로필 이미지">
-            {% else %}
-            <img class="img" src="기본 이미지 URL" alt="프로필 이미지">
-            {% endif %}
         </a>
     </div>
     <div class="posting__x1__center">
@@ -25,11 +21,15 @@
         <div class="posting__x1__menu-btn__c c2"></div>
         <div class="posting__x1__menu-btn__c c3"></div>
         <div class="posting__x1__menu-btn__box">
-            <div class="posting__x1__menu-btn__box__menu menu-1">공유</div>
-            <div class="posting__x1__menu-btn__box__menu menu-1">리스트에 추가</div>
-            <div class="posting__x1__menu-btn__box__menu menu-2">수정</div>
-            <div class="posting__x1__menu-btn__box__menu menu-3">삭제</div>
-            <div class="posting__x1__menu-btn__box__menu menu-3">신고</div>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'users:login' %}" class="posting__x1__menu-btn__box__menu menu-1">리스트에 추가</a>
+            {% else %}
+                <div class="posting__x1__menu-btn__box__menu menu-1">리스트에 추가</div>
+            {% endif %}
+            {% if user.is_authenticated and user == posting.created_by %}
+                <div class="posting__x1__menu-btn__box__menu menu-2">수정</div>
+                <div class="posting__x1__menu-btn__box__menu menu-3">삭제</div>
+            {% endif %}
         </div>
     </div>
 </div>

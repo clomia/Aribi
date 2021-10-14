@@ -885,6 +885,7 @@ function postingScript(posting) {
                     replyBtn.innerHTML = "작성취소";
                     let targetUserName = replyBtn.parentElement.firstChild.nextElementSibling.nextElementSibling.innerHTML.trim();
                     let textArea = replyForm.querySelector("div").querySelector("textarea");
+                    textArea.value = '';
                     if (prefix) {
                         textArea.value = `Re.${targetUserName}  `;
                     }

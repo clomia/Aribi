@@ -23,22 +23,22 @@ function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 //? ----------------------------------------CSRF----------------------------------------
+const latestSection = document.querySelector(".postings-section__latest");
+const popularitySection = document.querySelector(".postings-section__popularity");
 
 function createMessage() {
     // 왜 조건문에 스코프가 적용되는거같지..?
     const sortBtn = document.querySelector(".sort-btn");
     if (sortBtn.classList.contains("latest")) {
-        let order_by = "latest",
-            scope = document.querySelector(".postings-section__latest");
-        let miniPostings = scope.querySelectorAll(".posting-mini");
+        let order_by = "latest";
+        let miniPostings = latestSection.querySelectorAll(".posting-mini");
         let offset = miniPostings.length;
-        return [`order_by=${order_by}&offset=${offset}`, scope]
+        return [`order_by=${order_by}&offset=${offset}`, latestSection]
     } else {
-        let order_by = "popularity",
-            scope = document.querySelector(".postings-section__popularity");
-        let miniPostings = scope.querySelectorAll(".posting-mini");
+        let order_by = "popularity";
+        let miniPostings = popularitySection.querySelectorAll(".posting-mini");
         let offset = miniPostings.length;
-        return [`order_by=${order_by}&offset=${offset}`, scope]
+        return [`order_by=${order_by}&offset=${offset}`, popularitySection]
     }
 }
 
@@ -60,16 +60,19 @@ window.onscroll = function () {
     const totalPageHeight = document.body.scrollHeight;
     const scrollPoint = window.scrollY + window.innerHeight;
     if (scrollPoint >= totalPageHeight) {
-        const message_scope = createMessage();
-        const message = message_scope[0];
-        const scope = message_scope[1];
+        let [message, scope] = createMessage();
         const httpRequest = sendData(message);
-
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 // 이상 없음, 응답 받았음
-                response = httpRequest.responseText;
-                scope.innerHTML += response;
+                let responseHtml = httpRequest.responseText;
+                // scope.innerHTML += response; 이렇게 하면 DOM객체가 망가지고 JS가 먹통이 된다!
+                const newHtml = new DOMParser().parseFromString(responseHtml, 'text/html');
+                const newEles = newHtml.querySelectorAll("body a")
+                newEles.forEach(function (ele) {
+                    console.log(ele)
+                    scope.append(ele)
+                })
             }
         }
     }
