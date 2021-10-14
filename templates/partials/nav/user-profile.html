@@ -1,6 +1,5 @@
 {% load static %}
-<a href="#">
-    {% comment %} 유저 프로필로 이동 {% endcomment %}
+<a href="{% url 'users:detail' pk=user.pk %}">
     <div class="profile">
         <img src="{{ user.profile_image.url }}">
     </div>

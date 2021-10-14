@@ -1,6 +1,6 @@
 <div class="posting__x1">
     <div class="posting__x1__profile img-frame">
-        <a href="#">
+        <a href="{% url 'users:detail' pk=posting.created_by.pk %}">
             <img class="img" src="{{ posting.created_by.profile_image.url }}" alt="프로필 이미지">
         </a>
     </div>
@@ -10,7 +10,7 @@
                 {{ posting.cocktail_name }}
             </div>
         </a>
-        <a href="#">
+        <a href="{% url 'users:detail' pk=posting.created_by.pk %}">
             <div class="posting__x1__center__bottom">
                 {{ posting.created_by.name }}
             </div>

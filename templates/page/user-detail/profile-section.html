@@ -1,0 +1,20 @@
+<div class="profile-section">
+    <div class="profile-section__profile-image">
+        <img src="{{ target_user.profile_image.url }}">
+    </div>
+    <div class="profile-section__info">
+        <div class="profile-section__info__name">{{ target_user.name }}</div>
+        <div class="profile-section__info__config {% if target_user.username != user.username %}none{% endif %}">
+            <div class="profile-section__info__config__name">이름 변경</div>
+            <div class="profile-section__info__config__password {% if target_user.login_method != 'default' %}none{% endif %}">비밀번호 변경</div>
+            <div class="profile-section__info__config__secession">계정 삭제</div>
+        </div>
+    </div>
+</div>
+<div class="input-section none">
+    <form>
+        <input type="text">
+        <button class="input-section__submit" targetUsername="{{ target_user.username }}">적용</button>
+        <div class="input-section__cancel">취소</div>
+    </form>
+</div>

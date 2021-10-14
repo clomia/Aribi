@@ -1,11 +1,70 @@
 import os, requests
+from django.http import HttpResponse
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from users import forms, models
+from lists.models import CustomList
 
 
+def user_update_ajax(request):
+    try:
+        value = request.POST.get("value")
+        target_username = request.POST.get("targetUsername")
+
+        target_user = models.User.objects.get(username=target_username)
+        request_user = request.user
+
+        if not target_user == request_user:
+            return HttpResponse("")
+
+        def edit_name():
+            target_user.name = value
+            target_user.save()
+
+        def edit_password():
+            target_user.set_password(value)
+            target_user.save()
+
+        def remove_user():
+            target_user.delete()
+
+        func_map = {
+            "name": edit_name,
+            "password": edit_password,
+            "removeUser": remove_user,
+        }
+        func_map[request.POST.get("type")]()
+
+        return HttpResponse("true")
+    except:
+        return HttpResponse("")
+
+
+def user_detail(request, pk):
+
+    target_user = models.User.objects.get(pk=int(pk))
+    custom_lists = CustomList.objects.filter(created_by=target_user)
+    if not custom_lists:
+        custom_list = CustomList.objects.create(name=target_user.username, created_by=target_user)
+    else:
+        custom_list, *_ = custom_lists
+    postings_of_list = custom_list.postings.all()
+    postings_of_user = target_user.postings.all()
+
+    return render(
+        request,
+        "page/user-detail/main.html",
+        context={
+            "target_user": target_user,
+            "postings_of_list": postings_of_list,
+            "postings_of_user": postings_of_user,
+        },
+    )
+
+
+# --------------------------------------
 redirect_uri = lambda x: f"http://127.0.0.1:8000/users/login/{x}/callback"
 social = {
     "kakao": {
@@ -54,8 +113,6 @@ class SignUpView(FormView):
         password = form.cleaned_data.get("password1")  #!UserCreationForm의 코드를 따른다
 
         user = authenticate(self.request, username=username, password=password)
-        # 해당 유저가 이미 있다면 로그인!
-        print(user)
         if user:
             login(self.request, user)
 

@@ -4,7 +4,7 @@ const fakeNode = document.createElement("div");
 const fakeNodeInner = document.createElement("div");
 fakeNode.classList.add("img-box__mixin");
 fakeNodeInner.classList.add("img-box__mixin__img");
-fakeNodeInner.setAttribute("src", "true"); //콘솔로그에 404를 띄운다 무시해라
+fakeNodeInner.setAttribute("src", "true");
 fakeNode.append(fakeNodeInner);
 imageWrap.querySelector(".img-box").append(fakeNode)
 

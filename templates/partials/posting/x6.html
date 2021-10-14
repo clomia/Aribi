@@ -7,12 +7,14 @@
     <div class="posting__x6__comment none">
         {% for comment in posting.comments.all %}
             <div class="posting__x6__comment__info">
-                <div class="posting__x6__comment__info__profile">
-                    <img src="{{ comment.created_by.profile_image.url }}" width="30" , heignt="30">
-                </div>
-                <div class="posting__x6__comment__info__created_by">
-                    {{ comment.created_by }}
-                </div>
+                <a href="{% url 'users:detail' pk=comment.created_by.pk %}">
+                    <div class="posting__x6__comment__info__profile">
+                        <img src="{{ comment.created_by.profile_image.url }}" width="30" , heignt="30">
+                    </div>
+                    <div class="posting__x6__comment__info__created_by">
+                        {{ comment.created_by }}
+                    </div>
+                </a>
                 <div class="posting__x6__comment__info__created_ago">
                     {{ comment.created_ago }}
                 </div>
@@ -39,12 +41,14 @@
             {% for reply in comment.replies.all %}
                 <div class="posting__x6__comment__reply">
                     <div class="posting__x6__comment__reply__info">
-                        <div class="posting__x6__comment__reply__info__profile">
-                            <img src="{{ reply.created_by.profile_image.url }}" width="30" , heignt="30">
-                        </div>
-                        <div class="posting__x6__comment__reply__info__created_by">
-                            {{ reply.created_by }}
-                        </div>
+                        <a href="{% url 'users:detail' pk=reply.created_by.pk %}">
+                            <div class="posting__x6__comment__reply__info__profile">
+                                <img src="{{ reply.created_by.profile_image.url }}" width="30" , heignt="30">
+                            </div>
+                            <div class="posting__x6__comment__reply__info__created_by">
+                                {{ reply.created_by }}
+                            </div>
+                        </a>
                         <div class="posting__x6__comment__reply__info__created_ago">
                             {{ reply.created_ago }}
                         </div>

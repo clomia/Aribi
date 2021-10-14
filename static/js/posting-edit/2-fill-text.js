@@ -1,6 +1,5 @@
 window.onload = function () {
     const infoNode = document.querySelector(".posting-info");
-    console.log(infoNode);
     const cocktailName = infoNode.querySelector(".posting-posting-info__cocktail-name").innerText.trim();
     const content = infoNode.querySelector(".posting-posting-info__content").innerText.trim();
     const constituentInfoNodes = infoNode.querySelectorAll(".posting-posting-info__constituents .posting-posting-info__constituents-name");

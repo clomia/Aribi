@@ -12,7 +12,7 @@ class Constituent(CoreModel):
     TYPE_CHOICES = tuple((i, i) for i in TYPES)
 
     name = models.CharField(max_length=255, unique=True)
-    created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
+    created_by = models.ForeignKey("users.User", on_delete=models.SET_NULL, null=True, related_name=related_name)
     kind = models.CharField(max_length=50, choices=TYPE_CHOICES, null=False)
     alcohol = models.IntegerField(null=True, blank=True)
 
@@ -38,7 +38,7 @@ class FlavorTag(CoreModel):
 
     related_name = "flavor_tags"
 
-    created_by = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name=related_name)
+    created_by = models.ForeignKey("users.User", on_delete=models.SET_NULL, null=True, related_name=related_name)
     expression = models.CharField(max_length=255, unique=True)
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICE)
 

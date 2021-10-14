@@ -1,0 +1,139 @@
+.input-section form{
+    width: 80vmin;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10vmin;
+    padding-bottom: 20px;
+    box-shadow: inset 2px -10px 17px rgba(255, 255, 255, 0.8), 2px 10px 17px rgba(0, 0, 0, 0.2);
+    color: #3b3b3b;
+    background-color: white;
+    position: relative;
+}
+
+.input-section input{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    border: none;
+    border-bottom: 1px solid #3b3b3b;
+    width: 80vmin;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 17px;
+    height: 30px;
+    text-align: center;
+}
+
+.input-section input:focus{
+    outline: none;
+}
+.input-section__submit,
+.input-section__cancel{
+    border: 1px solid #3b3b3b;
+    padding: 5px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    font-size: 15px;
+}
+.input-section__submit:hover,
+.input-section__cancel:hover{
+    background-color: #3b3b3b;
+    color: white;
+    cursor: pointer;
+}
+
+.profile-section{
+    width: 80vmin;
+    height: 150px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10vmin;
+    box-shadow: inset 2px -10px 17px rgba(255, 255, 255, 0.8), 2px 10px 17px rgba(0, 0, 0, 0.2);
+    color: #3b3b3b;
+    background-color: white;
+    position: relative;
+}
+
+.profile-section__profile-image img{
+    height: 120px;
+    width: 120px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 100px;
+    box-shadow: inset 1px -5px 8px rgba(255, 255, 255, 0.8), 1px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section__info{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.profile-section__info__name{
+    font-size: 27px;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-section__info__config{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.profile-section__info__config__password:hover,
+.profile-section__info__config__name:hover,
+.profile-section__info__config__secession:hover{
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer;
+    opacity: 1;
+}   
+.profile-section__info__config__password,
+.profile-section__info__config__name,
+.profile-section__info__config__secession{
+    opacity: 0.4;
+}
+.profile-section__info__config__password:hover{
+    color: blue;
+}
+.profile-section__info__config__secession:hover{
+    color: red;
+}
+
+@media screen and (max-width: 615px) {
+    .profile-section{
+        height: 150px;
+    }
+    .profile-section__info__name{
+        font-size: 18px;
+    }
+    .profile-section__profile-image img{
+        height: 100px;
+        width: 100px;
+    }
+    .profile-section__info__config__password,
+    .profile-section__info__config__secession{
+        margin-top: 5px;
+    }
+}
+
+@media not all and (hover: none) and (pointer: coarse) {
+    /* PC 용 */
+}

@@ -23,12 +23,14 @@
 
 .posting__x1__center__top{
     font-size: 17px;
+    text-overflow: ellipsis;
     text-align: center;
     margin-bottom: 2px;
 }
 
 .posting__x1__center__bottom{
     font-size: 13px;
+    text-overflow: ellipsis;
     text-align: center;
     color: gray;
     opacity: 0.4;

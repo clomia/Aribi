@@ -119,7 +119,7 @@ def posting_update_ajax(request):
         return ajax_update_func_map[request.POST.get("type")](request.POST)
     except:
         print("[posting_update_ajax]함수에서 예외 발생")
-        return HttpResponse("ajax요청이 잘못되었습니다")
+        return HttpResponse("")
 
 
 def posting_detail(request, pk):
@@ -232,5 +232,6 @@ def posting_edit_form(request, pk):
             target_posting.flavor_tags.clear()
             target_posting.constituents.set(constituents)
             target_posting.flavor_tags.set(flavor_tags)
+            target_posting.save()
 
         return redirect(reverse("postings:detail", kwargs={"pk": posting_pk}))

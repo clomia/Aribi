@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load importer %}
+
+{% block head %} 
+    {{ "user-detail-page.css"|css_import }} 
+{% endblock head %}
+
+{% block body %}
+    <div class="username-data none">{{ user.username }}</div>
+    {% include "partials/nav/main.html" %}
+    {% include "page/user-detail/profile-section.html" %}
+    {% include "page/user-detail/posting-section.html" %}
+    {% include "page/user-detail/list-section.html" %}
+    {{ "partials/nav"|js_module_import }}
+    {{ "user-detail"|js_module_import }}
+{% endblock body %}
