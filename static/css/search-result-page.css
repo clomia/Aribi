@@ -1,0 +1,13 @@
+@import "base.css";
+@import "tagsearch-result-page.css";
+@import "partials/user-mini/core.css";
+@import "page/search-result/core.css";
+
+*{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

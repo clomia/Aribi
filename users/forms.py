@@ -41,7 +41,7 @@ class SignUpForm(UserCreationForm):
         """UserCreationForm의 save메소드를 복사-수정/오버라이딩 한것이다."""
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        user.name = self.cleaned_data["username"]
+        user.name = self.cleaned_data["username"][:15]
         if commit:
             user.save()
         return user

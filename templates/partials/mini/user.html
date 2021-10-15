@@ -1,0 +1,6 @@
+<a href="{% url 'users:detail' pk=user.pk %}" class="user-mini">
+    <div class="user-mini__img">    
+        <img src="{{ user.profile_image.url }}" alt="">
+    </div>
+    <div class="user-mini__name">{{ user.name }}</div>
+</a>

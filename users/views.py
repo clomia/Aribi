@@ -173,7 +173,7 @@ def kakao_callback(request):
         except models.User.DoesNotExist:
             user = models.User.objects.create(
                 name=kakao_name,
-                username=username,
+                username=username[:15],
                 login_method=models.User.LOGIN_KAKAO,
             )
             user.set_unusable_password()
@@ -234,7 +234,7 @@ def github_callback(request):
                 except models.User.DoesNotExist:
                     user = models.User.objects.create(
                         name=github_name,
-                        username=username,
+                        username=username[:15],
                         login_method=models.User.LOGIN_GITHUB,
                     )
                     user.set_unusable_password()

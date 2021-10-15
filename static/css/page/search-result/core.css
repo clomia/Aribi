@@ -1,0 +1,24 @@
+.result{
+    width: 615px;
+}
+
+.result-user{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.posting-mini{
+    width: 100%;
+}
+
+.result-other{
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 615px) {
+    .result{
+        width: 100%;
+    }
+}

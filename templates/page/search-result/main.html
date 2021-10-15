@@ -1,20 +1,28 @@
-<h3>칵테일 이름으로 검색</h3>
-{% for posting in content.cocktail_name %}
-    <div>{{posting}}</div>    
-{% endfor %}
-<h3>포스팅 한 유저이름으로 검색</h3>
-{% for posting in content.created_by %}
-    <div>{{posting}}</div>    
-{% endfor %}
-<h3>포스팅 본문으로 검색</h3>
-{% for posting in content.content %}
-    <div>{{posting}}</div>    
-{% endfor %}
-<h3>칵테일에 사용된 재료로 검색</h3>
-{% for posting in content.constituents %}
-    <div>{{posting}}</div>    
-{% endfor %}
-<h3>칵테일의 맛/감각으로 검색</h3>
-{% for posting in content.flavor_tags %}
-    <div>{{posting}}</div>    
-{% endfor %}
+{% extends 'base.html' %}
+{% load importer %}
+
+{% block head %}
+    {{ "search-result-page.css"|css_import }}
+{% endblock head %}
+
+{% block body %}
+
+    {% include "partials/nav/main.html" %}
+    <a href="{% url 'core:intro' %}" class="home-btn">홈으로 이동</a>
+    <div class="result">
+        <div class="result-user">
+            {% for user in content.users %}
+                {% include "partials/mini/user.html" %}
+            {% endfor %}
+        </div>
+        <div class="result-other">
+            {% for posting in content.postings %}
+                {% include "partials/mini/posting.html" %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {{ "partials/postings"|js_module_import }}
+    {{ "partials/nav"|js_module_import }}
+
+{% endblock body %}

@@ -79,6 +79,7 @@ nameBtn.addEventListener("click", function () {
     inputSectionFormInput.value = "";
     inputSectionFormInput.setAttribute("type", "text");
     inputSectionFormInput.setAttribute("placeholder", "원하는 이름을 입력해주세요");
+    inputSectionFormInput.setAttribute("maxlength", "15");
     if (inputSection.classList.contains("none")) {
         inputSection.classList.remove("none");
         sendFormSetting("name");
@@ -94,6 +95,7 @@ passwordBtn.addEventListener("click", function () {
     inputSectionFormInput.value = "";
     inputSectionFormInput.setAttribute("type", "password");
     inputSectionFormInput.setAttribute("placeholder", "원하는 비밀번호를 입력해주세요");
+    inputSectionFormInput.setAttribute("maxlength", "1000");
     if (inputSection.classList.contains("none")) {
         inputSection.classList.remove("none");
         sendFormSetting("password");

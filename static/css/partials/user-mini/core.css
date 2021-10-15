@@ -1,0 +1,27 @@
+.user-mini {
+    display: inline-flex;
+    flex-direction: column;
+    height: 170px;
+    margin: 10px;
+    justify-content: center;
+}
+
+.user-mini__img img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    box-shadow: -3px -3px 10px rgb(255 255 255 / 80%), 3px 3px 10px rgb(0 0 0 / 20%);
+}
+
+.user-mini__name{
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 17px;
+    color: #3b3b3b;
+}
+
+.user-mini:hover{
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer;
+}

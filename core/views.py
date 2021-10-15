@@ -1,8 +1,11 @@
 import ast
-from django.shortcuts import render
+from collections import defaultdict
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.db.models import Count
 from postings.models import Posting
 from archives.models import Constituent, FlavorTag
+from users.models import User
 
 class_mapping = {
     "Constituent": Constituent,
@@ -33,15 +36,64 @@ class Intro:
         return render(request, "partials/mini/postings.html", {"postings": postings})
 
     def search(word):
-        results = {
-            "cocktail_name": Posting.objects.filter(cocktail_name__iregex=rf"{word}"),
-            "created_by": Posting.objects.filter(created_by__name__iregex=rf"{word}"),
-            "content": Posting.objects.filter(content__iregex=rf"{word}"),
-            "constituents": Posting.objects.filter(constituents__name__iregex=rf"{word}"),
-            "flavor_tags": Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"),
-        }
+        """
+        단어를 사용해서 기본 검색(필터링)을 진행한다
 
-        return "page/search-result/main.html", {key: set(value) for key, value in results.items() if value}
+        대상은 포스팅 객체와 유저이며
+        default 대상은 포스팅이다. 유저는 만약에 있다면 보여주겠다는 의도이다.
+
+        포스팅 검색 알고리즘
+        1. 포스팅이 가지는 수많은 속성들에 단어가 포함되어있다면 해당 포스팅들을 모두 가져온다.
+        2. 가져온 포스팅중에서 단어가 포함된 속성이 많은 포스팅이 앞에 오도록 정렬한다.
+        3. 속성갯수로 정렬한것을 유지하면서 좋아요가 높은 포스팅이 앞에 오도록 정렬한다.
+        4. 속성연관성이 가장 높은 포스팅들만 max_ref로 분류하게 되는데, 이 포스팅들의 갯수를 제한한다.
+            ( 태그가 너무 적게(ex 한개)가 들어왔다면 max_ref가 1이 되고 모두 max_ref로 분류된다. 같은 상황에 대한 대책 )
+        5. 후처리....
+
+        유저 검색 알고리즘
+        1. 단어가 이름에 포함된 유저를 모두 가져온다.
+        2. 단어와 일치하는 이름을 가진 유저들은 따로 분류해둔다.
+        3. 단어와 일치하지 않고 단어가 포함되있는 이름을 가진 유저는 이름의 길이가 짧은것이 앞에 오도록 정렬한 뒤 갯수를 제한한다.
+            ( 이름의 길이가 짧을수록 단어와 일치하기 때문. )
+        5. 단어와 일치하는 이름을 가진 유저들과 정렬한 유저들을 합친다..
+        """
+        # -------- posting obj sort section ------------
+        field = (
+            list(Posting.objects.filter(cocktail_name__iregex=rf"{word}"))
+            + list(Posting.objects.filter(created_by__name__iregex=rf"{word}"))
+            + list(Posting.objects.filter(constituents__name__iregex=rf"{word}"))
+            + list(Posting.objects.filter(flavor_tags__expression__iregex=rf"{word}"))
+        )
+
+        organized_field = defaultdict(list)
+        # ref_count = field에 해당 포스팅이 얼마나 많이 있는가
+        # organized_field = { ref_count: [ref_count에 해당하는 포스팅들..], ... }
+        for posting, ref_count in ((posting, field.count(posting)) for posting in set(field)):
+            organized_field[ref_count].append(posting)
+
+        # organized_field[ref_count] 리스트들을 좋아요순으로 정렬한다.
+        for section in organized_field.values():
+            section.sort(key=lambda posting: posting.posting_likes.count(), reverse=True)
+
+        # ref_count가 높은것부터 result에 추가한다.
+        # -----최종 정렬 형태------
+        # 1. ref_count가 높은것이 앞에 오도록
+        # 2. 그 안에서는 좋아요가 많은게 앞에 오도록
+
+        posting_result = []
+        for ref_count in sorted(organized_field.keys(), reverse=True):
+            posting_result.extend(organized_field[ref_count])
+
+        # -------------- user obj search process section ----------
+        users = list(User.objects.filter(name__iregex=rf"{word}"))
+
+        # 단어와 완전히 일치하는 이름을 가진 유저는 따로 분류해둔다
+        correct_user = [user for user in users if user.name == word]
+        # 그 외에 단어를 포함하는 유저들은 유저이름의 글자길이가 작을수록 단어와 유사하다는 점을 이용해서 유사도로 정렬한다.
+        other_user = sorted((user for user in users if user.name != word), key=lambda user: len(user.name))[:15]
+        user_result = correct_user + other_user
+
+        return ("page/search-result/main.html", {"postings": posting_result, "users": user_result})
 
     def tag_search(data_list):
         """data는 posting이다"""
@@ -54,13 +106,13 @@ class Intro:
 
         # ? 태그 참조 갯수로 포스팅들을 분류, 정렬하는 로직입니다.
         organized = sorted(
-            [{"data": data, "count": data_ground.count(data)} for data in set(data_ground)],
+            ({"data": data, "count": data_ground.count(data)} for data in set(data_ground)),
             key=lambda x: x["count"],
             reverse=True,
         )
         max_ref = organized[0]["count"]
         max_ref_postings = sorted(
-            [i["data"] for i in organized if i["count"] == max_ref],
+            (i["data"] for i in organized if i["count"] == max_ref),
             key=lambda posting: posting.posting_likes.count(),
             reverse=True,
         )
@@ -131,12 +183,17 @@ class Intro:
     def search_progress(cls, request):
 
         content = dict(request.POST)
+
+        search_for = content["search_for"][0].strip()
+        if not search_for:
+            return redirect(reverse("core:intro"))
+
         if tag_list := content.get("tag", False):
             content["classifier"] = ["tag_search"]
-            content["search_for"] = tag_list
+            search_for = tag_list
 
-        # func_mapping에 명시된 함수에 content["search_for"] 리스트를 준다.
-        html, result = cls.func_mapping[content["classifier"][0]](content["search_for"])
+        # func_mapping에 명시된 함수에 search_for 리스트를 준다.
+        html, result = cls.func_mapping[content["classifier"][0]](search_for)
         # max_ref는 tag_search에서만 사용되는 값
 
         return render(request, html, {"content": result})
