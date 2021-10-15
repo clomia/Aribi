@@ -611,7 +611,8 @@ function postingScript(posting) {
     // 더블터치(클릭) 좋아요 구현
     let centerPanel = posting.querySelector(".posting__x2__center"),
         like = posting.querySelector(".posting__x2__like"),
-        likeBtn = posting.querySelector(".posting__x2__like-btn");
+        likeBtn = posting.querySelector(".posting__x2__like-btn"),
+        likeText = posting.querySelector(".posting__x3__likes");
     function addLike(event) {
         // like는 효과 liked는 구분자
         const httpRequest = sendData(`type=postingLike&postingPk=${postingPk}&username=${username}`);
@@ -628,6 +629,10 @@ function postingScript(posting) {
                         setTimeout(function () {
                             like.classList.remove("like");
                         }, 900);
+                        const likeInnerHTML = likeText.innerHTML;
+                        const likeTextParse = likeInnerHTML.split("개")[0].split(" ");
+                        const likeCount = Number(likeTextParse[likeTextParse.length - 1]);
+                        likeText.innerHTML = ` 좋아요 ${likeCount + 1}개 `;
                     }
                 } else {
                     alert("좋아요 입력은 로그인이 필요합니다.");
@@ -645,6 +650,10 @@ function postingScript(posting) {
                 success = Boolean(httpRequest.responseText);
                 if (success) {
                     likeBtn.classList.remove("liked");
+                    const likeInnerHTML = likeText.innerHTML;
+                    const likeTextParse = likeInnerHTML.split("개")[0].split(" ");
+                    const likeCount = Number(likeTextParse[likeTextParse.length - 1]);
+                    likeText.innerHTML = ` 좋아요 ${likeCount - 1}개 `;
                 } else {
                     alert("좋아요 입력은 로그인이 필요합니다.");
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -814,6 +823,11 @@ function postingScript(posting) {
                             success = Boolean(httpRequest.responseText);
                             if (success) {
                                 btn.classList.remove("commentLiked");
+                                const likeText = btn.parentElement.querySelector(".posting__x6__comment__info__like");
+                                const likeInnerHTML = likeText.innerHTML;
+                                const likeTextParse = likeInnerHTML.split("개")[0].split(" ");
+                                const likeCount = Number(likeTextParse[likeTextParse.length - 1]);
+                                likeText.innerHTML = ` 좋아요 ${likeCount - 1}개 `;
                             }
                         }
                     }
@@ -826,6 +840,11 @@ function postingScript(posting) {
                             login = Boolean(httpRequest.responseText);
                             if (login) {
                                 btn.classList.add("commentLiked");
+                                const likeText = btn.parentElement.querySelector(".posting__x6__comment__info__like");
+                                const likeInnerHTML = likeText.innerHTML;
+                                const likeTextParse = likeInnerHTML.split("개")[0].split(" ");
+                                const likeCount = Number(likeTextParse[likeTextParse.length - 1]);
+                                likeText.innerHTML = ` 좋아요 ${likeCount + 1}개 `;
                             } else {
                                 alert("좋아요 입력은 로그인이 필요합니다.");
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -850,6 +869,11 @@ function postingScript(posting) {
                             success = Boolean(httpRequest.responseText);
                             if (success) {
                                 btn.classList.remove("commentLiked"); // 클래스명은 commentLiked그대로 쓴다
+                                const likeText = btn.parentElement.querySelector(".posting__x6__comment__reply__info__like");
+                                const likeInnerHTML = likeText.innerHTML;
+                                const likeTextParse = likeInnerHTML.split("개")[0].split(" ");
+                                const likeCount = Number(likeTextParse[likeTextParse.length - 1]);
+                                likeText.innerHTML = ` 좋아요 ${likeCount - 1}개 `;
                             }
                         }
                     }
@@ -862,6 +886,11 @@ function postingScript(posting) {
                             login = Boolean(httpRequest.responseText);
                             if (login) {
                                 btn.classList.add("commentLiked"); // 클래스명은 commentLiked그대로 쓴다
+                                const likeText = btn.parentElement.querySelector(".posting__x6__comment__reply__info__like");
+                                const likeInnerHTML = likeText.innerHTML;
+                                const likeTextParse = likeInnerHTML.split("개")[0].split(" ");
+                                const likeCount = Number(likeTextParse[likeTextParse.length - 1]);
+                                likeText.innerHTML = ` 좋아요 ${likeCount + 1}개 `;
                             } else {
                                 alert("좋아요 입력은 로그인이 필요합니다.");
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
