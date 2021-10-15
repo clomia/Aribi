@@ -56,7 +56,6 @@ function getCookie(name) {
 }
 
 function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl, commentSection, posting, replyCount) {
-    console.log(content, name, username, userPk, replyPk, commentPk, imageUrl, commentSection, posting, replyCount);
     if (replyCount) {
         let replyCountString = replyCount.innerHTML;
         let parse = replyCountString.split("개")[0].split(" ");
@@ -110,7 +109,7 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
     info.append(createdBy);
     const createdAgo = document.createElement("div");
     createdAgo.classList.add("posting__x6__comment__reply__info__created_ago");
-    createdAgo.innerHTML = " 방금 ";
+    createdAgo.innerHTML = " 방금 전 ";
     info.append(createdAgo);
     //-------------
     const likeBtn = document.createElement("div");
@@ -337,7 +336,7 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
     info.append(createdBy);
     const createdAgo = document.createElement("div");
     createdAgo.classList.add("posting__x6__comment__info__created_ago");
-    createdAgo.innerHTML = " 방금 ";
+    createdAgo.innerHTML = " 방금 전 ";
     info.append(createdAgo);
     //-------------
     const likeBtn = document.createElement("div");
@@ -440,6 +439,7 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
             form.classList.remove("none");
             replyBtn.innerHTML = "작성취소";
             let textArea = form.querySelector("div").querySelector("textarea");
+            textArea.value = "";
         } else {
             form.classList.add("none");
             replyBtn.innerHTML = "답글작성";
