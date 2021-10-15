@@ -49,3 +49,15 @@ def posting_in_list(posting_pk, username):
         return target_list.postings.filter(pk=posting.pk).exists()
     except User.DoesNotExist:
         return False
+
+
+@register.filter
+def comment_sorted(comments):
+    """좋아요순으로 정렬해서 반환"""
+    return sorted(list(comments), key=lambda comment: comment.comment_likes.count(), reverse=True)
+
+
+@register.filter
+def reply_sorted(replys):
+    """좋아요순으로 정렬해서 반환"""
+    return sorted(list(replys), key=lambda reply: reply.reply_likes.count(), reverse=True)

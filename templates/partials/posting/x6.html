@@ -5,7 +5,7 @@
         댓글 {{ posting.comments.count }}개 모두 보기
     </div>
     <div class="posting__x6__comment none">
-        {% for comment in posting.comments.all %}
+        {% for comment in posting.comments.all|comment_sorted %}
             <div class="posting__x6__comment__info">
                 <a href="{% url 'users:detail' pk=comment.created_by.pk %}">
                     <div class="posting__x6__comment__info__profile">
@@ -38,7 +38,7 @@
                 {{ comment.content }}
                 {% include "partials/posting/reply-form.html" %}
             </div>
-            {% for reply in comment.replies.all %}
+            {% for reply in comment.replies.all|reply_sorted %}
                 <div class="posting__x6__comment__reply">
                     <div class="posting__x6__comment__reply__info">
                         <a href="{% url 'users:detail' pk=reply.created_by.pk %}">
