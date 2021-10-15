@@ -189,13 +189,13 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
             }
         }
     })
-
+    let defaultValue = `Re.${name}  `;
     replyBtn.addEventListener("click", function (event) {
         if (form.classList.contains("none")) {
             form.classList.remove("none");
             replyBtn.innerHTML = "작성취소";
             let textArea = form.querySelector("div").querySelector("textarea");
-            textArea.value = `Re.${name}  `;
+            textArea.value = defaultValue;
         } else {
             form.classList.add("none");
             replyBtn.innerHTML = "답글작성";
@@ -203,6 +203,9 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
     })
 
     replySubmit.addEventListener("click", function (event) {
+        if (textArea.value === defaultValue || !textArea.value.trim()) {
+            return;
+        }
         let replyText = replyForm.querySelector("textarea");
         httpRequest = sendData(`type=reply&commentPk=${commentPk}&username=${username}&text=${replyText.value}`)
         httpRequest.onreadystatechange = function () {
@@ -406,7 +409,6 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
         if (form.classList.contains("none")) {
             form.classList.remove("none");
             replyBtn.innerHTML = "작성취소";
-            let textArea = form.querySelector("div").querySelector("textarea");
         } else {
             form.classList.add("none");
             replyBtn.innerHTML = "답글작성";
@@ -414,6 +416,9 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
     })
 
     replySubmit.addEventListener("click", function (event) {
+        if (!textArea.value.trim()) {
+            return;
+        }
         let replyText = replyForm.querySelector("textarea");
         httpRequest = sendData(`type=reply&commentPk=${commentPk}&username=${username}&text=${replyText.value}`)
         httpRequest.onreadystatechange = function () {
@@ -678,9 +683,6 @@ function postingScript(posting) {
     }
     centerPanel.addEventListener("dblclick", addLike);
     like.addEventListener("dblclick", addLike);
-    //! 로그인 구현 후 좋아요를 달았는지 아닌지 서버데이터로 미리 확인처리하기!!
-    /* 즉각적,동적인 데이터 전송은 form에 action을 안달고 할 수 있어보인다
-    */
     likeBtn.addEventListener("click", function () {
         if (!Array(...likeBtn.classList).includes("liked")) {
             addLike();
@@ -952,6 +954,9 @@ function postingScript(posting) {
     let commentSubmit = commentInputSection.querySelector("div");
 
     commentSubmit.addEventListener("click", function (event) {
+        if (!commentText.value.trim()) {
+            return;
+        }
         let commentTextValue = commentText.value
         commentText.value = ""
         commentText.style.height = "47px";
@@ -971,7 +976,6 @@ function postingScript(posting) {
                     let infoTextParse = content.split("개")[0].split(" ");
                     let commentCountNumber = Number(infoTextParse[infoTextParse.length - 1]);
                     content = ` 댓글 ${commentCountNumber + 1}개 모두 보기 `; // 저 위에 content 변수가 있음
-                    console.log("앙앙")
 
                     if (commentBox.classList.contains("none")) {
                         commentOpenBtn.click();
@@ -992,6 +996,9 @@ function postingScript(posting) {
         let commentPk = replySubmit.getAttribute("commentPk");
         replySubmit.addEventListener("click", function (event) {
             let replyText = replyForm.querySelector("textarea");
+            if (!replyText.value.trim()) {
+                return;
+            }
             httpRequest = sendData(`type=reply&commentPk=${commentPk}&username=${username}&text=${replyText.value}`)
             httpRequest.onreadystatechange = function () {
                 let commentBox = posting.querySelector(".posting__x6__comment");
