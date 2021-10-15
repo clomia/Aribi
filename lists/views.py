@@ -27,9 +27,22 @@ def remove_list(post_request):
     return HttpResponse("true")
 
 
+def reset_list(post_request):
+    request_user = User.objects.get(username=post_request.get("username"))
+    target_user = User.objects.get(pk=int(post_request.get("targetUserPk")))
+
+    if request_user == target_user:
+        # 리스트 객체 자체를 지웁니다. (없어져도 필요할때 다시 만들기 때문에 괜찮)
+        CustomList.objects.filter(created_by=target_user).delete()
+        return HttpResponse("true")
+    else:
+        return HttpResponse("")
+
+
 ajax_update_func_map = {
     "addList": add_list,
     "removeList": remove_list,
+    "resetList": reset_list,
 }
 
 

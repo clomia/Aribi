@@ -6,11 +6,23 @@
 {% endblock head %}
 
 {% block body %}
-    {% for count,postings in content %}
-        {% for posting in postings %}
-            {% include 'partials/posting/main.html' %} 
-        {% endfor %} 
-    {% endfor %}
-    {{ "tagsearch-result"|js_module_import }}
+
+    {% include "partials/nav/main.html" %}
+    <a href="{% url 'core:intro' %}" class="home-btn">홈으로 이동</a>
+    <div class="result">
+        <div class="result-main">
+            {% for posting in content.max_ref_postings %}
+                {% include "partials/posting/main.html" %}
+            {% endfor %}
+        </div>
+        <div class="result-other">
+            {% for posting in content.ref_postings %}
+                {% include "partials/mini/posting.html" %}
+            {% endfor %}
+        </div>
+    </div>
+
     {{ "partials/postings"|js_module_import }}
+    {{ "partials/nav"|js_module_import }}
+
 {% endblock body %}

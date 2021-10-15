@@ -45,6 +45,7 @@ class Intro:
 
     def tag_search(data_list):
         """data는 posting이다"""
+
         data_ground = []
         for data in data_list:
             data = ast.literal_eval(data)
@@ -52,14 +53,29 @@ class Intro:
             data_ground.extend(current_obj.postings.all())
 
         # ? 태그 참조 갯수로 포스팅들을 분류, 정렬하는 로직입니다.
-        organized = [{"data": data, "count": data_ground.count(data)} for data in set(data_ground)]
-        organized.sort(key=lambda x: x["count"], reverse=True)
-        mex_ref = organized[0]["count"]
-        content = [(count, []) for count in range(mex_ref, 0, -1)]
-        for info in organized:
-            container = [i[1] for i in content if i[0] == info["count"]][0]
-            container.append(info["data"])
-        return "page/tagsearch-result/main.html", content
+        organized = sorted(
+            [{"data": data, "count": data_ground.count(data)} for data in set(data_ground)],
+            key=lambda x: x["count"],
+            reverse=True,
+        )
+        max_ref = organized[0]["count"]
+        max_ref_postings = sorted(
+            [i["data"] for i in organized if i["count"] == max_ref],
+            key=lambda posting: posting.posting_likes.count(),
+            reverse=True,
+        )
+        ref_postings = [i["data"] for i in organized if i["count"] != max_ref]
+
+        # max_ref인 포스팅은 포스팅을 그대로 렌더링하는데 그것이 10개가 넘지 못하도록 한다.
+        MAX_REF_LIMIT = 7
+        if len(max_ref_postings) > MAX_REF_LIMIT:
+            ref_postings = max_ref_postings[MAX_REF_LIMIT:] + ref_postings
+            max_ref_postings = max_ref_postings[:MAX_REF_LIMIT]
+
+        return "page/tagsearch-result/main.html", {
+            "max_ref_postings": max_ref_postings,
+            "ref_postings": ref_postings,
+        }
 
     func_mapping = {
         "search": search,

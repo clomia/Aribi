@@ -1,6 +1,8 @@
 @import "base.css";
-@import "page/tagsearch-result/core.css";
 @import "partials/posting/core.css";
+@import "partials/posting-mini/core.css";
+@import "partials/nav/core.css";
+@import "page/tagsearch-result/core.css";
 
 *{
     -webkit-touch-callout: none;

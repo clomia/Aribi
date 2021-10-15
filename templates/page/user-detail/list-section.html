@@ -1,5 +1,6 @@
 <div class="list-section none">
     {% if postings_of_list %}
+        <div class="list-reset-btn {% if target_user != user %}none{% endif %}" targetUserPk="{{target_user.pk}}">리스트 비우기</div>
         {% for posting in postings_of_list %}
             {% include "partials/mini/posting.html" %}
         {% endfor %}

@@ -1,6 +1,7 @@
 .list-section,
 .posting-section{
     padding-top: 150px;
+    margin-bottom: 200px;
 }
 
 .posting-mini{
@@ -10,4 +11,18 @@
 .empty-text{
     margin-top: 100px;
     opacity: 0.8;
+}
+
+.list-reset-btn{
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    margin-top: 4px;
+}
+
+.list-reset-btn:hover{
+    color: red;
+    text-underline-position: under;
+    text-decoration: underline;
+    cursor: pointer;
 }

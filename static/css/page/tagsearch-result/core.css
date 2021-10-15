@@ -1,1 +1,63 @@
 @import "base.css";
+
+.nav{
+    width: 615px;
+}
+
+.home-btn{
+    padding: 0 20px;
+    height: 50px;
+    border-radius: 25px;
+    box-shadow: -3px -3px 5px rgb(255 255 255 / 80%), 3px 3px 5px rgb(0 0 0 / 8.5%);
+    position: absolute;
+    top: 40px;
+    display: flex;
+    justify-self: center;
+    margin-right: 3vmin;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-overflow: ellipsis;
+    color: #3b3b3b;
+    font-size: 17px;
+}
+
+@media not all and (hover: none) and (pointer: coarse) {
+    /* pc용 */
+    .home-btn:hover {
+        cursor: pointer;
+    }
+}
+
+@media all and (hover: none) and (pointer: coarse) {
+    /* 모바일용 */
+    .home-btn{
+        height: 30px;
+        display: flex;
+        margin-right: 26vmin;
+    }
+
+    .nav {
+        padding: 0 30px;
+    }
+}
+
+.result{
+    margin-top: 70px;
+    margin-bottom: 200px;
+}
+
+.posting {
+    margin-bottom: 70px;
+    /* 이 border-radius가 없으면 posting bottom border가 이상하게 적용된다 */
+    border-radius: 5px;
+    box-shadow: 3px -12px 20px rgba(255, 255, 255, 0.8), 3px 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 615px) {
+    .posting,
+    .posting-mini,
+    .nav{
+        width: 100vw;
+    }
+}

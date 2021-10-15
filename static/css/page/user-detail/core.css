@@ -15,7 +15,12 @@ body {
 @media screen and (max-width: 615px) {
     .profile-section,
     .section-btn,
+    .home-btn,
     .posting-mini{
         width: 100%;
+    }
+
+    .list-reset-btn{
+        padding-left: 15px;
     }
 }
