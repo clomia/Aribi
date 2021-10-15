@@ -967,6 +967,12 @@ function postingScript(posting) {
                     let commentBox = posting.querySelector(".posting__x6__comment");
                     commentBox.append(info);
                     commentBox.append(main);
+
+                    let infoTextParse = content.split("개")[0].split(" ");
+                    let commentCountNumber = Number(infoTextParse[infoTextParse.length - 1]);
+                    content = ` 댓글 ${commentCountNumber + 1}개 모두 보기 `; // 저 위에 content 변수가 있음
+                    console.log("앙앙")
+
                     if (commentBox.classList.contains("none")) {
                         commentOpenBtn.click();
                         main.scrollIntoView({ behavior: 'smooth', block: 'center' });

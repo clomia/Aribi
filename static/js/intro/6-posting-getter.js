@@ -70,7 +70,6 @@ window.onscroll = function () {
                 const newHtml = new DOMParser().parseFromString(responseHtml, 'text/html');
                 const newEles = newHtml.querySelectorAll("body a")
                 newEles.forEach(function (ele) {
-                    console.log(ele)
                     scope.append(ele)
                 })
             }
