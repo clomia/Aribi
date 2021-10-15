@@ -6,17 +6,15 @@ from django.db.models import Count
 from postings.models import Posting
 from archives.models import Constituent, FlavorTag
 from users.models import User
+from .function import tag_css_class_map
 
-class_mapping = {
-    "Constituent": Constituent,
-    "FlavorTag": FlavorTag,
-}
-
-DEFAULT_POSTING_COUNT = 5
+POSTING_RENDER_LIMIT = 300  # mini로 렌더링 되는 포스팅 갯수제한
 
 
 class Intro:
     """인트로 페이지"""
+
+    DEFAULT_POSTING_COUNT = 5
 
     def get_popularity_postings(*, offset: int, step=DEFAULT_POSTING_COUNT):
         # ? 관계형 필드로 정렬할때 .all().annotate를 사용하지 않으면 이상한 결과가 나오더라
@@ -30,9 +28,9 @@ class Intro:
         """만약 더이상 로딩할게 없으면 postings는 빈 QuerySet이 된다. 아무런 문제 없다."""
         order_by, offset = request.POST.get("order_by"), int(request.POST.get("offset"))
         if order_by == "latest":
-            postings = cls.get_latest_postings(offset=offset + DEFAULT_POSTING_COUNT)
+            postings = cls.get_latest_postings(offset=offset + cls.DEFAULT_POSTING_COUNT)
         elif order_by == "popularity":
-            postings = cls.get_popularity_postings(offset=offset + DEFAULT_POSTING_COUNT)
+            postings = cls.get_popularity_postings(offset=offset + cls.DEFAULT_POSTING_COUNT)
         return render(request, "partials/mini/postings.html", {"postings": postings})
 
     def search(word):
@@ -90,18 +88,30 @@ class Intro:
         # 단어와 완전히 일치하는 이름을 가진 유저는 따로 분류해둔다
         correct_user = [user for user in users if user.name == word]
         # 그 외에 단어를 포함하는 유저들은 유저이름의 글자길이가 작을수록 단어와 유사하다는 점을 이용해서 유사도로 정렬한다.
-        other_user = sorted((user for user in users if user.name != word), key=lambda user: len(user.name))[:15]
+        other_user = sorted((user for user in users if user.name != word), key=lambda user: len(user.name))[:6]
         user_result = correct_user + other_user
-
-        return ("page/search-result/main.html", {"postings": posting_result, "users": user_result})
+        return (
+            "page/search-result/main.html",
+            {
+                "postings": posting_result[:POSTING_RENDER_LIMIT],
+                "users": user_result,
+                "search_for": word,
+            },
+        )
 
     def tag_search(data_list):
         """data는 posting이다"""
+        class_mapping = {
+            "Constituent": Constituent,
+            "FlavorTag": FlavorTag,
+        }
 
+        tags = []
         data_ground = []
         for data in data_list:
             data = ast.literal_eval(data)
             current_obj = class_mapping[data["class"]].objects.get(pk=data["pk"])
+            tags.append(current_obj)
             data_ground.extend(current_obj.postings.all())
 
         # ? 태그 참조 갯수로 포스팅들을 분류, 정렬하는 로직입니다.
@@ -110,7 +120,7 @@ class Intro:
             key=lambda x: x["count"],
             reverse=True,
         )
-        max_ref = organized[0]["count"]
+        max_ref = organized[0]["count"] if organized else 0
         max_ref_postings = sorted(
             (i["data"] for i in organized if i["count"] == max_ref),
             key=lambda posting: posting.posting_likes.count(),
@@ -126,7 +136,13 @@ class Intro:
 
         return "page/tagsearch-result/main.html", {
             "max_ref_postings": max_ref_postings,
-            "ref_postings": ref_postings,
+            "ref_postings": ref_postings[:POSTING_RENDER_LIMIT],
+            "tag_data": [
+                {"name": tag.expression, "kind": tag_css_class_map[tag.category]}
+                if type(tag) is FlavorTag
+                else {"name": tag.name, "kind": tag_css_class_map[tag.kind]}
+                for tag in tags
+            ],
         }
 
     func_mapping = {

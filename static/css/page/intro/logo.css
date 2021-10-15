@@ -11,3 +11,11 @@
     height: 300px;
     opacity: 0.25;
 }
+
+@media screen and (max-width: 350px) {
+    .logo img{
+        width: 250px;
+        height: 250px;
+        opacity: 0.25;
+    }
+}

@@ -1,0 +1,62 @@
+.search-tags{
+    display: flex;
+    width: 615px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.result__not-exist{
+    width: 615px;
+    text-align: center;
+    color: #3b3b3b;
+    font-size: 18px;
+}
+
+.search-tags__tag{
+    display: inline-block;
+    font-size: 15px;
+    color: black;
+    padding: 4px 8px;
+    margin: 5px;
+    border-radius: 100px;
+    opacity: 0.8;
+}
+
+
+.alcohol{
+    opacity: 0.8;
+}
+.liquid{
+    border: 3px solid var(--liquid);
+}
+.ingredient{
+    border: 3px solid var(--ingredient);
+}
+.equipment{
+    border: 3px solid var(--equipment);
+}
+.fruit{
+    border: 3px solid var(--fruit);
+}
+.plant{
+    border: 3px solid var(--plant);
+}
+.teste{
+    border: 3px solid var(--teste);
+}
+.spice{
+    border: 3px solid var(--spice);
+}
+.texture{
+    border: 3px solid var(--texture);
+}
+.scent{
+    border: 3px solid var(--scent);
+}
+.color{
+    border: 3px solid var(--color);
+}
+.other{
+    border: 3px solid var(--other);
+}

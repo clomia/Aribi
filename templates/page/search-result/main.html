@@ -10,6 +10,15 @@
     {% include "partials/nav/main.html" %}
     <a href="{% url 'core:intro' %}" class="home-btn">홈으로 이동</a>
     <div class="result">
+        <div class="search-box">
+            <form class="search-box__form" action="{% url 'core:search_progress' %}" method="POST">
+                {% csrf_token %}
+                <input autocomplete="off" class="search-box__input" type="text" name="search_for" value="{{ content.search_for }}">
+            </form>
+        </div>
+        {% if not content.postings and not content.users %}
+            <div class="result__not-exist">검색 결과가 없습니다.</div>
+        {% endif %}
         <div class="result-user">
             {% for user in content.users %}
                 {% include "partials/mini/user.html" %}
@@ -24,5 +33,6 @@
 
     {{ "partials/postings"|js_module_import }}
     {{ "partials/nav"|js_module_import }}
+    {{ "search-result"|js_module_import }}
 
 {% endblock body %}

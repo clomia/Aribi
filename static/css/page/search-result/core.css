@@ -16,9 +16,26 @@
 .result-other{
     margin-top: 20px;
 }
+.search-box__input{
+    width: 100%;
+    box-shadow: 0px 2px 5px rgb(0 0 0 / 6%);
+}
+
+.search-box{
+    padding-bottom: 25px;
+}
+
+body{
+    justify-content: flex-start
+}
 
 @media screen and (max-width: 615px) {
     .result{
         width: 100%;
     }
+    .search-box__input{
+        width: 80vw;
+        margin-left: 10vw;
+        box-shadow: 0px 2px 5px rgb(0 0 0 / 6%);
+    }   
 }

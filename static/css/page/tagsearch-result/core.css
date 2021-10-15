@@ -1,4 +1,6 @@
+@import "variables.css";
 @import "base.css";
+@import "search-tags.css";
 
 .nav{
     width: 615px;
@@ -43,7 +45,7 @@
 }
 
 .result{
-    margin-top: 70px;
+    margin-top: 35px;
     margin-bottom: 200px;
 }
 
@@ -57,7 +59,18 @@
 @media screen and (max-width: 615px) {
     .posting,
     .posting-mini,
-    .nav{
+    .nav,
+    .search-tags,
+    .result__not-exist{
         width: 100vw;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .home-btn{
+        height: 30px;
+        display: flex;
+        margin-left: 26vmin;
+        top: 0;
     }
 }

@@ -10,6 +10,14 @@
     {% include "partials/nav/main.html" %}
     <a href="{% url 'core:intro' %}" class="home-btn">홈으로 이동</a>
     <div class="result">
+        <div class="search-tags">
+            {% for tag in content.tag_data %}
+                <div class="search-tags__tag {{ tag.kind }}">{{ tag.name }}</div>
+            {% endfor %}
+        </div>
+        {% if not content.max_ref_postings %}
+            <div class="result__not-exist">검색 결과가 없습니다.</div>
+        {% endif %}
         <div class="result-main">
             {% for posting in content.max_ref_postings %}
                 {% include "partials/posting/main.html" %}
