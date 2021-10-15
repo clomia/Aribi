@@ -160,6 +160,10 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
                     success = Boolean(httpRequest.responseText);
                     if (success) {
                         likeBtn.classList.remove("commentLiked");
+                        const likeInnerHTML = likeCount.innerHTML;
+                        const likeCountParse = likeInnerHTML.split("개")[0].split(" ");
+                        const likeCountNumber = Number(likeCountParse[likeCountParse.length - 1]);
+                        likeCount.innerHTML = ` 좋아요 ${likeCountNumber - 1}개 `;
                     }
                 }
             }
@@ -172,6 +176,10 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
                     login = Boolean(httpRequest.responseText);
                     if (login) {
                         likeBtn.classList.add("commentLiked");
+                        const likeInnerHTML = likeCount.innerHTML;
+                        const likeCountParse = likeInnerHTML.split("개")[0].split(" ");
+                        const likeCountNumber = Number(likeCountParse[likeCountParse.length - 1]);
+                        likeCount.innerHTML = ` 좋아요 ${likeCountNumber + 1}개 `;
                     } else {
                         alert("좋아요 입력은 로그인이 필요합니다.");
                         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -278,7 +286,6 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
         return httpRequest;
     }
 
-    //! 유저 프로필 패이지 만들면 여기에 userPk사용해서 링크 추가!!
     const info = document.createElement("div");
     info.classList.add("posting__x6__comment__info");
     //------------
@@ -365,6 +372,10 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
                     success = Boolean(httpRequest.responseText);
                     if (success) {
                         likeBtn.classList.remove("commentLiked");
+                        const likeInnerHTML = likeCount.innerHTML;
+                        const likeCountParse = likeInnerHTML.split("개")[0].split(" ");
+                        const likeCountNumber = Number(likeCountParse[likeCountParse.length - 1]);
+                        likeCount.innerHTML = ` 좋아요 ${likeCountNumber - 1}개 `;
                     }
                 }
             }
@@ -377,6 +388,10 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
                     login = Boolean(httpRequest.responseText);
                     if (login) {
                         likeBtn.classList.add("commentLiked");
+                        const likeInnerHTML = likeCount.innerHTML;
+                        const likeCountParse = likeInnerHTML.split("개")[0].split(" ");
+                        const likeCountNumber = Number(likeCountParse[likeCountParse.length - 1]);
+                        likeCount.innerHTML = ` 좋아요 ${likeCountNumber + 1}개 `;
                     } else {
                         alert("좋아요 입력은 로그인이 필요합니다.");
                         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -392,7 +407,6 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
             form.classList.remove("none");
             replyBtn.innerHTML = "작성취소";
             let textArea = form.querySelector("div").querySelector("textarea");
-            textArea.value = `Re.${name}  `;
         } else {
             form.classList.add("none");
             replyBtn.innerHTML = "답글작성";
@@ -916,11 +930,11 @@ function postingScript(posting) {
                 if (replyForm.classList.contains("none")) {
                     replyForm.classList.remove("none");
                     replyBtn.innerHTML = "작성취소";
-                    let targetUserName = replyBtn.parentElement.firstChild.nextElementSibling.nextElementSibling.innerHTML.trim();
                     let textArea = replyForm.querySelector("div").querySelector("textarea");
                     textArea.value = '';
                     if (prefix) {
-                        textArea.value = `Re.${targetUserName}  `;
+                        let targetUserName = replyBtn.parentElement.querySelector("a .posting__x6__comment__reply__info__created_by").innerHTML.trim();
+                        textArea.value = `Re.${targetUserName} `;
                     }
                 } else {
                     replyForm.classList.add("none");
