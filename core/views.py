@@ -181,12 +181,11 @@ class Intro:
 
     @classmethod
     def search_progress(cls, request):
-
         content = dict(request.POST)
-
-        search_for = content["search_for"][0].strip()
-        if not search_for:
-            return redirect(reverse("core:intro"))
+        if value := content.get("search_for", None):
+            search_for = value[0].strip()
+            if not search_for:
+                return redirect(reverse("core:intro"))
 
         if tag_list := content.get("tag", False):
             content["classifier"] = ["tag_search"]
