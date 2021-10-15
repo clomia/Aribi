@@ -55,7 +55,22 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl, commentSection, posting) {
+function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl, commentSection, posting, replyCount) {
+    console.log(content, name, username, userPk, replyPk, commentPk, imageUrl, commentSection, posting, replyCount);
+    if (replyCount) {
+        let replyCountString = replyCount.innerHTML;
+        let parse = replyCountString.split("개")[0].split(" ");
+        let replyCountNumber = Number(parse[parse.length - 1]);
+        replyCount.innerHTML = ` 답글 ${replyCountNumber + 1}개 `;
+    } else if (posting) {
+        let replyCountString = posting.innerHTML;
+        let parse = replyCountString.split("개")[0].split(" ");
+        let replyCountNumber = Number(parse[parse.length - 1]);
+        posting.innerHTML = ` 답글 ${replyCountNumber + 1}개 `;
+    } else if (commentSection) {
+        let _ = alert("도배 방지, 새로고침이 필요합니다.");
+        location.reload();
+    }
 
     replyUsedPostingObj.push(posting)
     function sendData(data) {
@@ -221,13 +236,13 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
                         if (replyUsedPostingObj.length === 1) {
                             // 저장하고 사용 가능한 Posting은 하나뿐, 그 이상이면 그냥 포기하고 reload할꺼임
                             let getPosting = replyUsedPostingObj[0]
-                            replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, getPosting);
+                            replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, getPosting, replyCount);
                         } else {
                             let _ = alert("도배 방지, 새로고침이 필요합니다.");
                             location.reload();
                         }
                     } else {
-                        replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, posting);
+                        replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, posting, replyCount);
                     }
                     let mark = false;
                     for (let commentInfo of posting.querySelectorAll(".posting__x6__comment__info")) {
@@ -263,6 +278,21 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
                 success = Boolean(httpRequest.responseText);
                 if (success) {
                     replyBox.remove();
+
+
+                    if (replyCount) {
+                        let replyCountString = replyCount.innerHTML;
+                        let parse = replyCountString.split("개")[0].split(" ");
+                        let replyCountNumber = Number(parse[parse.length - 1]);
+                        replyCount.innerHTML = ` 답글 ${replyCountNumber - 1}개 `;
+                    } else if (posting) {
+                        let replyCountString = posting.innerHTML;
+                        let parse = replyCountString.split("개")[0].split(" ");
+                        let replyCountNumber = Number(parse[parse.length - 1]);
+                        posting.innerHTML = ` 답글 ${replyCountNumber - 1}개 `;
+                    } else if (commentSection) {
+                        location.reload();
+                    }
                 } else {
                     alert("잘못된 접근입니다. 로그인하지 않았거나, 당신이 작성한 답글이 아닙니다.");
                     return;
@@ -409,6 +439,7 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
         if (form.classList.contains("none")) {
             form.classList.remove("none");
             replyBtn.innerHTML = "작성취소";
+            let textArea = form.querySelector("div").querySelector("textarea");
         } else {
             form.classList.add("none");
             replyBtn.innerHTML = "답글작성";
@@ -434,13 +465,13 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
                         if (replyUsedPostingObj.length === 1) {
                             // 저장하고 사용 가능한 Posting은 하나뿐, 그 이상이면 그냥 포기하고 reload할꺼임
                             let getPosting = replyUsedPostingObj[0]
-                            replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, getPosting);
+                            replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, getPosting, replyCount);
                         } else {
                             let _ = alert("도배 방지, 새로고침이 필요합니다.");
                             location.reload();
                         }
                     } else {
-                        replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, posting);
+                        replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, posting, replyCount);
                     }
                     let mark = false;
                     for (let commentInfo of posting.querySelectorAll(".posting__x6__comment__info")) {
@@ -1008,7 +1039,16 @@ function postingScript(posting) {
                     if (data) {
                         //! 답글 추가
                         let [name, imageUrl, userPk, replyPk, commentPk] = data.split("&$");
-                        let replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, comments, posting);
+
+                        let replytCountNode = null;
+                        for (let commentInfo of posting.querySelectorAll(".posting__x6__comment__info")) {
+                            let inCommentPk = commentInfo.querySelector(".posting__x6__comment__info__like-btn").getAttribute("commentPk");
+                            if (Number(inCommentPk) === Number(commentPk)) {
+                                replytCountNode = commentInfo.querySelector(".posting__x6__comment__info__reply-count");
+                            }
+                        }
+
+                        let replyBox = makeReply(replyText, name, username, userPk, replyPk, commentPk, imageUrl, comments, posting, replytCountNode);
                         let mark = false;
                         for (let commentInfo of posting.querySelectorAll(".posting__x6__comment__info")) {
                             let inCommentPk = commentInfo.querySelector(".posting__x6__comment__info__like-btn").getAttribute("commentPk");
@@ -1059,6 +1099,8 @@ function postingScript(posting) {
     }
     let replys = posting.querySelectorAll(".posting__x6__comment__reply");
     for (let reply of replys) {
+        let commentPk = reply.querySelector(".posting__x6__comment__reply__main form div div").getAttribute("commentpk");
+
         let replyInfo = reply.querySelector(".posting__x6__comment__reply__info");
         let replyPk = replyInfo.querySelector(".posting__x6__comment__reply__info__like-btn").getAttribute("replypk");
         let replyDeleteBtn = replyInfo.querySelector(".posting__x6__comment__reply__info__delete-btn");
@@ -1070,6 +1112,19 @@ function postingScript(posting) {
                     success = Boolean(httpRequest.responseText);
                     if (success) {
                         reply.remove();
+
+                        let replytCountNode = null;
+                        for (let commentInfo of posting.querySelectorAll(".posting__x6__comment__info")) {
+                            let inCommentPk = commentInfo.querySelector(".posting__x6__comment__info__like-btn").getAttribute("commentPk");
+                            if (Number(inCommentPk) === Number(commentPk)) {
+                                replytCountNode = commentInfo.querySelector(".posting__x6__comment__info__reply-count");
+                                let replyCountString = replytCountNode.innerHTML;
+                                let parse = replyCountString.split("개")[0].split(" ");
+                                let replyCountNumber = Number(parse[parse.length - 1]);
+                                replytCountNode.innerHTML = ` 답글 ${replyCountNumber - 1}개 `
+                            }
+                        }
+
                     } else {
                         alert("잘못된 접근입니다. 로그인하지 않았거나, 당신이 작성한 답글이 아닙니다.");
                         return;
