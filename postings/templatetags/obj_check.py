@@ -1,6 +1,7 @@
 from django import template
 from postings.models import Posting, PostingLike, Comment, CommentLike, Reply, ReplyLike
 from users.models import User
+from lists.models import CustomList
 
 register = template.Library()
 
@@ -31,5 +32,20 @@ def reply_like_check(reply_pk, username):
     try:
         user = User.objects.get(username=username)
         return True if ReplyLike.objects.filter(created_by=user, reply=reply) else False
+    except User.DoesNotExist:
+        return False
+
+
+@register.filter
+def posting_in_list(posting_pk, username):
+    posting = Posting.objects.get(pk=int(posting_pk))
+    try:
+        user = User.objects.get(username=username)
+        target_lists = CustomList.objects.filter(created_by=user)
+        if not target_lists:
+            target_list = CustomList.objects.create(created_by=user, name=user.username)
+        else:
+            target_list, *_ = target_lists
+        return target_list.postings.filter(pk=posting.pk).exists()
     except User.DoesNotExist:
         return False

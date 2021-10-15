@@ -61,8 +61,8 @@ def user_detail(request, pk):
         custom_list = CustomList.objects.create(name=target_user.username, created_by=target_user)
     else:
         custom_list, *_ = custom_lists
-    postings_of_list = custom_list.postings.all()
-    postings_of_user = target_user.postings.all()
+    postings_of_list = custom_list.postings.all().order_by("-created")
+    postings_of_user = target_user.postings.all().order_by("-created")
 
     return render(
         request,
