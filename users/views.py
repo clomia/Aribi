@@ -8,6 +8,17 @@ from users import forms, models
 from lists.models import CustomList
 
 
+def user_update_profile_image(request):
+    try:
+        profile_image = request.FILES.get("image")
+        target_user = models.User.objects.get(username=request.POST.get("target_username"))
+        if request.user == target_user:
+            target_user.profile_image = profile_image
+            target_user.save()
+    finally:
+        return redirect(reverse("users:detail", kwargs={"pk": target_user.pk}))
+
+
 def user_update_ajax(request):
     try:
         value = request.POST.get("value")

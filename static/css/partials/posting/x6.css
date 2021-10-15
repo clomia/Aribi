@@ -184,7 +184,7 @@
         cursor: pointer;
     }
 
-    .posting__x6__comment__info__like:hover,
+    /*! .posting__x6__comment__info__like:hover, */
     .posting__x6__comment__reply__info__like:hover,
     .posting__x6__comment__info__reply-btn:hover,
     .posting__x6__comment__info__delete-btn:hover,

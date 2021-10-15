@@ -1,3 +1,11 @@
-<div>
-    This is List 
+<div class="list-section none">
+    {% if postings_of_list %}
+        {% for posting in postings_of_list %}
+            {% include "partials/mini/posting.html" %}
+        {% endfor %}
+    {% else %}
+        <div class="empty-text">
+            리스트가 비어있습니다.
+        </div>
+    {% endif %}
 </div>

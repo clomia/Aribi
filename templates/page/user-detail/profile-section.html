@@ -1,6 +1,7 @@
 <div class="profile-section">
     <div class="profile-section__profile-image">
         <img src="{{ target_user.profile_image.url }}">
+        <div class="none img-text">사진 변경</div>
     </div>
     <div class="profile-section__info">
         <div class="profile-section__info__name">{{ target_user.name }}</div>
@@ -10,6 +11,10 @@
             <div class="profile-section__info__config__secession">계정 삭제</div>
         </div>
     </div>
+    <a href="{% url 'core:intro' %}">
+        <div class="home-btn sexy-btn">Aribi 홈으로 이동</div>
+    </a>
+    <div class="section-btn sexy-btn" state="posting">{{ target_user.name }}의 게시물</div>
 </div>
 <div class="input-section none">
     <form>
@@ -18,3 +23,8 @@
         <div class="input-section__cancel">취소</div>
     </form>
 </div>
+<form class="profile-image-form none" method="POST" action="{% url 'users:update-profile-image' %}" enctype="multipart/form-data" onchange="this.submit()" onclick="this.value=null;">
+    {% csrf_token %}
+    <input type="file" name="image" accept="image/*">
+    <input type="hidden" name="target_username" value="{{ target_user.username }}" >
+</form>

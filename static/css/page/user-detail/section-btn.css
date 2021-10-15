@@ -1,0 +1,23 @@
+.section-btn{
+    position: absolute;
+    width: 80vmin;
+    height: 40px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    margin: 20px 0;
+    bottom: -150px;
+    left: 0;
+    font-size: 17px;
+    text-overflow: ellipsis;
+}
+
+.home-btn{
+    position: absolute;
+    width: 80vmin;
+    height: 40px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    margin: 20px 0;
+    bottom: -90px;
+    left: 0;
+    font-size: 17px;
+    text-overflow: ellipsis;
+}

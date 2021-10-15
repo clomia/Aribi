@@ -1,0 +1,13 @@
+.list-section,
+.posting-section{
+    padding-top: 150px;
+}
+
+.posting-mini{
+    width: 80vmin;
+}
+
+.empty-text{
+    margin-top: 100px;
+    opacity: 0.8;
+}

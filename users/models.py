@@ -25,7 +25,7 @@ class User(AbstractUser, CoreModel):
         size=[170, 170],
         crop=["middle", "center"],
         quality=-1,
-        default="profile_images/default-profile.jpg",
+        default="profile_images/default-profile.png",
     )
     bio = models.TextField(blank=True)
 

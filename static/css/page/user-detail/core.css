@@ -1,4 +1,6 @@
 @import "profile-section.css";
+@import "section-btn.css";
+@import "section.css";
 
 body {
     display: flex;
@@ -8,4 +10,12 @@ body {
 
 .none{
     display: none;
+}
+
+@media screen and (max-width: 615px) {
+    .profile-section,
+    .section-btn,
+    .posting-mini{
+        width: 100%;
+    }
 }

@@ -181,7 +181,8 @@ window.addEventListener('load', function () {
             return;
         }
         if (!username) {
-            alert("로그인 후 이용해주세요.");
+            alert("로그인이 필요합니다.");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
         }
         if (!alcohol) {
@@ -212,7 +213,8 @@ window.addEventListener('load', function () {
             return;
         }
         if (!username) {
-            alert("로그인 후 이용해주세요.");
+            alert("로그인이 필요합니다.");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
         }
         const alcohol = 0;

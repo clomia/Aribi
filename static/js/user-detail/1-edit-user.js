@@ -34,13 +34,14 @@ const nameBtn = document.querySelector(".profile-section__info__config__name");
 const passwordBtn = document.querySelector(".profile-section__info__config__password");
 const secessionBtn = document.querySelector(".profile-section__info__config__secession");
 
+const profileSection = document.querySelector(".profile-section");
 const inputSection = document.querySelector(".input-section");
 const inputSectionForm = inputSection.querySelector("form");
 const targetUsername = inputSectionForm.querySelector("button").getAttribute("targetUsername");
 const inputSectionFormInput = inputSectionForm.querySelector("input");
 const cancelBtn = inputSectionForm.querySelector(".input-section__cancel");
 
-function sendFormSetting(type, username) {
+function sendFormSetting(type) {
     inputSectionForm.onsubmit = function (event) {
         event.preventDefault();
         const value = inputSectionFormInput.value.trim()
@@ -56,8 +57,12 @@ function sendFormSetting(type, username) {
                 if (success) {
                     if (type === "name") {
                         nameSpace.innerHTML = value
+                        profileSection.classList.remove("profile-section-btn-open");
                     } else if (type === "password") {
-                        alert("비밀번호가 변경되었습니다.");
+                        const a = alert("비밀번호가 변경되었습니다.");
+                        // Blocking 필요해서 이렇게 함
+                        document.location.href = "/users/login";
+                        return;
                     }
                     inputSection.classList.add("none");
                     inputSectionFormInput.value = "";
@@ -76,9 +81,11 @@ nameBtn.addEventListener("click", function () {
     inputSectionFormInput.setAttribute("placeholder", "원하는 이름을 입력해주세요");
     if (inputSection.classList.contains("none")) {
         inputSection.classList.remove("none");
-        sendFormSetting("name", username);
+        sendFormSetting("name");
+        profileSection.classList.add("profile-section-btn-open");
     } else {
         inputSection.classList.add("none");
+        profileSection.classList.remove("profile-section-btn-open");
     }
 })
 
@@ -89,14 +96,17 @@ passwordBtn.addEventListener("click", function () {
     inputSectionFormInput.setAttribute("placeholder", "원하는 비밀번호를 입력해주세요");
     if (inputSection.classList.contains("none")) {
         inputSection.classList.remove("none");
-        sendFormSetting("password", username);
+        sendFormSetting("password");
+        profileSection.classList.add("profile-section-btn-open");
     } else {
         inputSection.classList.add("none");
+        profileSection.classList.remove("profile-section-btn-open");
     }
 })
 
 cancelBtn.addEventListener("click", function (event) {
     inputSection.classList.add("none");
+    profileSection.classList.remove("profile-section-btn-open");
 })
 
 secessionBtn.addEventListener("click", function (event) {
@@ -124,5 +134,27 @@ secessionBtn.addEventListener("click", function (event) {
         }
     } else if (answer !== null) {
         alert("계정 삭제를 원하신다면 값을 올바르게 입력해주세요.");
+    }
+})
+
+const profileImageForm = document.querySelector(".profile-image-form");
+const profileImageInput = profileImageForm.querySelector("input[type='file']");
+const profileImage = document.querySelector(".profile-section__profile-image");
+
+profileImage.addEventListener("click", function (event) {
+    if (username === targetUsername) {
+        profileImageInput.click()
+    }
+})
+
+profileImage.addEventListener("mouseenter", function (event) {
+    if (username === targetUsername) {
+        profileImage.querySelector("div").classList.remove("none");
+    }
+})
+
+profileImage.addEventListener("mouseleave", function (event) {
+    if (username === targetUsername) {
+        profileImage.querySelector("div").classList.add("none");
     }
 })

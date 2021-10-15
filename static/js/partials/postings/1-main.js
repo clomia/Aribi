@@ -173,7 +173,8 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
                     if (login) {
                         likeBtn.classList.add("commentLiked");
                     } else {
-                        alert("좋아요 입력은 로그인 후 이용해주세요.");
+                        alert("좋아요 입력은 로그인이 필요합니다.");
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         return;
                     }
                 }
@@ -235,7 +236,8 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
                     }
                     replyBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
-                    alert("로그인 후 댓글을 작성할 수 있습니다.")
+                    alert("댓글 작성은 로그인이 필요합니다.")
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
             }
@@ -376,7 +378,8 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
                     if (login) {
                         likeBtn.classList.add("commentLiked");
                     } else {
-                        alert("좋아요 입력은 로그인 후 이용해주세요.");
+                        alert("좋아요 입력은 로그인이 필요합니다.");
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         return;
                     }
                 }
@@ -437,7 +440,8 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
                         commentSection.append(replyBox);
                     }
                 } else {
-                    alert("로그인 후 댓글을 작성할 수 있습니다.")
+                    alert("댓글 작성은 로그인이 필요합니다.")
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
             }
@@ -626,7 +630,8 @@ function postingScript(posting) {
                         }, 900);
                     }
                 } else {
-                    alert("좋아요 입력은 로그인 후 이용해주세요.");
+                    alert("좋아요 입력은 로그인이 필요합니다.");
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
             }
@@ -641,7 +646,8 @@ function postingScript(posting) {
                 if (success) {
                     likeBtn.classList.remove("liked");
                 } else {
-                    alert("좋아요 입력은 로그인 후 이용해주세요.");
+                    alert("좋아요 입력은 로그인이 필요합니다.");
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
             }
@@ -821,7 +827,8 @@ function postingScript(posting) {
                             if (login) {
                                 btn.classList.add("commentLiked");
                             } else {
-                                alert("좋아요 입력은 로그인 후 이용해주세요.");
+                                alert("좋아요 입력은 로그인이 필요합니다.");
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
                                 return;
                             }
                         }
@@ -856,7 +863,8 @@ function postingScript(posting) {
                             if (login) {
                                 btn.classList.add("commentLiked"); // 클래스명은 commentLiked그대로 쓴다
                             } else {
-                                alert("좋아요 입력은 로그인 후 이용해주세요.");
+                                alert("좋아요 입력은 로그인이 필요합니다.");
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
                                 return;
                             }
                         }
@@ -920,7 +928,8 @@ function postingScript(posting) {
                         commentOpenBtn.click();
                     }
                 } else {
-                    alert("로그인 후 댓글을 작성할 수 있습니다.")
+                    alert("댓글 작성은 로그인이 필요합니다.")
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
             }
@@ -961,7 +970,8 @@ function postingScript(posting) {
                         }
                         replyBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     } else {
-                        alert("로그인 후 댓글을 작성할 수 있습니다.")
+                        alert("댓글 작성은 로그인이 필요합니다.")
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         return;
                     }
                 }
