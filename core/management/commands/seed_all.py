@@ -16,11 +16,11 @@ class Command(BaseCommand):
         prefix = "python manage.py seed_"
 
         command_list = [
-            prefix + "users --total 10",
-            prefix + "constituents --total 10",
+            prefix + "users --total 100",
+            prefix + "constituents --total 50",
             prefix + "flavor_tags",
-            prefix + "postings --total 5",
-            prefix + "custom_lists --total 10",
+            prefix + "postings --total 200",
+            prefix + "custom_lists --total 100",
         ]
 
         for command in command_list:

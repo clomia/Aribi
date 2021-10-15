@@ -926,6 +926,7 @@ function postingScript(posting) {
                     commentBox.append(main);
                     if (commentBox.classList.contains("none")) {
                         commentOpenBtn.click();
+                        main.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
                 } else {
                     alert("댓글 작성은 로그인이 필요합니다.")
