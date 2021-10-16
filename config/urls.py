@@ -22,7 +22,7 @@ from django.urls import path
 
 
 def trigger_error(request):
-    raise TypeError
+    raise ZeroDivisionError
 
 
 urlpatterns = [
