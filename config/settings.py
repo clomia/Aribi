@@ -95,7 +95,7 @@ if DEBUG:
 else:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postqresql",
+            "ENGINE": "django.db.backends.sqlite3",
             "HOST": os.environ.get("RDS_HOST"),
             "NAME": os.environ.get("RDS_NAME"),
             "USER": os.environ.get("RDS_USER"),
