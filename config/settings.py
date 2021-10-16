@@ -182,8 +182,8 @@ DJANGORESIZED_DEFAULT_QUALITY = 100
 DJANGORESIZED_DEFAULT_SIZE = [615, 700]
 
 
-# Sentry : Error 알림 시스템
-
+# Sentry = Error 알림 시스템
+# 참고: https://docs.sentry.io/platforms/python/guides/django/?_ga=2.129313423.2060070242.1634425060-1689571536.1634425060
 if not DEBUG:
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
