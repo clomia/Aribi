@@ -1,0 +1,15 @@
+@import "base.css";
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.text404{
+    color: #3b3b3b;
+    font-size: 15vmin;
+    margin: 3vmin 0;
+}
