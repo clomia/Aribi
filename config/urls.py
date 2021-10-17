@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.urls import path
 
 
-def trigger_error(request):
+def value_error(request):
     raise ValueError
 
 
@@ -32,7 +32,7 @@ urlpatterns = [
     path("archives/", include("archives.urls", namespace="archives")),
     path("lists/", include("lists.urls", namespace="lists")),
     path("admin/", admin.site.urls),
-    path("sentry-debug/", trigger_error),
+    path("ValueError/", value_error),
 ]
 
 if settings.DEBUG:
