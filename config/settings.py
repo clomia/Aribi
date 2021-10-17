@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS")]
 
@@ -92,24 +92,24 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 
 # ------------------ DEBUG ------------------
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
-# ----------- AWS Deploy--------------
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.environ.get("RDS_HOST"),
-        "NAME": os.environ.get("RDS_NAME"),
-        "USER": os.environ.get("RDS_USER"),
-        "PASSWORD": os.environ.get("RDS_PASSWORD"),
-        "PORT": "5432",
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# ----------- AWS Deploy--------------
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "HOST": os.environ.get("RDS_HOST"),
+#         "NAME": os.environ.get("RDS_NAME"),
+#         "USER": os.environ.get("RDS_USER"),
+#         "PASSWORD": os.environ.get("RDS_PASSWORD"),
+#         "PORT": "5432",
+#     }
+# }
 
 
 # Password validation
