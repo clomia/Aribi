@@ -148,10 +148,16 @@ def get_archive_obj(data, *, model):
             obj = model.objects.get(pk=int(i))
             # get을 하기전에 int로 바꿀 수 없으면 여기로 온다
         except:
-            if model == FlavorTag:
-                obj = model.objects.get(expression=i)
-            else:
-                obj = model.objects.get(name=i)
+            try:
+                if model == FlavorTag:
+                    obj = model.objects.get(expression=i)
+                else:
+                    obj = model.objects.get(name=i)
+            except:
+                if model == FlavorTag:
+                    obj = model.objects.get(pk=i)
+                else:
+                    obj = model.objects.get(pk=i)
         result_list.append(obj)
     return result_list
 
