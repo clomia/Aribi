@@ -149,7 +149,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 # STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -186,7 +186,10 @@ if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = "aribi-aws-s3"
     AWS_DEFAULT_ACL = "public-read"
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com"
-    STATIC_URL = "https://aribi-aws-s3.s3.ap-northeast-2.amazonaws.com/static"
+    STATIC_URL = os.environ.get("STATIC_URL")
+    STATICFILES_DIRS = [STATIC_URL]
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = os.environ.get("UPLOADS_URL")
 
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
