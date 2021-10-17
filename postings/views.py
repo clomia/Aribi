@@ -141,8 +141,10 @@ def posting_detail(request, pk):
 
 def get_archive_obj(data, *, model):
     """입력받은 데이터에 해당하는 archive 오브젝트들을 반환합니다."""
-    print(data)
+
     result_list = []
+    if type(data) == str:
+        data = list(data)
     for i in data:
         try:
             obj = model.objects.get(pk=int(i))
