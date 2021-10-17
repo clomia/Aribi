@@ -198,8 +198,6 @@ class Intro:
     @classmethod
     def search_progress(cls, request):
         content = dict(request.POST)
-        if not content:
-            return redirect(reverse("core:intro"))
 
         if value := content.get("search_for", None):
             search_for = value[0].strip()
