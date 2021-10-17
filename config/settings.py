@@ -52,9 +52,9 @@ PROJECT_APPS = [
     "users.apps.UsersConfig",
 ]
 
-# THIRD_PARTY_APPS = ["storages"]
+THIRD_PARTY_APPS = ["storages"]
 
-INSTALLED_APPS = DJGNAO_APPS + PROJECT_APPS  # + THIRD_PARTY_APPS
+INSTALLED_APPS = DJGNAO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -186,8 +186,7 @@ if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = "aribi-aws-s3"
     AWS_DEFAULT_ACL = "public-read"
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static"
-    print(STATIC_URL)
+    STATIC_URL = "https://aribi-aws-s3.s3.ap-northeast-2.amazonaws.com/static"
 
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
