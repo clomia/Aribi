@@ -31,7 +31,7 @@
     text-align: center;
 }
 
-@media all and (hover: none) and (pointer: coarse) {
+@media screen and (max-width: 615px) {
     /* 모바일용 */
     .create-tag__btn-field__constituent-btn,
     .create-tag__btn-field__flavor-btn{

@@ -42,7 +42,7 @@ body{
     height: 2vmin;
 }
 
-@media all and (hover: none) and (pointer: coarse) {
+@media screen and (max-width: 615px) {
     /* 모바일용 */
     .box{
         padding-top: 15vmin;

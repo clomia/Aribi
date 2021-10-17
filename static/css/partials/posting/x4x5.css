@@ -26,7 +26,7 @@
 .btn-flip{
     transform: rotateX(180deg);
 }
-@media not all and (hover: none) and (pointer: coarse) {
+@media screen and (min-width: 615px) {
     /* PC 용 */
     .posting__x4__fold-down:hover,
     .posting__x5__fold-down:hover{

@@ -40,7 +40,7 @@
     text-align: center;
 }
 
-@media all and (hover: none) and (pointer: coarse) {
+@media screen and (max-width: 615px) {
     /* 모바일용 */
     .tag-box__constituents__help-text,
     .tag-box__flavors__help-text{

@@ -40,7 +40,7 @@
 }
 
 
-@media not all and (hover: none) and (pointer: coarse) {
+@media screen and (min-width: 615px) {
     /* PC 용 */
 
     .posting__x7__comment-input textarea:hover,

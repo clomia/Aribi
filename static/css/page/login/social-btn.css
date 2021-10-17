@@ -7,14 +7,14 @@
     background-color: transparent;
 }
 
-@media all and (hover: none) and (pointer: coarse) {
+@media screen and (max-width: 615px) {
     /* 모바일용 */
     .sexy-btn {
         border: 2px solid #3b3b3b;
     }
 }
 
-@media not all and (hover: none) and (pointer: coarse) {
+@media screen and (min-width: 615px) {
     /* PC 용 hover시 선이 교차하는 효과는 모바일에서 적용되지 않는다 */
     .sexy-btn:hover{
         border: none;

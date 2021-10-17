@@ -73,7 +73,7 @@
     /* 글자 오버랩 되면 프로필 찌그러지는것 완화 */
 }
 
-@media not all and (hover: none) and (pointer: coarse) {
+@media screen and (min-width: 615px) {
     /* PC 용 */
 
     .posting__x1__center__top:hover{

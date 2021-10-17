@@ -10,7 +10,7 @@
     box-shadow: -3px -3px 5px rgb(255 255 255 / 80%), 3px 3px 5px rgb(0 0 0 / 20%);
 }
 
-@media all and (hover: none) and (pointer: coarse) {
+@media screen and (max-width: 615px) {
     .profile,
     .profile img{
         width: 30px;
