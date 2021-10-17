@@ -21,7 +21,9 @@
             {% include "partials/mini/posting.html" %}
         {% endfor %}
     </div>
-    {{ "partials/postings"|js_module_import }}
-    {{ "partials/nav"|js_module_import }}
-    {{ "posting-detail"|js_module_import }}
+    {{ "partials/postings/1-THIS-IS-HELL.js"|js_module_import }}
+    {{ "partials/postings/2-function.js"|js_module_import }}
+    {{ "partials/postings/3-list-btn.js"|js_module_import }}
+    {{ "partials/nav/1-write-btn.js"|js_module_import }}
+    {{ "posting-detail/scroll-top.js"|js_module_import }}
 {% endblock body %}

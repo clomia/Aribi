@@ -76,8 +76,13 @@
         </form>
     </div>
 
-    {{ "posting-create"|js_module_import }}
-    {{ "posting-edit"|js_module_import }} 
+    {{ "posting-create/1-img-input.js"|js_module_import }}
+    {{ "posting-create/2-function.js"|js_module_import }}
+    {{ "posting-create/3-tag-input.js"|js_module_import }}
+    {{ "posting-create/4-tag-create.js"|js_module_import }}
+    {{ "posting-create/5-form-validation.js"|js_module_import }}
+    {{ "posting-edit/1-remove-image-form.js"|js_module_import }} 
+    {{ "posting-edit/2-fill-text.js"|js_module_import }} 
     {% comment %}! posting-edit 스크립트가 create page를 변경시켜서 edit 패이지를 구현해준다!! {% endcomment %}
     {% comment %} 그렇기 때문에 두 모듈을 차례대로 다 불러와야 Edit 페이지가 만들어진다 {% endcomment %}
 {% endblock body %}
