@@ -3,10 +3,7 @@ from itertools import cycle
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from django_seed import Seed
-from korean_name_generator import namer
 from users.models import User
-
-MEDIA_ROOT = settings.MEDIA_ROOT
 
 
 class Command(BaseCommand):
