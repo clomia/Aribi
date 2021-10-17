@@ -176,26 +176,27 @@ DJANGORESIZED_DEFAULT_SIZE = [615, 700]
 
 # Sentry = Error 알림 시스템
 # 참고: https://docs.sentry.io/platforms/python/guides/django/?_ga=2.129313423.2060070242.1634425060-1689571536.1634425060
-# if not DEBUG:
 
-#     DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
-#     STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
-#     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-#     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-#     AWS_STORAGE_BUCKET_NAME = "aribi-aws-s3"
-#     AWS_DEFAULT_ACL = "public-read"
+if not DEBUG:
 
-#     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com"
-#     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static"
+    DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
+    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = "aribi-aws-s3"
+    AWS_DEFAULT_ACL = "public-read"
 
-sentry_sdk.init(
-    dsn=os.environ.get("SENTRY_URL"),
-    integrations=[DjangoIntegration()],
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0,
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True,
-)
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static"
+
+    sentry_sdk.init(
+        dsn=os.environ.get("SENTRY_URL"),
+        integrations=[DjangoIntegration()],
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+    )
