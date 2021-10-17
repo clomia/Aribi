@@ -22,10 +22,6 @@ from django.conf.urls.static import static
 from django.urls import path
 
 
-def value_error(request):
-    raise ValueError
-
-
 urlpatterns = [
     path("", include("core.urls", namespace="core")),
     path("users/", include("users.urls", namespace="users")),
@@ -33,7 +29,6 @@ urlpatterns = [
     path("archives/", include("archives.urls", namespace="archives")),
     path("lists/", include("lists.urls", namespace="lists")),
     path(f"{os.environ.get('ADMIN_URL')}/", admin.site.urls),
-    path("ValueError/", value_error),
 ]
 
 if settings.DEBUG:
