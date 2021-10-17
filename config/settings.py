@@ -14,8 +14,8 @@ import os
 
 from pathlib import Path
 
-# import sentry_sdk
-# from sentry_sdk.integrations.django import DjangoIntegration
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -188,14 +188,14 @@ DJANGORESIZED_DEFAULT_SIZE = [615, 700]
 #     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com"
 #     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static"
 
-#     sentry_sdk.init(
-#         dsn=os.environ.get("SENTRY_URL"),
-#         integrations=[DjangoIntegration()],
-#         # Set traces_sample_rate to 1.0 to capture 100%
-#         # of transactions for performance monitoring.
-#         # We recommend adjusting this value in production.
-#         traces_sample_rate=1.0,
-#         # If you wish to associate users to errors (assuming you are using
-#         # django.contrib.auth) you may enable sending PII data.
-#         send_default_pii=True,
-#     )
+sentry_sdk.init(
+    dsn=os.environ.get("SENTRY_URL"),
+    integrations=[DjangoIntegration()],
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True,
+)
