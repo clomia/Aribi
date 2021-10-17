@@ -24,6 +24,8 @@
 .tag-box__constituents,
 .tag-box__flavors{
     padding-top: 20px;
+    width: 70vmin;
+    padding: 0 7vmin;
 }
 
 .tag-box__constituents__help-text,
