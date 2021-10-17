@@ -187,7 +187,7 @@ if not DEBUG:
     AWS_DEFAULT_ACL = "public-read"
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com"
     STATIC_URL = os.environ.get("STATIC_URL")
-    STATICFILES_DIRS = [STATIC_URL]
+    STATICFILES_DIRS = [STATIC_URL, os.path.join(BASE_DIR, "static")]
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.environ.get("UPLOADS_URL")
 
