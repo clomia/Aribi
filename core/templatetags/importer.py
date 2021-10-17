@@ -23,4 +23,4 @@ def css_import(css_name):
 @register.filter
 def img_import(img_url):
     """css link html을 반환합니다"""
-    return mark_safe(f"<img src='{STATIC_DIR}/img/{img_url} alt='로고이미지'>")
+    return mark_safe(f"<img src='{STATIC_DIR}/img/{img_url}' alt='로고이미지'>")
