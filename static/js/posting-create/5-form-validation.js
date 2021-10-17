@@ -34,13 +34,13 @@ window.addEventListener('load', function () {
         const flavorTagsSelected = document.querySelectorAll('input[name="flavor_tags"]:checked');
         const constituentsSelected = document.querySelectorAll('input[name="constituents"]:checked');
 
-        if (!constituentsSelected.length) {
-            reject("재료 태그가 선택되지 않았습니다!")
+        if (constituentsSelected.length <= 2) {
+            reject("재료 태그를 두개 이상 선택해주세요");
             return;
         }
 
-        if (!flavorTagsSelected.length) {
-            reject("맛 태그가 선택되지 않았습니다!");
+        if (flavorTagsSelected.length <= 2) {
+            reject("맛 태그를 두개 이상 선택해주세요");
             return;
         }
 
