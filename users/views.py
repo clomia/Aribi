@@ -76,7 +76,7 @@ def user_detail(request, pk):
 
 
 # --------------------------------------
-redirect_uri = lambda x: f"http://127.0.0.1:8000/users/login/{x}/callback"
+redirect_uri = lambda x: f"{os.environ.get('SELF_URL')}/users/login/{x}/callback"
 social = {
     "kakao": {
         "key": os.environ.get("KAKAO_REST_API_KEY"),
