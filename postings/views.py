@@ -143,13 +143,11 @@ def get_archive_obj(data, *, model):
     """입력받은 데이터에 해당하는 archive 오브젝트들을 반환합니다."""
 
     result_list = []
-    if type(data) == str:
-        data = list(data)
     for i in data:
         try:
             obj = model.objects.get(pk=int(i))
             # get을 하기전에 int로 바꿀 수 없으면 여기로 온다
-        except ValueError:
+        except:
             if model == FlavorTag:
                 obj = model.objects.get(expression=i)
             else:
