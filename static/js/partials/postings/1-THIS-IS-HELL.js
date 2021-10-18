@@ -37,6 +37,27 @@ function coloring(tag, kind) {
             break;
     }
 }
+
+
+function autolink(inputText) {
+    var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+    //URLs starting with http://, https://, or ftp://
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+    //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+    //Change email addresses to mailto:: links.
+    replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+    return replacedText;
+}
+
+
 const replyUsedPostingObj = [];
 // 답글이 만든 답글이 답글을 달때는 Posting변수에 접근할 수가 없다 그래서 여기에 두고 쓰려고 한다. (댓글이 만든 답글도 마찬가지)
 function getCookie(name) {
@@ -139,7 +160,7 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
     //*------info 완성-----------
     const main = document.createElement("div");
     main.classList.add("posting__x6__comment__main");
-    main.innerText = content.value;
+    main.innerHTML = autolink(content.value);
     replyBox.append(main);
     //-------
     const form = document.createElement("form");
@@ -370,7 +391,7 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
     //*------info 완성-----------
     const main = document.createElement("div");
     main.classList.add("posting__x6__comment__main");
-    main.innerText = content;
+    main.innerHTML = autolink(content);
     //-------
     const form = document.createElement("form");
     form.classList.add("none")
@@ -723,12 +744,20 @@ function postingScript(posting) {
     });
 
     //* x3
+
+
     // 본문 첫줄만 보이도록 자르고 나머지는 안보이게 줄바꿈 넣기
-    let contentBox = posting.querySelector(".posting__x3__content__p"),
-        originContent = contentBox.querySelector("p").innerHTML,
+    let contentBox = posting.querySelector(".posting__x3__content__p");
+
+    contentBox.innerHTML = autolink(contentBox.innerHTML);
+
+    let originContent = contentBox.querySelector("p").innerHTML,
         foldTopBtn = posting.querySelector(".posting__x3__content__fold-top"),
         foldBottomBtn = posting.querySelector(".posting__x3__content__fold-bottom"),
         fontSize = 16;
+
+
+
     foldBottomBtn.classList.add("none");
     let charLimit = (postingWidth - 61) / fontSize;
     function contentCut() {
@@ -835,6 +864,14 @@ function postingScript(posting) {
         }
     })
     // *x6
+    let commentMain = posting.querySelectorAll(".posting__x6__comment__main");
+    for (let comment of commentMain) {
+        let content = comment.innerText;
+        let _form = comment.querySelector("form")
+        comment.innerHTML = autolink(content.split("작성")[0]);
+        comment.append(_form);
+    }
+
     let commentOpenBtn = posting.querySelector(".posting__x6__btn");
     let commentsCount = commentOpenBtn.getAttribute("comments");
     if (commentsCount == "0") {

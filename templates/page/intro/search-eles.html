@@ -1,3 +1,6 @@
+<div class="loading">
+    {% include 'partials/mini/loading-screen.html' %}
+</div>
 <div class="search-box">
     <form class="search-box__form" action="{% url 'core:search_progress' %}" method="POST">
         {% csrf_token %}

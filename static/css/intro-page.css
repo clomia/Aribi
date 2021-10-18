@@ -4,7 +4,7 @@
 @import "partials/nav/core.css";
 @import "partials/github-ref-btn/core.css";
 @import "partials/posting-mini/core.css";
-
+@import "partials/loading-screen/core.css";
 
 *{
     -webkit-touch-callout: none;

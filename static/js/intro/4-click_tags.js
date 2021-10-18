@@ -89,6 +89,8 @@ window.addEventListener('load', function () {
     }
 
     function submit(event) {
+        const loading = document.querySelector(".loading");
+        loading.classList.remove("none");
         form.submit();
         // 채크해둔게 브라우저 캐시로 남아 있다 버그마냥..
         // 근데 또 신기하게 아래 코드가 먹힌다ㅋㅋ 이렇게 submit이후에 처리해주었다.

@@ -10,3 +10,20 @@
 .none {
     display: none;
 }
+
+.content-opened{
+    width: 100%;
+}
+
+.posting__x3__content a,
+.posting__x6__comment__main a,
+.posting__x6__comment__reply__main a{
+    text-decoration: underline;
+    text-underline-position: under;
+    color: blueviolet;
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
