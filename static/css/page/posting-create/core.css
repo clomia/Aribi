@@ -3,6 +3,7 @@
 @import "text-input.css";
 @import "tag-input.css";
 @import "tag-create.css";
+@import "loading-screen.css";
 
 body{
     display: flex;

@@ -56,8 +56,10 @@ window.addEventListener('load', function () {
             reject("맛 태그를 두개 이상 선택해주세요");
             return;
         }
-
+        //* 로딩 화면
+        const loading = document.querySelector(".loading");
+        loading.classList.remove("none");
         // 모두 통과했다면
-        form.submit()
+        form.submit();
     })
 })
