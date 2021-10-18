@@ -19,6 +19,20 @@ window.addEventListener('load', function () {
             return;
         }
 
+        //
+        const cocktail_name = form.querySelector('input[name="cocktail_name"]');
+        const content = form.querySelector('textarea[name="content"]');
+        console.log(cocktail_name, content)
+        if (!cocktail_name.value.trim().length) {
+            reject("포스팅 타이틀을 공백으로 제출할 수 없습니다.");
+            return;
+        }
+
+        if (!content.value.trim().length) {
+            reject("본문을 공백으로 제출할 수 없습니다.");
+            return;
+        }
+
         // 이미지가 입력되었는가?
         const images = document.querySelectorAll(".img-box__mixin__img");
         const uploadImages = Array(...images).filter(function (image) {
@@ -26,11 +40,10 @@ window.addEventListener('load', function () {
             return Boolean(src);
         })
         if (!uploadImages.length) {
-            reject("선택된 이미지가 없습니다!");
+            reject("선택된 이미지가 없습니다.");
             return;
         }
 
-        // 맛태그,재료태그 모두 하나라도 선택되었는가?
         const flavorTagsSelected = document.querySelectorAll('input[name="flavor_tags"]:checked');
         const constituentsSelected = document.querySelectorAll('input[name="constituents"]:checked');
 
