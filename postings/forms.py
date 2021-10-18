@@ -14,7 +14,7 @@ class PostingCreateFrom(forms.ModelForm):
         ]
 
     cocktail_name = forms.CharField(
-        max_length=30,
+        max_length=12,
         label_suffix="",
         label="",
         widget=forms.TextInput(
@@ -24,7 +24,7 @@ class PostingCreateFrom(forms.ModelForm):
         ),
     )
     content = forms.CharField(
-        max_length=2000,
+        max_length=3000,
         widget=forms.Textarea(
             attrs={
                 "placeholder": "본문 글 작성",
