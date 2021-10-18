@@ -19,7 +19,7 @@ class PostingCreateFrom(forms.ModelForm):
         label="",
         widget=forms.TextInput(
             attrs={
-                "placeholder": "타이틀(칵테일 이름)",
+                "placeholder": "타이틀",
             }
         ),
     )
