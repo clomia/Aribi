@@ -242,7 +242,7 @@ function makeReply(content, name, username, userPk, replyPk, commentPk, imageUrl
             return;
         }
         let replyText = replyForm.querySelector("textarea");
-        replyText.value = replyText.value.replaceAll("\n", "</br>");
+        replyText.value = replyText.value.replace(/\n/g, "</br>");
         httpRequest = sendData(`type=reply&commentPk=${commentPk}&username=${username}&text=${replyText.value}`)
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
@@ -1025,7 +1025,7 @@ function postingScript(posting) {
         if (!commentText.value.trim()) {
             return;
         }
-        let commentTextValue = commentText.value.replaceAll("\n", "</br>");
+        let commentTextValue = commentText.value.replace(/\n/g, "</br>");
         commentText.value = ""
         commentText.style.height = "47px";
         httpRequest = sendData(`type=comment&postingPk=${postingPk}&username=${username}&text=${commentTextValue}`);
@@ -1064,7 +1064,7 @@ function postingScript(posting) {
         let commentPk = replySubmit.getAttribute("commentPk");
         replySubmit.addEventListener("click", function (event) {
             let replyText = replyForm.querySelector("textarea");
-            replyText.value = replyText.value.replaceAll("\n", "</br>");
+            replyText.value = replyText.value.replace(/\n/g, "</br>");
             if (!replyText.value.trim()) {
                 return;
             }
