@@ -33,10 +33,12 @@
 
 @media screen and (max-width: 615px) {
     /* 모바일용 */
+
     .home-btn{
         height: 30px;
         display: flex;
         margin-right: 26vmin;
+        font-size: 15px;
     }
 
     .nav {
@@ -66,11 +68,12 @@
     }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 364px) {
     .home-btn{
-        height: 30px;
+        height: 24px;
         display: flex;
-        margin-left: 26vmin;
-        top: 0;
+        margin-right: 26vmin;
+        top: 8px;
+        font-size: 15px;
     }
 }

@@ -110,11 +110,10 @@ body{
 
 @media screen and (max-width: 615px) {
     /* 모바일용 */
+    
+    .signup,
     .box{
-        height: 70vmax;
-    }
-    .signup{
-        height: 90vmax;
+        height: 100vmax;
     }
     .box__signup a button,
     .box__form form label{

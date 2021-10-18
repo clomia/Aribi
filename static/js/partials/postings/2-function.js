@@ -50,9 +50,7 @@ function postingDelete(obj) {
     }
     let accept = confirm("포스팅을 삭제하시겠습니까?");
     if (accept) {
-        console.log("삭제합니다");
         let posting = obj.parentElement.parentElement.parentElement.parentElement
-        console.log(posting)
         let postingPk = posting.querySelector(".posting-pk").innerHTML.trim()
         let username = posting.querySelector(".username").innerHTML.trim()
         httpRequest = sendData(`type=removePosting&postingPk=${postingPk}&username=${username}`);
@@ -68,7 +66,5 @@ function postingDelete(obj) {
                 }
             }
         }
-    } else {
-        console.log("파쑤!");
     }
 }
