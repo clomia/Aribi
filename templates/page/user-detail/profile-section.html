@@ -28,3 +28,15 @@
     <input type="file" name="image" accept="image/*">
     <input type="hidden" name="target_username" value="{{ target_user.username }}" >
 </form>
+<div class="profile-section__bio">
+    <div class="profile-section__bio__content">
+        {{ target_user.bio }}
+    </div>
+    <div class="profile-section__bio__input {% if target_user.username != user.username %}none{% endif %}">
+        <div class="profile-section__bio__input__field none">
+            <textarea name="content" cols="40" rows="10" placeholder="자신을 설명해주세요" maxlength="135">{{ user.bio }}</textarea>
+            <div class="profile-section__bio__input__field__submit">적용</div>
+        </div>
+        <div class="profile-section__bio__input__btn">작성하기</div>
+    </div>
+</div>

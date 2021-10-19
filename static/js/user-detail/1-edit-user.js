@@ -165,3 +165,63 @@ profileImage.addEventListener("mouseleave", function (event) {
         profileImage.querySelector("div").classList.add("none");
     }
 })
+
+function autolink(inputText) {
+    var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+    //URLs starting with http://, https://, or ftp://
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+    //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+    //Change email addresses to mailto:: links.
+    replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+    return replacedText;
+}
+
+const bioBox = document.querySelector(".profile-section__bio__content");
+const bioInputField = document.querySelector(".profile-section__bio__input__field");
+const bioInputTextArea = bioInputField.querySelector("textarea");
+const bioWriteBtn = document.querySelector(".profile-section__bio__input__btn");
+const bioSubmit = document.querySelector(".profile-section__bio__input__field__submit");
+
+bioWriteBtn.addEventListener("click", function (event) {
+    if (bioInputField.classList.contains("none")) {
+        bioInputField.classList.remove("none");
+        bioWriteBtn.innerHTML = "작성취소";
+    } else {
+        bioInputField.classList.add("none");
+        bioWriteBtn.innerHTML = "작성하기";
+    }
+})
+
+bioSubmit.addEventListener("click", function (event) {
+    let bio = bioInputTextArea.value;
+    bio = bio.replace(/\n/g, "</br>");
+    bio = autolink(bio);
+
+    const httpRequest = sendData(`type=setBio&value=${bio}&targetUsername=${targetUsername}`);
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            // 이상 없음, 응답 받았음
+            let success = httpRequest.responseText;
+            if (success) {
+                bioBox.innerHTML = bio;
+                bioWriteBtn.click();
+                if (!bio) {
+                    bioBox.innerHTML = `안녕하세요 ${nameSpace.innerHTML}입니다.`
+                }
+            }
+        }
+    }
+})
+
+console.log(bioBox)
+if (!bioBox.innerText.length) {
+    bioBox.innerHTML = `안녕하세요 ${nameSpace.innerHTML}입니다.`
+}

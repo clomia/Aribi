@@ -41,10 +41,15 @@ def user_update_ajax(request):
         def remove_user():
             target_user.delete()
 
+        def set_bio():
+            target_user.bio = value
+            target_user.save()
+
         func_map = {
             "name": edit_name,
             "password": edit_password,
             "removeUser": remove_user,
+            "setBio": set_bio,
         }
         func_map[request.POST.get("type")]()
 

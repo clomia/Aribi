@@ -27,3 +27,8 @@ class UserAdmin(UserAdmin):
     )
 
     list_filter = ("login_method",)
+
+    search_fields = (
+        "name",
+        "bio",
+    )

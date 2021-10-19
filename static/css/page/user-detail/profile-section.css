@@ -165,6 +165,100 @@
     color: red;
 }
 
+
+
+.profile-section__bio{
+    position: relative;
+    margin-top: 84px;
+    height: 230px;
+    width: 80vmin;
+    background-color: white;
+    box-shadow: inset 1px -5px 8px rgba(255, 255, 255, 0.8), 1px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section__bio__content{
+    padding: 10px 100px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 30px;
+    color: #3b3b3b;
+}
+
+.profile-section__bio__input{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 13px;
+    top: 0;
+}
+
+.profile-section__bio__input__btn{
+    opacity: 0.4;
+}
+
+.profile-section__bio__input__field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60vmin;
+    height: 100%;
+}
+
+.profile-section__bio__input__field textarea{
+    background: white;
+    box-shadow: none;
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 16px;
+    resize: none;
+    overflow-y: hidden;
+    height: 100%;
+    width: 100%;
+    height: 140px;
+    color: #3b3b3b;
+    text-align: center;
+    border: none;
+    margin-top: 30px;
+}
+
+.profile-section__bio__input__field textarea:focus{
+    border: none;
+    outline: none;
+}
+
+.profile-section__bio__input__field__submit{
+    padding-bottom: 3px;
+    color: #3b3b3b;
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 615px) {
+    /* 모바일 용 */
+    .profile-section__bio{
+        width: 100%;
+    }
+    .profile-section__bio__content{
+        padding: 10px;
+        padding-bottom: 30px;
+    }
+    .profile-section__bio__input__field{
+        width: 100%;
+    }
+}
+
 @media screen and (min-width: 615px) {
     /* PC 용 */
+    .profile-section__bio__input__btn:hover,
+    .profile-section__bio__input__field__submit:hover{
+        cursor: pointer;
+    }
 }
