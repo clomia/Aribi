@@ -20,7 +20,7 @@
     fill: #3b3b3b;
     opacity: 0.7;
 }
-@keyframes opacityOn{
+@keyframes opacityOnNav{
     0%{
         opacity: 0;
     }
@@ -35,7 +35,7 @@
     }
     .nav__write-button:hover .nav__write-button__text{
         width: 100%;
-        animation: opacityOn 100ms ease 200ms forwards;
+        animation: opacityOnNav 100ms ease 200ms forwards;
     }
     .nav__write-button:hover .nav__write-button__svg svg{
         opacity: 1;

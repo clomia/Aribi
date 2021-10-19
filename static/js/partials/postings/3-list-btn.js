@@ -38,7 +38,8 @@ function addList(obj) {
             // 이상 없음, 응답 받았음
             success = Boolean(httpRequest.responseText);
             if (success) {
-                document.location.href = `/postings/${postingPk}`;
+                obj.innerHTML = "리스트에서 지우기"
+                obj.setAttribute("onclick", "removeList(this)");
             }
         }
     }
