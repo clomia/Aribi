@@ -14,7 +14,7 @@ POSTING_RENDER_LIMIT = 300  # mini로 렌더링 되는 포스팅 갯수제한
 class Intro:
     """인트로 페이지"""
 
-    DEFAULT_POSTING_COUNT = 1
+    DEFAULT_POSTING_COUNT = 3
 
     def get_popularity_postings(*, offset: int, step=DEFAULT_POSTING_COUNT):
         # ? 관계형 필드로 정렬할때 .all().annotate를 사용하지 않으면 이상한 결과가 나오더라
@@ -129,7 +129,7 @@ class Intro:
         ref_postings = [i["data"] for i in organized if i["count"] != max_ref]
 
         # max_ref인 포스팅은 포스팅을 그대로 렌더링하는데 그것이 7개가 넘지 못하도록 한다.
-        MAX_REF_LIMIT = 7
+        MAX_REF_LIMIT = 6
         if len(max_ref_postings) > MAX_REF_LIMIT:
             ref_postings = max_ref_postings[MAX_REF_LIMIT:] + ref_postings
             max_ref_postings = max_ref_postings[:MAX_REF_LIMIT]
