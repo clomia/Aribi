@@ -128,7 +128,7 @@ class Intro:
         )
         ref_postings = [i["data"] for i in organized if i["count"] != max_ref]
 
-        # max_ref인 포스팅은 포스팅을 그대로 렌더링하는데 그것이 10개가 넘지 못하도록 한다.
+        # max_ref인 포스팅은 포스팅을 그대로 렌더링하는데 그것이 7개가 넘지 못하도록 한다.
         MAX_REF_LIMIT = 7
         if len(max_ref_postings) > MAX_REF_LIMIT:
             ref_postings = max_ref_postings[MAX_REF_LIMIT:] + ref_postings

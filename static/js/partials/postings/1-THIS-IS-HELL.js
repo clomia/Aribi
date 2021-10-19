@@ -473,6 +473,7 @@ function makeComment(content, name, username, userPk, commentPk, imageUrl, comme
             return;
         }
         let replyText = replyForm.querySelector("textarea");
+        replyText.value = replyText.value.replace(/\n/g, "</br>");
         httpRequest = sendData(`type=reply&commentPk=${commentPk}&username=${username}&text=${replyText.value}`)
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
