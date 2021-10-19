@@ -6,6 +6,9 @@
 {% endblock head %}
 
 {% block body %}
+    <div class="loading none">
+        {% include 'partials/mini/loading-screen.html' %}
+    </div>
 
     {% include "partials/nav/main.html" %}
     <a href="{% url 'core:intro' %}" class="home-btn">홈으로 이동</a>

@@ -3,6 +3,7 @@
 @import "tagsearch-result-page.css";
 @import "partials/user-mini/core.css";
 @import "page/search-result/core.css";
+@import "partials/loading-screen/core.css";
 
 *{
     -webkit-touch-callout: none;

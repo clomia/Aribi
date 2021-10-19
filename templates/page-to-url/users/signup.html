@@ -7,6 +7,10 @@
 {% endblock head %}
 
 {% block body %}
+<div class="loading none">
+    {% include 'partials/mini/loading-screen.html' %}
+</div>
+
 <div class="box signup">
     <div class="box__go-to-back">
         <a href="{% url 'users:login' %}">
@@ -23,6 +27,11 @@
 </div>
 
 
-
+<script type="application/javascript">
+    window.onbeforeunload = function () {
+        // 페이지를 떠날때 로딩시간동안 로딩 애니메이션
+        document.querySelector(".loading").classList.remove("none");
+    }
+</script>
 
 {% endblock body %}

@@ -1,3 +1,8 @@
+window.onbeforeunload = function () {
+    // 페이지를 떠날때 로딩시간동안 로딩 애니메이션
+    document.querySelector(".loading").classList.remove("none");
+}
+
 //svg위치: templates/svg/eraser_icon.html
 const eraserIconSvg = `
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"

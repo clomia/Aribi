@@ -1,6 +1,20 @@
+@keyframes startOn{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
 .loading{
     position: fixed;
     z-index: 999;
+    animation: startOn 2s linear forwards;
 }
 
 
@@ -95,16 +109,24 @@ span {
     }
 }
 
+@keyframes opacityOn{
+    0%{
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+    100%{
+        background-color: rgba(0, 0, 0, 0.72);
+    }
+}
 
 .animations {
     display: flex;
     align-items: center;
     position: relative;
-    background: #3b3b3b;
     min-height: 100vh;
     widows: 100vw;
     justify-content: center;
     overflow: hidden;
+    animation: opacityOn 3.3s linear forwards;
 }
 
 .animation-container {

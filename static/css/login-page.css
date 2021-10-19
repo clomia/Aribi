@@ -1,5 +1,6 @@
 @import "base.css";
 @import "page/login/core.css";
+@import "partials/loading-screen/core.css";
 
 *{
     -webkit-touch-callout: none;

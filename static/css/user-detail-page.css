@@ -3,6 +3,7 @@
 @import "partials/nav/core.css";
 @import "partials/sexy-btn/core.css";
 @import "page/user-detail/core.css";
+@import "partials/loading-screen/core.css";
 
 *{
     -webkit-touch-callout: none;

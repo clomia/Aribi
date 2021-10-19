@@ -4,6 +4,7 @@
 @import "partials/nav/core.css";
 @import "page/posting-detail/core.css";
 @import "partials/sexy-btn/core.css";
+@import "partials/loading-screen/core.css";
 
 *{
     -webkit-touch-callout: none;

@@ -1,3 +1,8 @@
+window.onbeforeunload = function () {
+    // 페이지를 떠날때 로딩시간동안 로딩 애니메이션
+    document.querySelector(".loading").classList.remove("none");
+}
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {

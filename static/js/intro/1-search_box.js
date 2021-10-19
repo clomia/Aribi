@@ -1,27 +1,7 @@
-function detectMobileDevice(agent) {
-    const mobileRegex = [
-        /Android/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-        /BlackBerry/i,
-        /Windows Phone/i
-    ]
-
-    return mobileRegex.some(mobile => agent.match(mobile))
+window.onbeforeunload = function () {
+    // 페이지를 떠날때 로딩시간동안 로딩 애니메이션
+    document.querySelector(".loading").classList.remove("none");
 }
-
-if (detectMobileDevice(window.navigator.userAgent)) {
-    // 홈 화면 로딩효과는 앱을 사용하는 모바일에서만 적용
-    window.addEventListener('load', function (event) {
-        const loading = document.querySelector(".loading");
-        loading.classList.add("none");
-    })
-} else {
-    const loading = document.querySelector(".loading");
-    loading.classList.add("none");
-}
-
 
 let searchBoxForm = document.querySelector(".search-box__form");
 let tagSearchForm = document.querySelector(".tags[action='/search-result']");
@@ -43,11 +23,7 @@ function searchType(clsName) {
         ele.value = "tag_search"
     }
 }
-searchBoxForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const loading = document.querySelector(".loading");
-    loading.classList.remove("none");
-    searchBoxForm.submit();
-})
 
 searchType(typeSearch);
+
+

@@ -6,6 +6,9 @@
 {% endblock head %}
 
 {% block body %}
+    <div class="loading none">
+        {% include 'partials/mini/loading-screen.html' %}
+    </div>
     <div class="username-data none">{{ user.username }}</div>
     {% include "partials/nav/main.html" %}
     {% include "page/user-detail/profile-section.html" %}
