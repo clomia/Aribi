@@ -142,6 +142,10 @@ def posting_detail(request, pk):
 def get_archive_obj(data, *, model):
     """입력받은 데이터에 해당하는 archive 오브젝트들을 반환합니다."""
 
+    if isinstance(data, str):
+        # 입력받은 태그가 하나라면 문자열로 들어온다 아래 반복문을 실행 할 수 있도록 리스트에 넣어준다.
+        data = [data]
+
     result_list = []
     for i in data:
         try:

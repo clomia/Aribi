@@ -47,16 +47,19 @@ window.addEventListener('load', function () {
         const flavorTagsSelected = document.querySelectorAll('input[name="flavor_tags"]:checked');
         const constituentsSelected = document.querySelectorAll('input[name="constituents"]:checked');
 
-        if (constituentsSelected.length < 2) {
-            reject("재료 태그를 두개 이상 선택해주세요");
-            return;
-        }
+        // if (constituentsSelected.length < 2) {
+        //     reject("재료 태그를 두개 이상 선택해주세요");
+        //     return;
+        // }
 
-        if (flavorTagsSelected.length < 2) {
-            reject("맛 태그를 두개 이상 선택해주세요");
-            return;
-        }
-        //* 로딩 화면
+        // if (flavorTagsSelected.length < 2) {
+        //     reject("맛 태그를 두개 이상 선택해주세요");
+        //     return;
+        // }
+        // 아래 코드는 그대로 둔다.
+        // 어차피 템플릿에 Loading은 하나고 class 삭제로 구현되어있어서
+        // 중복 실행되도 문제 없다.
+        // 아래의 코드가 이벤트 리스너보다 빠르기 때문.
         const loading = document.querySelector(".loading");
         loading.classList.remove("none");
         // 모두 통과했다면
