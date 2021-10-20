@@ -39,6 +39,7 @@
                 <a href="{% url 'postings:edit' pk=posting.pk %}" class="posting__x1__menu-btn__box__menu menu-2">수정</a>
                 <div class="posting__x1__menu-btn__box__menu menu-3" onclick="postingDelete(this)">삭제</div>
             {% endif %}
+            <div class="posting__x1__menu-btn__box__menu menu-3" onclick="copyPostingUrl({{ posting.pk }})">공유</div>
         </div>
     </div>
 </div>

@@ -68,3 +68,16 @@ function postingDelete(obj) {
         }
     }
 }
+
+function copyPostingUrl(copyTagetPostingPk) {
+    function copyToClipboard(val) {
+        const t = document.createElement("textarea");
+        document.body.appendChild(t);
+        t.value = val;
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+    }
+    copyToClipboard(`https://clomia.aribi.community/postings/${copyTagetPostingPk}`);
+    alert("URL이 복사되었습니다.\n붙여넣기를 통해서 공유할 수 있습니다.");
+}
