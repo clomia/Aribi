@@ -47,7 +47,7 @@ window.addEventListener('load', function () {
         const constituentsSelected = document.querySelectorAll('input[name="constituents"]:checked');
 
         if (constituentsSelected.length === 0) {
-            document.querySelector("#id_constituents_186").click();
+            document.querySelector("#id_constituents_185").click();
         }
 
         if (flavorTagsSelected.length === 0) {

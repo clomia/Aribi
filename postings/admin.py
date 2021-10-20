@@ -89,7 +89,6 @@ class CommentAdmin(admin.ModelAdmin):
         "like_counter",
         "reply_counter",
         "posting",
-        "get_image",
         "created",
     )
     search_fields = (
@@ -106,11 +105,6 @@ class CommentAdmin(admin.ModelAdmin):
         ReplyInline,
     )
 
-    def get_image(self, obj):
-        """info: obj 인자로는 Comment객체가 들어온다"""
-        if obj.image:
-            return mark_safe(f'<img width="50px" src="{obj.image.url}" />')
-
     def reply_counter(self, obj):
         return obj.replies.all().count()
 
@@ -119,8 +113,6 @@ class CommentAdmin(admin.ModelAdmin):
 
     reply_counter.short_description = "replies"
     like_counter.short_description = "Likes"
-
-    get_image.short_description = "Comment Image"
 
 
 @admin.register(models.Reply)
