@@ -226,6 +226,6 @@ bioSubmit.addEventListener("click", function (event) {
     }
 })
 
-if (!bioBox.innerText.length) {
+if (!bioBox.innerText.trim().length) {
     bioBox.innerHTML = `안녕하세요 ${nameSpace.innerHTML}입니다.`
 }
