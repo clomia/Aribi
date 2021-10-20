@@ -4,6 +4,9 @@
 {% block head %} 
     {{ "posting-detail-page.css"|css_import }} 
     <meta property="og:image" content="{{ posting.pictures.all.0.image.url }}">
+    <meta property="og:title" content="코드공부방">
+    <meta property="og:type" content="{{ posting.cocktail_name }}">
+    <meta property="og:description" content="{{posting.created_by.name}}">
 {% endblock head %}
 
 
