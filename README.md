@@ -1,4 +1,6 @@
-[clomia.aribi.community](https://clomia.aribi.community)
+[![Aribi 로고](https://media.githubusercontent.com/media/clomia/Aribi/main/static/img/logo-mini.png)](https://clomia.aribi.community)
+  
+[clomia.aribi.community](https://clomia.aribi.community)  
 =============
 수많은 음식과 칵테일계의 인스타그램  
 상상도 못한 레시피들이 당신을 기다리고 있습니다!  
@@ -7,7 +9,7 @@
 냉장고에 있는 재료들이 얼마나 많은 음식을 만들어낼 수 있는지 알면 놀라게 될걸요?!  
   
 ---
-웹뷰 방식으로 안드로이드와 아이폰 앱도 제작되었습니다.  
+웹뷰 방식으로 모바일 앱도 제작되었습니다.  
 아래 사진들은 스토어에 공개될 이미지입니다.  
 현재(10월 20일) 앱 등록을 신청하고 심사중에 있습니다.  
 스토어에 공개되기까지 몇주정도 걸릴 것 같습니다.
@@ -23,11 +25,11 @@
   
 --- 
 
-> 백엔드 로직은 Django Python 기반으로 작성되었습니다.  
-> 프론트엔드는 Django Tamplate과 날것의 CSS/JavaScript로 작성되었습니다.    
-> 개발 이외의 모든 디자인과 기획 또한 clomia 개인이 모두 진행하였습니다.  
-> SVG 제작을 포함한 각종 디자인에 사용된 툴은   
-> Adobe Illustrator, Adobe Photoshop입니다.  
+백엔드 로직은 Django Python 기반으로 작성되었습니다.  
+프론트엔드는 Django Tamplate과 날것의 CSS/JavaScript로 작성되었습니다.    
+개발 이외의 모든 디자인과 기획 또한 clomia 개인이 모두 진행하였습니다.  
+SVG 제작을 포함한 각종 디자인에 사용된 툴은   
+Adobe Illustrator, Adobe Photoshop입니다.  
 
 ## 배포
 배포는 AWS를 통해서 진행하였습니다.  
@@ -50,6 +52,7 @@
         * ( 코드가 돌아가는 메인 서버 )
     * RDS  
         * 데이터베이스 서버 
+        * DB는 PostgreSQL을 사용함
         * ( DB는 이곳으로 분리 후 EC2와 연결 )
     * S3  
         * Static 파일과 유저가 업로드 하는 파일을 저장하는 바구니
@@ -57,6 +60,8 @@
     * Route 53  
         * DNS서버를 통해서 IP를 도메인에 연결  
         * 구매한 도메인은 .community 입니다.  
+        * HTTPS에 사용한 레코드는 clomia입니다
+        * 결과적으로 clomia.aribi.community 라는 URL을 만들었습니다.
     * Certificate Manager  
         * HTTPS 적용을 위한 인증서 발급  
 * Google Search Console
@@ -78,8 +83,9 @@
 프로젝트에 손을 대지 못하였습니다.  
   
 9월 15일 프로젝트를 재개하였으며  
-10월 20일 배포를 완료하고 서비스 운영단계에 들어갔습니다.  
-**요약: 개발기간은 ( 7/21 ~ 8/9 ) 그리고 ( 9/15 ~ 10/20 )이다.**
+10월 20일 배포를 완료하고 서비스 운영단계에 들어갔습니다.   
+  
+**요약: 개발기간은 ( 7/21 ~ 8/9 ) 그리고 ( 9/15 ~ 10/20 )입니다.**
 
 ## 디자인
 투 컬러에서의 색 조합 - 어두운 색: #3b3b3b , 밝은 색: #fafafa  
@@ -117,6 +123,10 @@ Ajax 기술이 많이 사용되었습니다.
 > 따라서 기술적인 내용은 더 없습니다.  
   
 ## 향후 계획  
+  
+> Aribi 서비스의 정채성은 편리한 레시피 검색 시스템에 있습니다.  
+> 유저 수가 많아지고 포스팅이 늘어날수록  
+> 필터링되는 정보가 많아지므로 서비스의 가치도 높아집니다.  
   
 ### 시작하게 된 계기  
 칵테일 만들기를 좋아하는 친구가 있습니다.  
@@ -159,7 +169,9 @@ Ajax 기술이 많이 사용되었습니다.
 * 요리 컨텐츠를 다루는 사람들  
 * 마지막으로 그냥 아무나 ( 인스타처럼 일상적인 포스팅과 소통도 가능하기 때문 )  
 
-> Aribi 서비스의 정채성은 편리한 레시피 검색 시스템에 있습니다.  
-> 유저 수가 많아지고 포스팅이 늘어날수록  
-> 필터링되는 정보가 많아지므로 서비스의 가치도 높아집니다.  
+**많은 데이터가 쌓여서 사람들에게 유용한 레시피 검색 엔진이 되었으면 좋겠습니다.**  
 
+----
+  
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/dd9bb2d9-2c2d-41f6-a32e-5ffbc80a42cf/%EA%B5%AC%EA%B8%80_%EA%B0%9C%EB%B0%9C%EC%9E%90_%ED%97%A4%EB%8D%94.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20211020%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211020T132512Z&X-Amz-Expires=86400&X-Amz-Signature=6103d9ea3291f816c99d384b12b46054323ba556f2893b20a8853f07004cd73c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25EA%25B5%25AC%25EA%25B8%2580%2520%25EA%25B0%259C%25EB%25B0%259C%25EC%259E%2590%2520%25ED%2597%25A4%25EB%258D%2594.jpg%22)  
+## [clomia.aribi.community](https://clomia.aribi.community)  
