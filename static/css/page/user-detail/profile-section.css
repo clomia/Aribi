@@ -1,21 +1,3 @@
-@media screen and (max-width: 615px) {
-    .profile-section{
-        height: 150px;
-    }
-    .profile-section__info__name{
-        font-size: 18px;
-    }
-    .profile-section__profile-image img{
-        height: 100px;
-        width: 100px;
-    }
-    .profile-section__info__config__name,
-    .profile-section__info__config__password,
-    .profile-section__info__config__secession{
-        margin-top: 5px;
-    }
-}
-
 .input-section{
     margin-top: -100px;
 }
@@ -287,5 +269,23 @@
     }
     .profile-section__bio__content{
         font-size: 17.5px;
+    }
+}
+
+@media screen and (max-width: 615px) {
+    .profile-section{
+        height: 150px;
+    }
+    .profile-section__info__name{
+        font-size: 18px;
+    }
+    .profile-section__profile-image img{
+        height: 100px;
+        width: 100px;
+    }
+    .profile-section__info__config__name,
+    .profile-section__info__config__password,
+    .profile-section__info__config__secession{
+        margin-top: 5px;
     }
 }
