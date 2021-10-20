@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load importer %}
 
+{% block og_title %}[Aribi 프로필] {{ user.name }}{% endblock og_title %}
+
 {% block head %} 
     {{ "user-detail-page.css"|css_import }} 
 {% endblock head %}
