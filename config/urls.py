@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
 from django.urls import path
+from config.function import robots_txt
 
 
 urlpatterns = [
@@ -29,6 +29,7 @@ urlpatterns = [
     path("archives/", include("archives.urls", namespace="archives")),
     path("lists/", include("lists.urls", namespace="lists")),
     path(f"{os.environ.get('ADMIN_URL')}/", admin.site.urls),
+    path("robots.txt", robots_txt),
 ]
 
 if settings.DEBUG:
