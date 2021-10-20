@@ -184,26 +184,31 @@ function autolink(inputText) {
     return replacedText;
 }
 
+const bioInput = document.querySelector(".profile-section__bio__input");
 const bioBox = document.querySelector(".profile-section__bio__content");
 const bioInputField = document.querySelector(".profile-section__bio__input__field");
 const bioInputTextArea = bioInputField.querySelector("textarea");
 const bioWriteBtn = document.querySelector(".profile-section__bio__input__btn");
 const bioSubmit = document.querySelector(".profile-section__bio__input__field__submit");
 
+bioBox.innerHTML = autolink(bioBox.innerHTML).replace(/\n/g, "</br>");
+
 bioWriteBtn.addEventListener("click", function (event) {
     if (bioInputField.classList.contains("none")) {
         bioInputField.classList.remove("none");
+        bioInput.classList.remove("bio_input_off");
+        bioBox.classList.add("none");
         bioWriteBtn.innerHTML = "작성취소";
     } else {
         bioInputField.classList.add("none");
+        bioInput.classList.add("bio_input_off");
+        bioBox.classList.remove("none");
         bioWriteBtn.innerHTML = "작성하기";
     }
 })
 
 bioSubmit.addEventListener("click", function (event) {
     let bio = bioInputTextArea.value;
-    bio = bio.replace(/\n/g, "</br>");
-    bio = autolink(bio);
 
     const httpRequest = sendData(`type=setBio&value=${bio}&targetUsername=${targetUsername}`);
     httpRequest.onreadystatechange = function () {
@@ -211,7 +216,7 @@ bioSubmit.addEventListener("click", function (event) {
             // 이상 없음, 응답 받았음
             let success = httpRequest.responseText;
             if (success) {
-                bioBox.innerHTML = bio;
+                bioBox.innerHTML = autolink(bio).replace(/\n/g, "</br>");
                 bioWriteBtn.click();
                 if (!bio) {
                     bioBox.innerHTML = `안녕하세요 ${nameSpace.innerHTML}입니다.`
@@ -221,7 +226,6 @@ bioSubmit.addEventListener("click", function (event) {
     }
 })
 
-console.log(bioBox)
 if (!bioBox.innerText.length) {
     bioBox.innerHTML = `안녕하세요 ${nameSpace.innerHTML}입니다.`
 }

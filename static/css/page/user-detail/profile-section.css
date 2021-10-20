@@ -181,12 +181,25 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     overflow: hidden;
     padding-bottom: 30px;
     color: #3b3b3b;
+}
+
+.profile-section__bio__content a{
+    text-decoration: underline;
+    text-underline-position: under;
+    color: blueviolet;
+    width: 100%;
+    display: inline;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 15px;
 }
 
 .profile-section__bio__input{
@@ -200,6 +213,11 @@
     padding: 13px;
     top: 0;
 }
+
+.bio_input_off{
+    height: 50px;
+}
+
 
 .profile-section__bio__input__btn{
     opacity: 0.4;
@@ -248,10 +266,16 @@
     }
     .profile-section__bio__content{
         padding: 10px;
-        padding-bottom: 30px;
+        margin-bottom: 30px;
     }
     .profile-section__bio__input__field{
         width: 100%;
+    }
+    .bio_input_off{
+        height: 44px;
+    }
+    .profile-section__bio__input__field textarea{
+        font-size: 14.2px;
     }
 }
 
@@ -260,5 +284,8 @@
     .profile-section__bio__input__btn:hover,
     .profile-section__bio__input__field__submit:hover{
         cursor: pointer;
+    }
+    .profile-section__bio__content{
+        font-size: 17.5px;
     }
 }

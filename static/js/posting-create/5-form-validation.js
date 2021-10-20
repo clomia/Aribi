@@ -22,7 +22,6 @@ window.addEventListener('load', function () {
         //
         const cocktail_name = form.querySelector('input[name="cocktail_name"]');
         const content = form.querySelector('textarea[name="content"]');
-        console.log(cocktail_name, content)
         if (!cocktail_name.value.trim().length) {
             reject("포스팅 타이틀을 공백으로 제출할 수 없습니다.");
             return;
