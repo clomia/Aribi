@@ -1,8 +1,8 @@
 import os, requests
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from django.views.generic import FormView
 from django.urls import reverse_lazy
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from users import forms, models
 from lists.models import CustomList
@@ -60,28 +60,25 @@ def user_update_ajax(request):
 
 def user_detail(request, pk):
 
-    try:
-        target_user = models.User.objects.get(pk=int(pk))
-    except models.User.DoesNotExist:
-        return Http404()
-    else:
-        custom_lists = CustomList.objects.filter(created_by=target_user)
-        if not custom_lists:
-            custom_list = CustomList.objects.create(name=target_user.username, created_by=target_user)
-        else:
-            custom_list, *_ = custom_lists
-        postings_of_list = custom_list.postings.all().order_by("-created")
-        postings_of_user = target_user.postings.all().order_by("-created")
+    target_user = get_object_or_404(models.User, pk=int(pk))
 
-        return render(
-            request,
-            "page/user-detail/main.html",
-            context={
-                "target_user": target_user,
-                "postings_of_list": postings_of_list,
-                "postings_of_user": postings_of_user,
-            },
-        )
+    custom_lists = CustomList.objects.filter(created_by=target_user)
+    if not custom_lists:
+        custom_list = CustomList.objects.create(name=target_user.username, created_by=target_user)
+    else:
+        custom_list, *_ = custom_lists
+    postings_of_list = custom_list.postings.all().order_by("-created")
+    postings_of_user = target_user.postings.all().order_by("-created")
+
+    return render(
+        request,
+        "page/user-detail/main.html",
+        context={
+            "target_user": target_user,
+            "postings_of_list": postings_of_list,
+            "postings_of_user": postings_of_user,
+        },
+    )
 
 
 # --------------------------------------
