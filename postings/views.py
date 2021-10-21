@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from postings.models import Posting, Picture, PostingLike, Comment, CommentLike, Reply, ReplyLike
@@ -126,17 +126,20 @@ def posting_detail(request, pk):
     """
     타겟 포스팅 객체, 그리고 타켓 포스팅과 연관성이 높은 포스팅들을 추출한다.
     """
-    posting = Posting.objects.get(pk=pk)
-
-    related_postings = [i[1] for i in get_correlation_list(posting)]
-    return render(
-        request,
-        "page/posting-detail/main.html",
-        context={
-            "posting": posting,
-            "related_postings": related_postings,
-        },
-    )
+    try:
+        posting = Posting.objects.get(pk=pk)
+    except Posting.DoesNotExist:
+        return Http404()
+    else:
+        related_postings = [i[1] for i in get_correlation_list(posting)]
+        return render(
+            request,
+            "page/posting-detail/main.html",
+            context={
+                "posting": posting,
+                "related_postings": related_postings,
+            },
+        )
 
 
 def get_archive_obj(data, *, model):

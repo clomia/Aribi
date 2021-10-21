@@ -1,5 +1,5 @@
 import os, requests
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
@@ -60,24 +60,28 @@ def user_update_ajax(request):
 
 def user_detail(request, pk):
 
-    target_user = models.User.objects.get(pk=int(pk))
-    custom_lists = CustomList.objects.filter(created_by=target_user)
-    if not custom_lists:
-        custom_list = CustomList.objects.create(name=target_user.username, created_by=target_user)
+    try:
+        target_user = models.User.objects.get(pk=int(pk))
+    except models.User.DoesNotExist:
+        return Http404()
     else:
-        custom_list, *_ = custom_lists
-    postings_of_list = custom_list.postings.all().order_by("-created")
-    postings_of_user = target_user.postings.all().order_by("-created")
+        custom_lists = CustomList.objects.filter(created_by=target_user)
+        if not custom_lists:
+            custom_list = CustomList.objects.create(name=target_user.username, created_by=target_user)
+        else:
+            custom_list, *_ = custom_lists
+        postings_of_list = custom_list.postings.all().order_by("-created")
+        postings_of_user = target_user.postings.all().order_by("-created")
 
-    return render(
-        request,
-        "page/user-detail/main.html",
-        context={
-            "target_user": target_user,
-            "postings_of_list": postings_of_list,
-            "postings_of_user": postings_of_user,
-        },
-    )
+        return render(
+            request,
+            "page/user-detail/main.html",
+            context={
+                "target_user": target_user,
+                "postings_of_list": postings_of_list,
+                "postings_of_user": postings_of_user,
+            },
+        )
 
 
 # --------------------------------------
