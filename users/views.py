@@ -111,6 +111,11 @@ class LoginView(FormView):
             login(self.request, user)
         return super().form_valid(form)
 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse("core:intro"))
+        return super().get(request, *args, **kwargs)
+
 
 def log_out(request):
     logout(request)
@@ -134,6 +139,11 @@ class SignUpView(FormView):
             login(self.request, user)
 
         return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse("core:intro"))
+        return super().get(request, *args, **kwargs)
 
 
 # ------------  Kakao  ----------------
