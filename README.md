@@ -13,8 +13,9 @@ Python과 Django를 사용한 웹 서비스 개발 프로젝트입니다.
   
 웹뷰 방식으로 모바일 앱도 제작되었습니다.    
 아래 사진들은 스토어에 공개될 이미지입니다.  
-현재(10월 20일) 앱 등록을 신청하고 심사중에 있습니다.  
-스토어에 공개되기까지 몇주정도 걸릴 것 같습니다.
+구글 정책에 따라서 신고와 차단기능을 넣어야 한다고 구글로부터 메일을 받았습니다.  
+현재 개인 블로그를 개발하고 있습니다.   
+해당 프로젝트가 마무리 될 무렵 앱 배포 이슈도 해결한 뒤 본격적으로 홍보할 예정입니다.  
 <p float="left">
     <img src="https://media.githubusercontent.com/media/clomia/Aribi/main/tools/readme/img/%EB%82%98%EB%A7%8C%EC%9D%98%20%EB%A0%88%EC%8B%9C%ED%94%BC%EB%A5%BC%20%ED%8F%AC%EC%8A%A4%ED%8C%85%ED%95%98%EC%84%B8%EC%9A%94.jpg" width="30%" height="30%"></img>
     <img src="https://media.githubusercontent.com/media/clomia/Aribi/main/tools/readme/img/%ED%83%9C%EA%B7%B8%20%EA%B2%80%EC%83%89%EC%9D%84%20%ED%86%B5%ED%95%B4%EC%84%9C%20%EC%9B%90%ED%95%98%EB%8A%94%20%EB%A0%88%EC%8B%9C%ED%94%BC%EB%A5%BC%20%EC%B0%BE%EC%95%84%EB%B3%B4%EC%84%B8%EC%9A%94.jpg" width="30%" height="30%"></img>
