@@ -100,7 +100,7 @@ Adobe Illustrator, Adobe Photoshop입니다.
 > S - 채도: 37% 로 고정    
 > V - 명도: 90% 로 고정 (단, H가 66일때는 86%)  
   
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ad6454ce-50ed-44ac-b3ad-8eee78cd5001/%EC%BB%AC%EB%9F%AC%EC%8B%9C%EC%8A%A4%ED%85%9C.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20211020%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211020T101547Z&X-Amz-Expires=86400&X-Amz-Signature=28d5194e409be99db587b6d2b87d491de1fc03a7686ae069fc3e3d7bd05b8502&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25EC%25BB%25AC%25EB%259F%25AC%25EC%258B%259C%25EC%258A%25A4%25ED%2585%259C.jpg%22)  
+![](https://for-me.s3.ap-northeast-2.amazonaws.com/%EC%BB%AC%EB%9F%AC%EC%8B%9C%EC%8A%A4%ED%85%9C.jpg)  
 가장 왼쪽에서 H값이 0입니다. 오른쪽 방향으로 한칸에 33씩 증가합니다.  
 
 [ 액체, 재료, 용품, 과일맛, 식물맛, 기본맛, 향신료맛, 입안감촉, 향, 색감, 기타 특징 ]  
