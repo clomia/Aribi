@@ -1,6 +1,6 @@
-[![Aribi 로고](https://media.githubusercontent.com/media/clomia/Aribi/main/static/img/logo-mini.png)](https://clomia.aribi.community)  
+![Aribi 로고](https://media.githubusercontent.com/media/clomia/Aribi/main/static/img/logo-mini.png)
 
-#### AWS 서버 비용 문제로 4월부터 서비스 중단하였습니다.
+#### AWS 서버 비용 문제로 4월부터 서비스를 중단하였습니다.
 
 수많은 음식과 칵테일계의 인스타그램  
 상상도 못한 레시피들이 당신을 기다리고 있습니다!  
